@@ -1,0 +1,20 @@
+.footer-body h1{
+    font-size: 18px;
+}
+.footer-body li{
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+.social-icon{
+    background-color: #d5d5d5;
+    color: #679509;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 30px;
+    transition: ease-in 0.3s;
+    cursor: pointer;
+}
+.social-icon:hover{
+    background-color: #679509;
+    color: white;
+}
