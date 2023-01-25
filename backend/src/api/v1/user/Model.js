@@ -17,13 +17,13 @@ const userSchema = Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    isDelete: { type: Boolean, default: false },
+    createdAt: Date.now(),
+    updatedAt:Date,
     resetPasswordToken: String,
     resetPasswordExpire: Date
   },
   { timestamps: true }
 );
-
 
 userSchema.virtual('fullName').get(function () {
   return [this.firstName, this.lastName].filter(Boolean).join(' ');
@@ -59,7 +59,5 @@ userSchema.methods.getResetPasswordToken = function () {
   this.resetPasswordExpire = Date.now() + 30 * 60 * 1000
   return resetToken;
 }
-  
-  
   
 module.exports = model('user', userSchema);

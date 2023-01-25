@@ -1,15 +1,12 @@
 const router = require('express').Router();
 const {
-  addUser,
-  updateUser,
-  userSignIn,
+  userRegister,
+  userLogin,
   deleteUser,
+  updateUser,
   getUsers,
-  searchUser,
-  getUser,
-  logoutUser,
-  forgotPassword,
-  resetPassword
+  getSingleUser,
+  logoutUser
 } = require('../user/controller');
 
 const {
@@ -25,8 +22,8 @@ const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth')
 // authorizeRoles('user');
 // authorizeRoles('admin');
 
-router.post('/signup', addUserValidator, validationResult, addUser);
-router.post('/login', userSignIn);
+router.post('/signup', addUserValidator, validationResult, userRegister);
+router.post('/login', userLogin);
 
 router.patch(
   '/:id',
@@ -40,11 +37,9 @@ router.delete('/:id', idValidator, validationResult, deleteUser);
 
 router.get('/', getUsers);
 
-router.get('/search', searchUser);
+// router.get('/search', searchUser);
 router.get('/logout', logoutUser);
-router.post('/password/forgot', forgotPassword);
-router.put('/password/reset/:token', resetPassword);
 
-router.get('/:id', isAuthenticatedUser, authorizeRoles('admin'), idValidator, validationResult, getUser);
+router.get('/:id', idValidator, validationResult, getSingleUser);
 
 module.exports = router;
