@@ -41,5 +41,4 @@ router.get('/', getUsers);
 router.get('/logout', logoutUser);
 
 router.get('/:id', idValidator, validationResult, getSingleUser);
-
 module.exports = router;

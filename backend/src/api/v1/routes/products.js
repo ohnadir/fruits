@@ -35,6 +35,4 @@ router.get('/', getProducts);
 router.get('/search', searchProduct);
 
 router.get('/:id', idValidator, validationResult, getProduct);
-
 module.exports = router;
-
