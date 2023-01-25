@@ -18,11 +18,13 @@ app.use(errorMiddleware)
 // all route
 const productRoute = require("./src/api/v1/routes/products");
 const userRoute = require("./src/api/v1/routes/users");  
+const orderRoute = require("./src/api/v1/routes/orders");  
 const paymentRoute = require("./src/api/v1/routes/payment");
 
 // user route 
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/places", productRoute);
+app.use("/api/v1/orders", orderRoute);
 app.use("/api/v1/payments", paymentRoute);
 
 

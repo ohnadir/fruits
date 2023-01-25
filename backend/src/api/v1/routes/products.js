@@ -1,13 +1,12 @@
 const router = require('express').Router();
 const {
   addProduct,
-  updateProduct,
   deleteProduct,
-  getProducts,
-  searchProduct,
+  updateProduct,
   getProduct,
-  createProductReview
-} = require('../product/controller');
+  getProducts,
+  searchProduct
+} = require('../product/service');
 
 
 const {
@@ -16,11 +15,10 @@ const {
   idValidator,
 } = require('../product/validator');
 
-const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth')
+// const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth')
 const validationResult = require('../validators');
 
 router.post('/', addProductValidator, validationResult, addProduct);
-router.post('/review', createProductReview);
 
 router.patch(
   '/:id',
@@ -39,3 +37,4 @@ router.get('/search', searchProduct);
 router.get('/:id', idValidator, validationResult, getProduct);
 
 module.exports = router;
+
