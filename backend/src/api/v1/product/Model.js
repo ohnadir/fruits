@@ -6,9 +6,7 @@ const productSchema = Schema({
   price: { type: String, required: true},
   productPictures: [],
   reviews: [],
-  category: { type: String, required: true},
-  createdAt: Date.now(),
-  updatedAt: Date,
+  category: { type: String, required: true}
 },
   { timestamps: true }
 );

@@ -17,8 +17,6 @@ const userSchema = Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    createdAt: Date.now(),
-    updatedAt:Date,
     resetPasswordToken: String,
     resetPasswordExpire: Date
   },

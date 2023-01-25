@@ -6,7 +6,7 @@ const {
   getProduct,
   getProducts,
   searchProduct
-} = require('../product/service');
+} = require('../product/controller');
 
 
 const {
