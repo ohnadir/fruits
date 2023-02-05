@@ -11,8 +11,8 @@ const Header = () => {
     
     return (
         <div>
-            <Carousel autoplay>
-                <div className="relative ">
+            <Carousel autoplay className=''>
+                <div className="relative overflow-x-hidden">
                     <img
                         src={ header1}
                         className="lg:h-[700px] w-full "

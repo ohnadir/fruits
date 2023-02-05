@@ -9,17 +9,33 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, clearErrors } from '../actions/productActions';
 import Loader from './Loader';
 import { message, Alert } from 'antd';
+import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
   const { loading, products, error } = useSelector(state => state.products);
-
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-
+  const ArrowLeft = (props) => (
+    <button
+        {...props}
+        className="prev">
+        <BiChevronLeft/>
+    </button>
+  );
+  const ArrowRight = (props) => (
+    <button
+      {...props}
+      className="next">
+        <BiChevronRight/>
+    </button>
+  );
   const settings = {
-    dots: true,
+    dots: false,
+    arrows:true,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -61,7 +77,7 @@ const AllProducts = () => {
           <div className=''>
             <Slider {...settings} >
               {
-                products?.map((product) => <div className=''>
+                products?.map((product) => <div className='overflow-hidden'>
                   <div className='pCard p-3 bg-white'>
                     <img className='w-[70%] mx-auto' src={product.productPictures[0]} alt="" />
                     <h1>{product?.reviews[1]}</h1>
