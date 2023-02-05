@@ -23,7 +23,7 @@ const paymentRoute = require("./src/api/v1/routes/payment");
 
 // user route 
 app.use("/api/v1/users", userRoute);
-app.use("/api/v1/places", productRoute);
+app.use("/api/v1/products", productRoute);
 app.use("/api/v1/orders", orderRoute);
 app.use("/api/v1/payments", paymentRoute);
 

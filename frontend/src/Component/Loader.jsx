@@ -3,7 +3,7 @@ import { Spin } from 'antd';
 
 const Loader = () => {
     return (
-        <div>
+        <div className='flex justify-center items-center'>
             <Spin />
         </div>
     );

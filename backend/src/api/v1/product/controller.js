@@ -74,20 +74,15 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next)=> {
 });
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const { page, size} = req.query;
-
-  const products = await Product.find()
-    .sort({ _id: -1 })
-    .skip(page * size)
-    .limit(size)
-    .lean();
-  const count = await Product.estimatedDocumentCount();
+  const products = await Product.find();
+  if (!products) {
+    return next(new ErrorHandler('No Product found at this moment'))
+  }
   res.status(200).json({
     success: true,
     statusCode: 200,
     message:"Fetch Product Successfully",
-    products,
-    count
+    products
   })
 });
 

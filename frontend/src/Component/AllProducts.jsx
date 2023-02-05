@@ -10,18 +10,13 @@ import { getProducts, clearErrors } from '../actions/productActions';
 import Loader from './Loader';
 import { message, Alert } from 'antd';
 
-
-
-
 const AllProducts = () => {
   const dispatch = useDispatch();
   const { loading, products, error } = useSelector(state => state.products);
 
   useEffect(() => {
     dispatch(getProducts());
-    
   }, [dispatch]);
-  console.log(products);
 
   const settings = {
     dots: true,

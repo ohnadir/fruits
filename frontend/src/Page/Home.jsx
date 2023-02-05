@@ -13,7 +13,7 @@ import Layout from '../Component/Layout/Layout';
 const Home = (props) => {
     return (
         <Layout>
-            <div className=''>
+            <div className='bg-[#f8f8f8]'>
                 <Header></Header>
                 <Poster></Poster>
                 <AllProducts></AllProducts>
