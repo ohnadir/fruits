@@ -66,12 +66,7 @@ const Navbar = (props) => {
                         >1</span>
                     </div>
                     <div className="text-xl border rounded-full p-2">
-                        <Dropdown overlay={menu} overlayStyle={{"marginRight": "10px"}} trigger={['click']}>
-                            <a onClick={(e) => e.preventDefault()} >
-                                <BiUser  className='hover:text-[#669900] 
-                                cursor-pointer transition ease-in' />
-                            </a>
-                        </Dropdown>
+                        <BiUser  className='hover:text-[#669900] cursor-pointer transition ease-in' />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,3 @@
-
-import 'antd/dist/antd.css';
 import { Route, Routes, Switch  } from 'react-router-dom';
 import Checkout from './Page/Checkout';
 import Cart from './Page/Cart';

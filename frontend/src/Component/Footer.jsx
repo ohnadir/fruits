@@ -11,9 +11,9 @@ import Google from '../assets/google.png'
 const Footer=()=>{
     return(
         <div className=' bg-white'>
-            <div className='max-w-7xl mx-auto px-2 py-16'>
-                <div className='footer-body grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                    <div>
+            <div className='max-w-7xl mx-auto px-10 py-16'>
+                <div className='footer-body grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                    <div className='mx-auto w-fit'>
                         <img src={Logo} alt="" />
                         <p className='text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
                         <div className='flex gap-5'>
@@ -23,7 +23,7 @@ const Footer=()=>{
                             <FaPinterestP className='social-icon'/>
                         </div>
                     </div>
-                    <div>
+                    <div className='sm:mx-auto w-fit'>
                         <h1>Product Catalog</h1>
                         <ul>
                             <li>Vegetables</li>
@@ -33,7 +33,7 @@ const Footer=()=>{
                             <li>Butter & Eggs</li>
                         </ul>
                     </div>
-                    <div>
+                    <div className='md:mx-auto w-fit'>
                         <h1>Useful Links</h1>
                         <ul>
                             <li>About Us</li>
@@ -43,7 +43,7 @@ const Footer=()=>{
                             <li>Promotional Offers</li>
                         </ul>
                     </div>
-                    <div>
+                    <div className='sm:mx-auto w-fit'>
                         <h1>Download Apps</h1>
                         <p className='text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipisicing..</p>
                         <div className='flex sm:flex-col gap-6 '>

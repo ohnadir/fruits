@@ -68,7 +68,7 @@ const AllProducts = () => {
     ]
   };
   return (
-    <div className='max-w-7xl mx-auto my-16'>
+    <div className='max-w-7xl mx-auto px-10 my-16'>
       <Metadata title={'Home'} />
       {
         loading

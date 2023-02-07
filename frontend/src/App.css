@@ -13,36 +13,19 @@
   width: 100%;
   height: auto;
 }
-.overlay{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.overlay::after{
+  content: '';
   width: 0;
   height: 100%;
-  transition: .9s ease;
-}
-.overlay2{
-  position: absolute;
-  bottom: 0;
-  left: 100%;
-  right: 0;
   background-color: rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 0;
-  height: 100%;
-  transition: .9s ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: all 0.2s ease;
 }
-.poster:hover .overlay {
-  width: 100%;
-  right: 0;
-}
-
-.poster:hover .overlay2 {
-  width: 100%;
+.poster:hover .overlay::after{
   left: 0;
+  width: 100%;
 }
 .pCard{
   box-shadow: 0px 0px 10px 0px #cccccc3b;
