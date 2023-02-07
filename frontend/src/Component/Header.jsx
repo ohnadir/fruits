@@ -4,14 +4,19 @@ import header1 from '../assets/slider1.jpg'
 import header2 from '../assets/slider2.jpg'
 import subHeder1 from '../assets/hr1.png'
 import subHeder2 from '../assets/hr2.png'
-
-
-
+import Slider from "react-slick";
 const Header = () => {
-    
+    const settings = {
+        arrows: false,
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
     return (
         <div>
-            <Carousel autoplay className=''>
+            <Slider {...settings}>
                 <div className="relative overflow-x-hidden">
                     <img
                         src={ header1}
@@ -72,7 +77,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-            </Carousel>
+            </Slider>
         </div>
     );
 };
