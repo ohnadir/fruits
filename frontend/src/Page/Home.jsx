@@ -8,6 +8,7 @@ import Signup from './Signup';
 import Layout from '../Component/Layout/Layout';
 import Category from '../Component/Category';
 import { Deal } from '../Component/Deal';
+import { ProductWidgets } from '../Component/ProductWidgets';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
 
@@ -21,6 +22,7 @@ const Home = (props) => {
                 <AllProducts></AllProducts>
                 <Category/>
                 <Deal/>
+                <ProductWidgets/>
                 <Question></Question>
             </div>
         </Layout>
