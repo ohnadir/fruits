@@ -1,0 +1,29 @@
+.timerContainer .timeContainer{
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+}
+.timerContainer p{
+    margin: 0;
+    text-align: center;
+    color: #4d4d4d;
+    padding-top: 4px;
+    font-size: 14px;
+}
+.timerContainer .shopBtn{
+    background-color: white;
+    padding: 6px 30px;
+    color: black;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+.timerContainer .shopBtn:hover{
+    background-color: #679509;
+    color: white;
+}
