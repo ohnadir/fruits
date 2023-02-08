@@ -1,0 +1,19 @@
+.hoverBtn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align:  center;
+    transform: translate(-50%, -50%);
+}
+.hoverBtn .btnContent{
+    background-color: #679509;
+    color: white;
+    padding: 2px 16px;
+    border-radius: 20px;
+    width: fit-content;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+.hoverBtn .btnContent:hover, button{
+    margin-top: -10px;
+}
