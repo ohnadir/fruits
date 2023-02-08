@@ -27,3 +27,29 @@
     background-color: #679509;
     color: white;
 }
+
+.HeaderContainer{
+    background: #dbdbdb;
+}
+.headerOverlay{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 60%;
+    left: -10px;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+}
+.headerOverlay .headerOverlayContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align:  center;
+    transform: translate(-50%, -50%);
+}
+.headerOverlay .headerOverlayContainer p{
+    color: #679509;
+    font-size: 20px;
+    font-weight: 600;
+}
