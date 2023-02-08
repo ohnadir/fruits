@@ -1,6 +1,6 @@
 import React from 'react';
 import "../Style/ProductsWidgets.css"
-import photo from "../assets/2 (1).jpg";
+import photo from "../assets/5.jpg";
 import week from "../assets/week.jpg"
 
 export const ProductWidgets = () => {
@@ -16,35 +16,35 @@ export const ProductWidgets = () => {
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
-                            <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
+                            <span className=''>*****</span>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                 </div>
@@ -57,35 +57,35 @@ export const ProductWidgets = () => {
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                 </div>
@@ -98,35 +98,35 @@ export const ProductWidgets = () => {
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                     <div className='productsCard flex items-center justify-between'>
-                        <img className='w-[50px]' src={photo} alt="" />
+                        <img className='w-[70px]' src={photo} alt="" />
                         <div>
-                            <p className='m-0'>Carrots Group Scal</p>
+                            <p className='m-0 text-[12px]'>Carrots Group Scal</p>
                             <span>*****</span>
-                            <p className='m-0 font-extrabold'>$200</p>
+                            <p className='m-0 text-[#679509] font-extrabold'>$200</p>
                         </div>
                     </div>
                 </div>
@@ -140,9 +140,10 @@ export const ProductWidgets = () => {
                     </div>
                     <div className='h-full relative'>
                         <img className='h-full m-0 p-0' src={week} alt="" />
-                        <div className='absolute top-[50%] left-0 text-center mx-auto'>
-                            <p>Get A Discount For Weekly Offer!</p>
-                        </div>
+                        <div className='absolute top-[30%] left-0 text-center mx-auto'>
+                            <p className='m-0 text-white font-extrabold text-2xl'>Get A Discount For Weekly Offer!</p>
+                            <button className='shopBtn'>Shop Now</button>
+                        </div >
                     </div>
                 </div>
             </div>
