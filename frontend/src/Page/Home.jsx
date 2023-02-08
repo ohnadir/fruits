@@ -10,6 +10,7 @@ import Category from '../Component/Category';
 import { Deal } from '../Component/Deal';
 import { ProductWidgets } from '../Component/ProductWidgets';
 import NewestProduct from '../Component/NewestProduct';
+import Services from '../Component/Services';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
 
@@ -19,9 +20,9 @@ const Home = (props) => {
         <Layout>
             <div className='bg-[#f8f8f8]'>
                 <Header></Header>
-                <Poster></Poster>
-                <AllProducts></AllProducts>
+                <Services/>
                 <Category/>
+                <AllProducts></AllProducts>
                 <NewestProduct/>
                 <Deal/>
                 <ProductWidgets/>
