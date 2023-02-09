@@ -7,10 +7,10 @@ import {FaInstagram} from 'react-icons/fa'
 import {FaPinterestP} from 'react-icons/fa'
 import {FaShoppingCart} from 'react-icons/fa'
 import { BsTwitter } from 'react-icons/bs'
-import Metadata from './Layout/MetaData';
+import Metadata from '../Layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetails, clearErrors } from '../actions/productActions';
-import Loader from './Loader';
+// import { getProductDetails, clearErrors } from '../../actions/productActions';
+import Loader from '../Loader';
 import { message, Alert } from 'antd';
 
 const photos = [
@@ -23,20 +23,13 @@ const photos = [
 const ProductDetails = () => {
     const [selectedImg, setSelectedImg] = useState(photos[0]);
     const [count, setCount] = useState(1)
-    const dispatch = useDispatch();
+    /* const dispatch = useDispatch();
     const { loading, product, error } = useSelector(state => state.product);
 
     useEffect(() => {
         dispatch(getProductDetails());
-      }, [dispatch]);
+      }, [dispatch]); */
     return (
-        <>
-        {
-            loading
-                ?
-                <Loader></Loader>
-                :
-                (
                 <div>
                     <Metadata title={'Product Details'} />
                     <div className='flex p-4 flex-col md:flex-row'>
@@ -79,7 +72,7 @@ const ProductDetails = () => {
                             <p className='border-y-2 py-2 mb-6'><span className='text-2xl font-bold text-[#4d4d4d]'>Categories: </span> <span className='text-[15px] font-semibold'>Cover, Seat, Car, Parts</span></p>
                             <div className='flex gap-5 '>
                                 <div className='flex  bg-[#679509] border-[#679509] p-[2px]'>
-                                    <button onClick={()=>setCount(count - 1)} className='px-2 text-3xl  text-white' >-</button>
+                                    <button disabled={count === 1} onClick={()=>setCount(count - 1)} className='px-2 text-3xl  text-white' >-</button>
                                     <input className='outline-0 w-20 px-8' type="text" value={count} />
                                     <button onClick={()=>setCount(count + 1)} className='px-1  text-3xl text-center text-white'>+</button>
                                 </div>
@@ -104,10 +97,7 @@ const ProductDetails = () => {
                             </div>
                         </div>
                     </div>
-                </div>        
-                )
-        }
-        </>
+                </div>
         
     );
 };

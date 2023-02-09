@@ -38,7 +38,7 @@ const Navbar = (props) => {
         <div className="px-10 max-w-7xl mx-auto ">
             <div className="flex items-center py-3 gap-6 sm:gap-10 md:gap-20 lg:gap-52 justify-between">
                 <div className="cursor-pointer">
-                    <img src={logo} onClick={()=>navigate('/home')} alt="" />
+                    <img className='' src={logo} onClick={()=>navigate('/')} alt="" />
                 </div>
                 <div className=" flex border w-full">
                     <input

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { MdOutlineDoubleArrow } from 'react-icons/md';
 import cartHeader from '../assets/breadcrumb.jpg'
-import ProductDetails from '../Component/ProductDetails';
+import ProductDetails from '../Component/Modal/ProductDetails';
 
 const Wishlist = () => {
     const [count, setCount] = useState(1);
