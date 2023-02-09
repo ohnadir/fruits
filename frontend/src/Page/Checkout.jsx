@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import cartHeader from '../assets/breadcrumb.jpg'
 import { MdOutlineDoubleArrow } from 'react-icons/md'
 import MetaData from '../Component/Layout/MetaData';
+import { Modal } from 'antd';
 
 const Checkout = () => {
     const [auth, setAuth] = useState('');
+    const [modal, setModal] = useState(false)
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
+    }
+    const onSubmit = () => {
+        if(auth.payment === "online" ){
+            setModal(true);
+        }
     }
     return (
         <div className='bg-[#f8f8f8] pb-12'>
@@ -89,11 +96,18 @@ const Checkout = () => {
                                 <input onChange={handleChange} name="online" value="online" className='' type="checkbox" />
                                 <label htmlhtmlFor="" className='text-[15px]'>Online payments</label>
                             </div>
-                            <button className='bg-[#679509] text-white hover:bg-[#2a660a] text-lg px-6 py-2' >Place Order</button>
+                            <button onClick={onSubmit} className='bg-[#679509] text-white hover:bg-[#2a660a] text-lg px-6 py-2' >Place Order</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <Modal title="Payment options" 
+                open={modal}
+                footer={null}
+                centered 
+                onCancel={()=>setModal(false)}>
+                    {/* <Payment auth={auth} total={total} setModal={setModal} /> */}
+            </Modal>
         </div>
     );
 };
