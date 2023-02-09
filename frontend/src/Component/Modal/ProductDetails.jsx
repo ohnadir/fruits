@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { getProductDetails, clearErrors } from '../../actions/productActions';
 import Loader from '../Loader';
 import { message, Alert } from 'antd';
+import { useNavigate } from "react-router-dom";
+import { addToCart } from '../../utils/LocalStorage';
 
 const photos = [
     "https://i.ibb.co/jJgD3CF/1.webp",
@@ -22,18 +24,40 @@ const photos = [
 
 const ProductDetails = () => {
     const [selectedImg, setSelectedImg] = useState(photos[0]);
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(1);
+    const navigate = useNavigate()
     /* const dispatch = useDispatch();
     const { loading, product, error } = useSelector(state => state.product);
 
     useEffect(() => {
         dispatch(getProductDetails());
       }, [dispatch]); */
+      const handleSubmit=()=>{
+        const data = {
+            /* name: product?.name,
+            id:product?._id,
+            price: product?.price,
+            quantity : count,
+            image : product?.productPictures[0] */
+        }
+        sessionStorage.setItem('orderInfo', JSON.stringify(data))
+        navigate('/checkout')
+    }
+    const handleCart=()=>{
+        const data = {
+            /* name: product?.name,
+            id:product?._id,
+            price: product?.price,
+            quantity : count,
+            image : product?.productPictures[0] */
+        }
+        addToCart(data)
+    }
     return (
                 <div>
                     <Metadata title={'Product Details'} />
                     <div className='flex p-4 flex-col md:flex-row'>
-                        <div className='border'>
+                        <div className='border w-[50%]'>
                             <img className='border-2  w-[450px]' src={selectedImg} alt="" />
                             <div className='flex border'>
                                 {
@@ -41,7 +65,7 @@ const ProductDetails = () => {
                                         style={{border :selectedImg === img ? "2px solid #679509" : "" }}
                                         className=''>
                                         <img
-                                            className=' w-[106px]'
+                                            className=''
                                             key={index}
                                             src={img}
                                             alt="fruits"
@@ -52,7 +76,7 @@ const ProductDetails = () => {
                                 }
                             </div>
                         </div>
-                        <div className='p-4'>
+                        <div className='p-4 w-[50%]'>
                             <Rating
                                 initialRating={3.5}
                                 emptySymbol={<FontAwesomeIcon icon={faStar} />}
@@ -76,7 +100,8 @@ const ProductDetails = () => {
                                     <input className='outline-0 w-20 px-8' type="text" value={count} />
                                     <button onClick={()=>setCount(count + 1)} className='px-1  text-3xl text-center text-white'>+</button>
                                 </div>
-                                <button className='hover:bg-[#2a660a] transition ease-in-out flex items-center gap-2 bg-[#679509] text-white text-lg font-bold px-2'> <FaShoppingCart/> Add To Cart</button>
+                                <button onClick={handleCart} className='hover:bg-[#2a660a] transition ease-in-out flex items-center gap-2 bg-[#679509] text-white text-lg font-bold px-2'> <FaShoppingCart/> Add To Cart</button>
+                                <button onClick={handleSubmit} className='hover:bg-[#2a660a] transition ease-in-out  bg-[#679509] text-white text-lg font-bold px-2'>Confirm</button>
                             </div>
                             <div className='flex gap-3 text-xl items-center mt-8'>
                                 <span className='text-xl mb-1 font-bold text-[#4d4d4d]'>Share:</span>

@@ -7,10 +7,12 @@ import { GrFormView } from 'react-icons/gr';
 import { MdClose } from 'react-icons/md';
 import { Modal } from 'antd';
 import ProductDetails from './Modal/ProductDetails';
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Rating from 'react-rating';
 
 const NewestProduct = () => {
     const [open, setOpen] = useState(false);
-    console.log(open);
     return (
             <div className='max-w-7xl mx-auto px-10 my-16'>
                 <div className='bg-white w-[220px] relative cardItem' >
@@ -33,7 +35,14 @@ const NewestProduct = () => {
                         </div>
                     </div>
                     <div>
-                        <p className='m-0 text-center'>*****</p>
+                        <p className='m-0 text-center'>
+                            <Rating
+                                initialRating={3.5}
+                                emptySymbol={<FontAwesomeIcon icon={faStar} />}
+                                fullSymbol={<FontAwesomeIcon style={{color: 'goldenrod'}} icon={faStar} />}
+                                readonly
+                            ></Rating>
+                        </p>
                         <p className='m-0 text-center'>Carrots Group Scal</p>
                         <p className='m-0 text-center text-[#679509] font-extrabold'>$200</p>
                     </div>
