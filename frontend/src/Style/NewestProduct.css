@@ -5,15 +5,22 @@
     text-align:  center;
     transform: translate(-50%, -50%);
 }
-.hoverBtn .btnContent{
+.hoverBtn .cartBtn{
     background-color: #679509;
-    color: white;
-    padding: 2px 16px;
-    border-radius: 20px;
-    width: fit-content;
     overflow: hidden;
-    transition: all 0.2s ease;
+    padding: 6px 20px;
+    border-radius: 22px;
+    color: white;
+    font-weight: 400;
+    opacity: 1;
+    transition: opacity 0.2s ease;
 }
-.hoverBtn .btnContent:hover, button{
-    margin-top: -10px;
+.cardItem:hover .hoverBtn .cartBtn{
+    opacity: 1;
+}
+.photo{
+    transition: transform 0.2s ease;
+}
+.cardItem:hover .photo{
+    transform: scale(1.5);
 }
