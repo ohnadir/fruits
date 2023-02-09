@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cartHeader from '../assets/breadcrumb.jpg'
 import { MdOutlineDoubleArrow } from 'react-icons/md'
 import MetaData from '../Component/Layout/MetaData';
 
 const Checkout = () => {
+    const [auth, setAuth] = useState('');
+    const handleChange = (e) => {
+        setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
+    }
     return (
         <div className='bg-[#f8f8f8] pb-12'>
             <MetaData title={'Checkout'} />
@@ -28,40 +32,36 @@ const Checkout = () => {
                         <div className='grid grid-cols-1 md:grid-cols-2  gap-5 '>
                             <div className=''>
                                 <label htmlhtmlFor="First Name" className='text-[15px]'>First Name <span className='text-red-500'>*</span></label>
-                                <input className=' p-2 w-full outline-none border-[1px]' type="text"  />
+                                <input onChange={handleChange} name="fName" className=' p-2 w-full outline-none border-[1px]' type="text"  />
                             </div>
                             <div>
                                 <label htmlhtmlFor="Last Name" className='text-[15px]'>Last Name <span className='text-red-500'>*</span></label>
-                                <input className=' p-2 w-full outline-none border-[1px]' type="text"  />
+                                <input onChange={handleChange} name="lName" className=' p-2 w-full outline-none border-[1px]' type="text"  />
                             </div>
                         </div>
                         <div>
-                            <label htmlhtmlFor="" className='text-[15px]'>Company Name (Optional)</label>
-                            <input className=' p-2 w-full outline-none border-[1px]' type="text" />
-                        </div>
-                        <div>
                             <label htmlhtmlFor="" className='text-[15px]'>Email <span className='text-red-500'>*</span></label>
-                            <input className=' p-2 w-full outline-none border-[1px]' type="text" />
+                            <input onChange={handleChange} name="email" className=' p-2 w-full outline-none border-[1px]' type="text" />
                         </div>
                         <div>
                             <label htmlhtmlFor="" className='text-[15px]'>Phone <span className='text-red-500'>*</span></label>
-                            <input className=' p-2 w-full outline-none border-[1px]' type="text" />
+                            <input onChange={handleChange} name="phone" className=' p-2 w-full outline-none border-[1px]' type="text" />
                         </div>
                         <div>
                             <label htmlhtmlFor="" className='text-[15px]'>Country <span className='text-red-500'>*</span></label>
-                            <input className=' p-2 w-full outline-none border-[1px]' type="text" />
+                            <input onChange={handleChange} name="country" className=' p-2 w-full outline-none border-[1px]' type="text" />
                         </div>
                         <div>
                             <label htmlhtmlFor="" className='text-[15px]'>Zip <span className='text-red-500'>*</span></label>
-                            <input className=' p-2 w-full outline-none border-[1px]' type="number" />
+                            <input onChange={handleChange} name="zipCode" className=' p-2 w-full outline-none border-[1px]' type="number" />
                         </div>
                         <div className='flex gap-3 items-center'>
-                            <input className='' type="checkbox" />
+                            <input onChange={handleChange} name="anotherAddress" className='' type="checkbox" />
                             <label htmlhtmlFor="" className='text-[15px]'>Ship to a different address?</label>
                         </div>
                         <div>
                             <label htmlhtmlFor="" className='text-[15px]'>Order notes (Optional)</label>
-                            <textarea className=' p-2 w-full outline-none border-[1px]' type="text" />
+                            <textarea onChange={handleChange} name="message" className=' p-2 w-full outline-none border-[1px]' type="text" />
                         </div>
                     </div>
                 </div>
@@ -80,21 +80,14 @@ const Checkout = () => {
                         <p className='font-bold text-2xl mb-0 pb-4'>Payment Method</p>
                         <hr className='pb-6' />
                         <div className='grid grid-cols-1 gap-2'>
+                            
                             <div className='flex gap-3 items-center'>
-                                <input className='' type="checkbox" />
-                                <label htmlhtmlFor="" className='text-[15px]'>Direct bank transfer</label>
-                            </div>
-                            <div className='flex gap-3 items-center'>
-                                <input className='' type="checkbox" />
+                                <input onChange={handleChange} name="cash" className='' value="cashOn" type="checkbox" />
                                 <label htmlhtmlFor="" className='text-[15px]'>Cash on delivery</label>
                             </div>
                             <div className='flex gap-3 items-center'>
-                                <input className='' type="checkbox" />
-                                <label htmlhtmlFor="" className='text-[15px]'>Check payments</label>
-                            </div>
-                            <div className='flex gap-3 items-center'>
-                                <input className='' type="checkbox" />
-                                <label htmlhtmlFor="" className='text-[15px]'>PayPal</label>
+                                <input onChange={handleChange} name="online" value="online" className='' type="checkbox" />
+                                <label htmlhtmlFor="" className='text-[15px]'>Online payments</label>
                             </div>
                             <button className='bg-[#679509] text-white hover:bg-[#2a660a] text-lg px-6 py-2' >Place Order</button>
                         </div>
