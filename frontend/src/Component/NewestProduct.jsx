@@ -16,8 +16,15 @@ const NewestProduct = () => {
                 </div>
                 <div className='hoverBtn '>
                     <div className='grid grid-cols-1 gap-3'>
-                        <button className='cartBtn'>add to cart</button>
-                        <button className='cartBtn'>quick view</button>
+                        <button className='cartBtn'>
+                            <span className='text-1' >add to cart</span>
+                            <span className='' ><AiOutlineShoppingCart className='text-2' /></span>
+
+                        </button>
+                        <button className='cartBtn'>
+                            <span className='text-1' >quick view</span>
+                            <span className='' ><GrFormView className='text-2 text-3' /></span>
+                        </button>
                     </div>
                 </div>
                 <div>
