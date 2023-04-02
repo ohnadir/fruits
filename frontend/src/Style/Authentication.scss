@@ -1,35 +1,39 @@
-.login{
-    .login-container{
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-        .input-container{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid #eee;
-            padding: 6px;
-            label{
-                color: #679509;
-                padding: 0 8px;
-                border-right: 1px solid #ddd;
-            }
-            input{
-                font-size: 12px;
-                font-weight: 400;
-                border: none;
-                outline: none;
-            }
-            
-        }
-        button{
-            background-color: #679509;
-            padding: 5px 0;
-            color: white;
-            border-radius: 22px;
-            font-weight: 400;
-            transition: background-color 0.1s ease;
-        }
-        button:hover{
-            background-color: #2A660A;
-        }
+.input-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #eee;
+    padding: 6px;
+    label{
+        color: #679509;
+        padding: 0 8px;
+        border-right: 1px solid #ddd;
     }
+    input{
+        font-size: 12px;
+        font-weight: 400;
+        border: none;
+        outline: none;
+    }
+}
+.login, .registration{
+    button{
+        background-color: #679509;
+        padding: 5px 0;
+        color: white;
+        border-radius: 22px;
+        font-weight: 400;
+        transition: background-color 0.1s ease;
+    }
+    button:hover{
+        background-color: #2A660A;
+    }
+    button:focus{
+        background-color: #2A660A;
+    }
+}
+
+.registration .registration-container, .login .login-container{
+    width: 300px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px !important;
 }

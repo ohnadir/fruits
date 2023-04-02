@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { HiUser } from 'react-icons/hi';
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, clearErrors } from '../Redux/actions/user'
 import {  message } from 'antd';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Layout from '../Component/Layout/Layout';
+import "../Style/Authentication.scss"
 
 const Signup = (props) => {
     const [auth, setAuth] = useState('');
+    const [borderColor, setBorderColor] = useState("")
     const userData = {
         firstName:auth.firstName,
         lastName:auth.lastName,
@@ -18,9 +20,8 @@ const Signup = (props) => {
         phone:auth.phone
     }
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isAuthenticated, user, error, loading  } = useSelector(state => state.auth);
-    console.log(error)
-    console.log(user)
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
@@ -45,55 +46,41 @@ const Signup = (props) => {
 
     }, [dispatch, isAuthenticated, error])
     const onSubmit = () => {
-        console.log(auth)
         dispatch(register(userData))
             
     }
+    function changeBorder(boxId){
+        document.getElementById(boxId).style.border = "1px solid #679509";
+    }
     return (
         <Layout>
-            <div className='bg-[#f8f8f8]'>
+            <div className='registration '>
                 <div className='flex justify-center items-center h-[92vh]'>
-                    <div>
-                        <div className=' bg-white p-5'>
-                            <h1 className='text-4xl font-semibold'>Create Your Account</h1>
+                    <div className='registration-container '>
+                        <div className='  p-5'>
+                            <h1 className='text-[16px] font-semibold text-center'>Create Your Account</h1>
                             <div className='grid grid-cols-1 gap-5'>
-                                <div className='flex items-center border'>
-                                    <div className='py-2 px-3 border-r'>
-                                        <HiUser className='text-[#679509] text-xl' />
-                                    </div>
-                                    <input onChange={handleChange} name='firstName' className='py-3 px-3 w-full outline-none' type="text" placeholder='First Name' />
+                                <div style={{border: borderColor === "userName" ? "1px solid #679509" : null }} className='input-container' onClick={()=>setBorderColor("userName")}>
+                                    <label htmlFor=""><FaUser /></label>
+                                    <input onChange={handleChange} name='user-name' className='' type="text" placeholder='UserName' />
                                 </div>
-                                <div className='flex items-center border'>
-                                    <div className='py-2 px-3 border-r'>
-                                        <HiUser className='text-[#679509] text-xl' />
-                                    </div>
-                                    <input onChange={handleChange} name='lastName' className='py-3 px-3 w-full outline-none' type="text" placeholder='Last Name' />
+                                <div style={{border: borderColor === "email" ? "1px solid #679509" : null }}  onClick={()=>setBorderColor("email")} className='input-container'>
+                                    <label htmlFor=""><MdEmail /></label>
+                                    <input onChange={handleChange} name='email' className='' type="email" placeholder='Email Address' />
                                 </div>
-                                <div className='flex items-center border'>
-                                    <div className='py-2 px-3 border-r'>
-                                        <MdEmail className='text-[#679509] text-xl' />
-                                    </div>
-                                    <input onChange={handleChange} name='email' className='py-3 px-3 w-full outline-none' type="text" placeholder='Email Address' />
+                                <div className='input-container' style={{border: borderColor === "password" ? "1px solid #679509" : null }}  onClick={()=>setBorderColor("password")}>
+                                    <label htmlFor=""><FaLock  /></label>
+                                    <input onChange={handleChange}  name='password' type="text" placeholder='Password' />
                                 </div>
-                                <div className='flex items-center border'>
-                                    <div className='py-2 px-3 border-r'>
-                                        <FaLock className='text-[#679509] text-xl' />
-                                    </div>
-                                    <input onChange={handleChange} name='password' className='py-3 px-3 w-full outline-none' type="text" placeholder='Password' />
+                                <div className='input-container' style={{border: borderColor === "confirm-pass" ? "1px solid #679509" : null }}  onClick={()=>setBorderColor("confirm-pass")}>
+                                    <label htmlFor=""><FaLock /></label>
+                                    <input onChange={handleChange} type="password" name='confirm-pass'  placeholder='Phone Number' />
                                 </div>
-                                <div className='flex items-center border'>
-                                    <div className='py-2 px-3 border-r'>
-                                        <FaLock className='text-[#679509] text-xl' />
-                                    </div>
-                                    <input onChange={handleChange} type="number" name='phone' className='py-3 px-3 w-full outline-none' placeholder='Phone Number' />
-                                </div>
-                                <div className='flex'>
-                                    <button onClick={onSubmit} className='bg-[#679509] text-lg py-3 rounded-full text-white w-full'>Create Account</button>
-                                </div>
+                                <button onClick={onSubmit}>Create Account</button>
                             </div>
                         </div>
                         <div className='bg-[#efefef] p-4 text-center'>
-                            <h1>Already have an account? <Link to='/login'>Log In</Link></h1>
+                            <h1 className='m-0 text-[12px] text-[#4d4d4d]'>Already have an account? <span className='text-[#0d6efd] cursor-pointer' onClick={()=>navigate("signup")}>Sign up</span></h1>
                         </div>
                     </div>
                 </div> 

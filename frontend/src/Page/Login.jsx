@@ -10,6 +10,7 @@ import "../Style/Authentication.scss"
 
 const Login = () => {
     const [auth, setAuth] = useState('');
+    const [borderColor, setBorderColor] = useState("")
     const { email, password } = auth;
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -51,11 +52,11 @@ const Login = () => {
                         <div className='py-5'>
                             <h1 className='text-lg font-semibold text-center px-10'>Log In To Your Account</h1>
                             <div className='grid grid-cols-1 gap-5 px-10'>
-                                <div className='input-container'>
+                                <div className='input-container' style={{border: borderColor === "userName" ? "1px solid #679509" : null }}  onClick={()=>setBorderColor("userName")}> 
                                     <label htmlFor=""><FaUser /></label>
                                     <input onChange={handleChange} name='user-name' className='' type="text" placeholder='UserName' />
                                 </div>
-                                <div className='input-container'>
+                                <div className='input-container' style={{border: borderColor === "password" ? "1px solid #679509" : null }}  onClick={()=>setBorderColor("password")}>
                                     <label htmlFor=""><FaLock /></label>
                                     <input onChange={handleChange} name='password' className='' type="text" placeholder='Password' />
                                 </div>
