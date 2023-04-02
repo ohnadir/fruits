@@ -9,6 +9,7 @@ import Signup from './Page/Signup';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import Product_Details from './Page/Product-Details';
+import ConfirmPayment from './Page/ConfirmPayment';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/checkout' element={<Checkout></Checkout>}></Route>
           <Route path='/cart' element={<Cart></Cart>}></Route>
           <Route path='/product-details' element={<Product_Details/>}></Route>
+          <Route path='/confirm-payment' element={<ConfirmPayment/>}></Route>
           <Route path='/wishList' element={<Wishlist></Wishlist>}></Route>
         </Routes>
       </div>
