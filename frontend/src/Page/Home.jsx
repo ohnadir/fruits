@@ -11,6 +11,7 @@ import { Deal } from '../Component/Deal';
 import { ProductWidgets } from '../Component/ProductWidgets';
 import NewestProduct from '../Component/NewestProduct';
 import Services from '../Component/Services';
+import Newsletter from '../Component/Newsletter';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
 
@@ -27,6 +28,7 @@ const Home = (props) => {
                 <Deal/>
                 <ProductWidgets/>
                 <Question></Question>
+                <Newsletter/>
             </div>
         </Layout>
     );

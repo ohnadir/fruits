@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Style/Footer.css';
+import '../Style/Footer.scss';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
@@ -10,12 +10,12 @@ import Google from '../assets/google.png'
  
 const Footer=()=>{
     return(
-        <div className=' bg-white'>
+        <div className=' bg-white footer-container'>
             <div className='max-w-7xl mx-auto px-10 py-16'>
-                <div className='footer-body grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                <div className='footer-body grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-4 '>
                     <div className='mx-auto w-fit'>
                         <img src={Logo} alt="" />
-                        <p className='text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
+                        <p className='text-[15px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
                         <div className='flex gap-5'>
                             <FaFacebookF className='social-icon'/>
                             <AiOutlineTwitter className='social-icon'/>
@@ -45,8 +45,8 @@ const Footer=()=>{
                     </div>
                     <div className='sm:mx-auto w-fit'>
                         <h1>Download Apps</h1>
-                        <p className='text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipisicing..</p>
-                        <div className='flex sm:flex-col gap-6 '>
+                        <p className='text-[14px]'>Lorem ipsum dolor sit amet, consectetur adipisicing..</p>
+                        <div className='flex sm:flex-col  gap-6 '>
                             <div>
                                 <img src={Apple} alt="" />
                             </div>

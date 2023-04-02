@@ -12,7 +12,7 @@ export const Deal = () => {
                 <div>
                     <div className='timerContainer'>
                         <h2 className='m-0 text-left text-[#679509]'>TODAYS HOT DEALS</h2>
-                        <h1 className='m-0 font-extrabold text-4xl mt-2'>Original Stock Honey Combo Package</h1>
+                        <h1 className='m-0 font-extrabold text-2xl sm:text-3xl mt-2'>Original Stock Honey Combo Package</h1>
                         <div className='flex gap-10 items-center  my-6'>
                             <div>
                                 <p className='timeContainer'>1</p>

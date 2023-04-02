@@ -8,15 +8,20 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
     CLEAR_ERRORS
-} from '../constants/productConstants';
+} from '../constants/product';
  
 export const getProducts = () => async (dispatch) => {
     try {
         dispatch({
             type:ALL_PRODUCTS_REQUEST
         })
-        const { data } = await axios.get('http://localhost:5002/api/v1/products');
-        console.log(data)
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get('http://localhost:5002/api/v1/products', config);
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,
             payload:data
@@ -35,7 +40,13 @@ export const getProductDetails = (id) => async (dispatch) => {
         dispatch({
             type:PRODUCT_DETAILS_REQUEST
         })
-        const { data } = await axios.get('http://localhost:5000/api/v1/products/62f8742f018f9b0ed4eb82b2');
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`http://localhost:5000/api/v1/products/${id}`, config);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload:data

@@ -3,7 +3,7 @@ import { HiUser } from 'react-icons/hi';
 import { FaLock } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { register, clearErrors } from '../actions/userActions'
+import { register, clearErrors } from '../Redux/actions/user'
 import {  message } from 'antd';
 import { Link } from 'react-router-dom'
 import Layout from '../Component/Layout/Layout';

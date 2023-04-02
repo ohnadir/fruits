@@ -7,14 +7,14 @@ const Newsletter = () => {
             <div className='flex gap-3 items-center'>
                 <img src={subscribe} alt="" />
                 <div>
-                    <h1 className='font-bold text-4xl text-white mb-0'>Newsletter</h1>
-                    <h5 className='text-[#9f9f9f] text-xl mt-[3px]'>Subscribe here for get every single updates</h5>
+                    <h1 className='m-0 font-bold text-2xl md:text-3xl text-white mb-0'>Newsletter</h1>
+                    <h5 className='m-0 text-[#9f9f9f]  md:text-lg mt-[3px]'>Subscribe here for get every single updates</h5>
                 </div>
             </div>
             <div>
                 <div className='flex items-center'>
-                    <input className='bg-[#141626] text-white outline-none p-3 w-[50%]' type="text" placeholder='ENTER YOUR EMAIL ADDRESS' />
-                    <button className='text-white bg-[#679509] p-3'>SUBSCRIBE NOW</button>
+                    <input className='bg-[#141626] text-white text-[12px]  sm:text-[13px] outline-none p-3 w-[50%]' type="text" placeholder='ENTER YOUR EMAIL ADDRESS' />
+                    <button className='text-white bg-[#679509] p-3 text-[12px]  sm:text-[13px]'>SUBSCRIBE NOW</button>
                 </div>
             </div>
         </div>

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import Metadata from '../../Component/Layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux'
-import { allUsers, clearErrors } from '../../actions/userActions';
+// import { allUsers, clearErrors } from '../../Redux/actions/user';
 
-const AllUsers = () => {
+const AllUsers = ({allUsers}) => {
     const dispatch = useDispatch();
     const { loading, users, error } = useSelector(state => state.allUsers);
     console.log(users)

@@ -6,7 +6,7 @@ import axios from 'axios';
 import '../App.css'
 import Metadata from '../Component/Layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts, clearErrors } from '../actions/productActions';
+import { getProducts, clearErrors } from '../Redux/actions/product';
 import Loader from './Loader';
 import { message, Alert } from 'antd';
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
@@ -46,8 +46,7 @@ const AllProducts = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
-          dots: true
+          infinite: true
         }
       },
       {

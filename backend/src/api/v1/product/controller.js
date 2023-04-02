@@ -75,6 +75,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next)=> {
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
+  const reverseProduct = (await Product.find().limit(10)).reverse();
   if (!products) {
     return next(new ErrorHandler('No Product found at this moment'))
   }
@@ -82,7 +83,8 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     success: true,
     statusCode: 200,
     message:"Fetch Product Successfully",
-    products
+    products,
+    reverseProduct
   })
 });
 

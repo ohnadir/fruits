@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { FaLock } from 'react-icons/fa';
-import { login, clearErrors } from '../actions/userActions'
+import { login, clearErrors } from '../Redux/actions/user'
 import { useDispatch, useSelector } from 'react-redux';
 import {  message } from 'antd';
 import Layout from '../Component/Layout/Layout';
@@ -12,7 +12,7 @@ const Login = () => {
     const { email, password } = auth;
     const dispatch = useDispatch();
     const navigate= useNavigate();
-    const { isAuthenticated, user, error, loading,  } = useSelector(state => state.auth);
+    const { isAuthenticated, user, error, loading  } = useSelector(state => state.auth);
     
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))

@@ -26,6 +26,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "rsuite": "^5.16.4",
+    "sass": "^1.60.0",
     "slick-carousel": "^1.8.1",
     "tw-elements": "^1.0.0-alpha12",
     "web-vitals": "^2.1.4"
