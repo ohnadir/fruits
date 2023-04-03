@@ -27,7 +27,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('http://localhost:5000/api/v1/users/login', { email, password }, config)
+        const { data } = await axios.post('http://localhost:5002/api/v1/users/login', { email, password }, config)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data
@@ -54,7 +54,7 @@ export const register = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('http://localhost:5000/api/v1/users/signup', userData, config)
+        const { data } = await axios.post('http://localhost:5002/api/v1/users/signup', userData, config)
         console.log(data);
         dispatch({
             type: REGISTER_USER_SUCCESS,
@@ -82,7 +82,7 @@ export const loadUser = () => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.get('/api/v1/me', config)
+        const { data } = await axios.get('http://localhost:5002/api/v1/me', config)
 
         dispatch({
             type: LOAD_USER_SUCCESS,
@@ -100,8 +100,13 @@ export const loadUser = () => async (dispatch) => {
 // Logout user
 export const logout = () => async (dispatch) => {
     try {
-
-        await axios.get('/api/v1/logout')
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        await axios.get('http://localhost:5002/api/v1/logout', config)
 
         dispatch({
             type: LOGOUT_SUCCESS,

@@ -9,12 +9,13 @@ import Address from './Profile/Address';
 import { useDispatch } from "react-redux"
 import Order from './Profile/Order';
 import Dashboard from './Profile/Dashboard';
+import { logout } from "../Redux/actions/user"
 
 const Profile = () => {
     const dispatch = useDispatch()
     const [direction, setDirection] = useState("dashboard")
     if(direction === "logout"){
-        // dispatch(logout())
+        dispatch(logout())
     }
     return (
         <div className='overflow-hidden'>
