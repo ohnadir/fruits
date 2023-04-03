@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import "../../Style/Profile.scss"
+import { useDispatch, useSelector } from 'react-redux'
 
 const AccountDetails = () => {
+    const { user } = useSelector(state => state.auth);
     const [Auth, setAuth] = useState("")
     const handleChange=()=>{}
     return (

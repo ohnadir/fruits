@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Address = () => {
+    const { user } = useSelector(state => state.auth);
     const [Open, setOpen] = useState(false)
     const [Address, setAddress] = useState({
         street: '244/1',

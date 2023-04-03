@@ -42,7 +42,7 @@ const columns = [
     },
   ];
 const Order = () => {
-  const { orders } = useSelector(state => state?.email_order);
+  const { orders } = useSelector(state => state.email_order);
   const dispatch  = useDispatch();
   useEffect(() => {
     dispatch(emailOrder());
