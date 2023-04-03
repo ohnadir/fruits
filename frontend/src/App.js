@@ -11,12 +11,13 @@ import AOS from 'aos';
 import Product_Details from './Page/Product-Details';
 import ConfirmPayment from './Page/ConfirmPayment';
 import NotFound from './Page/404';
+import Profile from './Page/Profile';
 
 
 function App() {
   AOS.init({ duration : 1000});
   return (
-      <div className="">
+      <div className="bg-[#f8f8f8]">
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
@@ -27,6 +28,7 @@ function App() {
           <Route path='/product-details' element={<Product_Details/>}></Route>
           <Route path='/confirm-payment' element={<ConfirmPayment/>}></Route>
           <Route path='/wishList' element={<Wishlist/>}></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
           <Route path='*' element={<NotFound/>}></Route>
         </Routes>
       </div>

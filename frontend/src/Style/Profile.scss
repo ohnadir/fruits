@@ -1,0 +1,55 @@
+
+.profile{
+    aside{
+        ul {
+            margin: 0;
+            border: 1px solid #eee;
+            li{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #eee;
+                padding: 8px;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+                align-items: center;
+                gap: 10px;
+                transition: all 0.2s ease;
+            }
+            li:hover{
+                color: #679509;
+            }
+        }
+    }
+}
+
+// account details component
+.account-details, .address-container{
+    label{
+        color: #4d4d4d;
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+    input, textarea{
+        width: 100%;
+        font-size: 13px;
+        border: 1px solid #eee;
+        padding: 6px 12px ;
+        color: black !important;
+        outline: none;
+        background-color: white;
+    }
+    input:focus, textarea:focus{
+        border: 1px solid #679509;
+    }
+}
+
+.address-container{
+    .address-content{
+        p{
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+        }
+    }
+}
