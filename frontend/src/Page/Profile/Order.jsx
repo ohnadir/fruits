@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Table } from 'antd';
 import { FaTrashAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux'
+import { emailOrder } from "../../Redux/actions/order"
 
 const dataSource = [
     {
@@ -40,11 +42,16 @@ const columns = [
     },
   ];
 const Order = () => {
-    return (
-      <div data-aos="fade-up" >
-        <Table className='border' dataSource={dataSource} columns={columns} pagination={false} />
-      </div>
-    )
+  const { orders } = useSelector(state => state?.email_order);
+  const dispatch  = useDispatch();
+  useEffect(() => {
+    dispatch(emailOrder());
+  }, []);
+  return (
+    <div data-aos="fade-up" >
+      <Table className='border' dataSource={dataSource} columns={columns} pagination={false} />
+    </div>
+  )
 }
 
 export default Order

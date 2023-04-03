@@ -14,3 +14,14 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         result
     })
 });
+
+exports.emailBaseOrder = catchAsyncErrors(async (req, res, next) => {
+    const email = req.query.email;
+    const result = await Order.find({email: email});
+    res.status(201).json({
+        success: true,
+        statusCode : 200,
+        message: "Order get successful",
+        result
+    })
+});
