@@ -10,6 +10,7 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import Product_Details from './Page/Product-Details';
 import ConfirmPayment from './Page/ConfirmPayment';
+import NotFound from './Page/404';
 
 
 function App() {
@@ -17,15 +18,16 @@ function App() {
   return (
       <div className="">
         <Routes>
-          <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={<Login></Login>}></Route>
-          <Route path='/signup' element={<Signup></Signup>}></Route>
-          <Route path="/search/:keyword" element={<SearchResult></SearchResult>} />
-          <Route path='/checkout' element={<Checkout></Checkout>}></Route>
-          <Route path='/cart' element={<Cart></Cart>}></Route>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/signup' element={<Signup/>}></Route>
+          <Route path="/search/:keyword" element={<SearchResult/>} />
+          <Route path='/checkout' element={<Checkout/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
           <Route path='/product-details' element={<Product_Details/>}></Route>
           <Route path='/confirm-payment' element={<ConfirmPayment/>}></Route>
-          <Route path='/wishList' element={<Wishlist></Wishlist>}></Route>
+          <Route path='/wishList' element={<Wishlist/>}></Route>
+          <Route path='*' element={<NotFound/>}></Route>
         </Routes>
       </div>
   );

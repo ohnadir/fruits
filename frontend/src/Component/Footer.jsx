@@ -15,7 +15,7 @@ const Footer=()=>{
                 <div className='footer-body grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-4 '>
                     <div className='mx-auto w-fit'>
                         <img src={Logo} alt="" />
-                        <p className='text-[15px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
+                        <p className='text-[14px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
                         <div className='flex gap-5'>
                             <FaFacebookF className='social-icon'/>
                             <AiOutlineTwitter className='social-icon'/>
