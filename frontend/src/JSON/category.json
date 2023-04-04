@@ -1,0 +1,30 @@
+[
+    {
+        "id" : 0,
+        "name" : "Vegetables"
+    },
+    {
+        "id" : 1,
+        "name" : "fruits"
+    },
+    {
+        "id" : 2,
+        "name" : "Salads"
+    },
+    {
+        "id" : 3,
+        "name" : "Fish & Seafood"
+    },
+    {
+        "id" : 4,
+        "name" : "Fresh Meat"
+    },
+    {
+        "id" : 5,
+        "name" : "Health Product"
+    },
+    {
+        "id" : 6,
+        "name" : "Butter & Eggs"
+    }
+]

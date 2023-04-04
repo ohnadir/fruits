@@ -1,90 +1,84 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png'
-import { Drawer, Dropdown, Menu } from 'antd';
+import { Drawer } from 'antd';
 import { GrFormClose } from 'react-icons/gr';
-import { BiUser } from 'react-icons/bi';
-import { BsFillCartCheckFill } from 'react-icons/bs';
+import { BiUser, BiChevronDown, BiChevronUp } from 'react-icons/bi';
 import { BsSearch } from 'react-icons/bs';
+import { MdClose } from 'react-icons/md';
 import CartDrawer from './CartDrawer';
 import 'rsuite/styles/index.less';
-import { BsFillBagFill } from 'react-icons/bs';
-import { useNavigate, Link } from "react-router-dom";
+import { BsFillBagFill, BsMinecartLoaded } from 'react-icons/bs';
+import { useNavigate } from "react-router-dom";
+import "../Style/Navbar.scss"
+import category from "../JSON/category.json"
 
-const Navbar = (props) => {
-    const [open, setOpen] = useState(null);
+const Navbar = () => {
+    const [open, setOpen] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
     const [keyword, setKeyword] = useState('');
     const navigate =useNavigate()
-    const menu = (
-        <Menu
-          items={[
-            {
-              label: <button onClick={()=>navigate('/profile')}>Profile</button>,
-              key: '0',
-            },
-            {
-              label: <button onClick={()=>navigate('/dashboard')}>Dashboard</button>,
-              key: '1',
-            },
-            {
-              label: <button onClick={()=>navigate('/login')}>Login</button>,
-              key: '3',
-            },
-          ]}
-        />
-      );
   
   return (
     <div className='bg-white top-0 sticky z-10'>
         <div className="px-10 max-w-7xl mx-auto ">
             <div className="flex items-center py-3 gap-6 sm:gap-10 md:gap-20 lg:gap-52 justify-between">
-                <div className="cursor-pointer">
+                <div className="cursor-pointer hidden sm:block">
                     <img className='' src={logo} onClick={()=>navigate('/')} alt="" />
                 </div>
-                <div className=" flex border w-full">
+                <div className=" flex border search-container">
+                    <div onClick={()=>setDropdown(!dropdown)} className='cursor-pointer gap-5 w-[45%]  lg:w-[28%] relative  category-container'>
+                        <p className='m-0 text-[12px]'>Select category</p>
+                        {
+                            dropdown
+                            ? 
+                            <BiChevronUp size={16}/>
+                            :
+                            <BiChevronDown size={16} />
+                        }
+                        {
+                            dropdown
+                            &&
+                            <div className=' category-dropdown'>
+                                <ul>
+                                    <li className='active'>Select Category</li>
+                                    {
+                                        category.map((cat)=> <li>{cat.name}</li>)
+                                    }
+                                </ul>
+                            </div> 
+                        }
+                        
+                    </div>
+                    
                     <input
                         onChange={(e) => setKeyword(e.target.value)}
-                        className="bg-[#f8f8f8] py-3 px-2 outline-0 w-full" type="text" name="search" placeholder="KHOJ, THE SEARCH" id="" />
-                    <div className="flex justify-center items-center border-l-[1px] py-3 px-4">
-                        <button className="" onClick={()=>navigate(`/search/${keyword}`)}><BsSearch/></button>       
-                    </div>
+                        className="" type="text" name="search" placeholder="Search Products" id="" />
+                    <button className="" onClick={()=>navigate(`/search/${keyword}`)}><BsSearch/></button>       
                 </div> 
-                <div className='flex gap-5  items-center'>
+                <div className='hidden  sm:flex gap-5  items-center right-content'>
                     <div className='relative'>
-                        <label htmlFor="my-drawer-4"
-                            onClick={(e) => setOpen(e)}
-                            className="drawer-button
-                            hover:text-[#669900] 
-                            cursor-pointer transition ease-in
-                            "><BsFillCartCheckFill className='text-2xl' /></label>
-                        <span className="absolute text-white 
-                            top-[-12px] left-[13px] bg-[#669900]
-                            rounded-full w-[20px] h-[20px]
-                            flex items-center hover:text-[#669900] 
-                            cursor-pointer transition ease-in 
-                            justify-center p-[3px]"
-                            
-                        >1</span>
+                        <BsMinecartLoaded onClick={()=>setOpen(true)} size={20} />
+                        <p className="cart-content">0</p>
                     </div>
-                    <div className="text-xl border rounded-full p-2">
-                        <BiUser  className='hover:text-[#669900] cursor-pointer transition ease-in' />
+                    <div className="text-xl cursor-pointer border rounded-full p-2">
+                        <BiUser onClick={()=>navigate('/profile')} />
                     </div>
                 </div>
             </div>
             <Drawer
                 bodyStyle={{"padding": "0px"}}
+                width={250}
                 headerStyle={{"borderBottom": "0px ", "display": "none"}}
-                placement="right" closeIcon={false} visible={open}>
+                placement="right" closeIcon={false} open={open}>
                 
                 <div  className=' p-4 flex justify-between bg-[#3d3d3d]'>
-                    <div className='flex items-center gap-2 text-lg text-[#679509]'>
+                    <div className='flex items-center gap-2  text-[#679509]'>
                         <BsFillBagFill/> <span>3 Item</span>
                     </div>
-                    <GrFormClose
-                        className='font-bold 
-                        text-2xl
-                        h-[30px]
-                        text-white
-                        cursor-pointer' onClick={()=>setOpen(false)} />
+                    <MdClose
+                        style={{color: "white"}}
+                        size={18}
+                        className='font-bold m-0 cursor-pointer' onClick={()=>setOpen(false)} />
                 </div>
                 <CartDrawer></CartDrawer>
             </Drawer>
