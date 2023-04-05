@@ -16,6 +16,9 @@ import Profile from './Page/Profile';
 
 function App() {
   AOS.init({ duration : 1000});
+  setTimeout(() => {
+    localStorage.removeItem("token");
+  }, 7 * 24  *60  *60 * 1000);
   return (
       <div className="bg-[#f8f8f8]">
         <Routes>

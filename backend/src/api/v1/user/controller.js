@@ -1,60 +1,17 @@
 const { User } = require('../models');
-// const crypto = require('crypto');
-const sendToken = require('../utils/jwtToken')
-// const sendEmail = require('../utils/sendEmail')
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/ErrorHandler');
+const { registrationService, loginService } = require('./service');
 
+exports.userRegister = async (req, res) => {
+  const { status, code, message, token } = await registrationService({...req.body});
+  res.status(code).json({ code, status, message, token });
+};
 
-exports.userRegister = catchAsyncErrors(async (req, res, next) => {
-  const { firstName, lastName, password, email, phone, role } = req.body;
-
-    const isPhoneExist = await User.findOne({ phone });
-    if (isPhoneExist) {
-      return next(new ErrorHandler('Phone number already taken', 400))
-    }
-
-    if (email) {
-      const isEmailExist = await User.findOne({ email });
-      if (isEmailExist) {
-        return next(new ErrorHandler('Email already taken', 400))
-      }
-    }
-
-    const newUser = new User({
-      firstName, lastName, email,
-      password, phone, role });
-
-    await newUser.save();
-
-    const token = newUser.getJwtToken();
-    sendToken(newUser, res);
-
-    res.status(200).json({
-      success: true,
-      token:token,
-      message: "Register Successfully"
-    })
-});
-exports.userLogin = catchAsyncErrors(async (req, res, next) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return next(new ErrorHandler('Incorrect credential', 404));
-  }
-    
-  const isPasswordMatched = await user.comparePassword(password);
-  if (!isPasswordMatched) {
-    return next(new ErrorHandler('Incorrect credential', 404));
-  }
-  sendToken(user, res);
-  res.status(200).json({
-    success: true,
-    message: "Login Successfully"
-  })
-});
+exports.userLogin = async (req, res) => {
+  const { status, code, message, token } = await loginService({...req.body});
+  res.status(code).json({ code, status, message, token });
+};
 
 exports.updateUser =  catchAsyncErrors(async (req, res, next) => {
   const { firstName, lastName, phone, email } = req.body;
@@ -132,13 +89,8 @@ exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
-
-  res.cookie('token', null, {
-    expires: new Date(Date.now()),
-    httpOnly: true
-  })
   res.status(200).json({
     success: true,
-    message : "log out"
+    message : "logout Successfully"
   })
 });

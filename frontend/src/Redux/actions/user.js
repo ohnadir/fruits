@@ -15,11 +15,9 @@ import {
 } from '../constants/user'
 
 // Login
-export const login = (email, password) => async (dispatch) => {
+export const login = (auth) => async (dispatch) => {
     try {
-
         dispatch({ type: LOGIN_REQUEST })
-
         const config = {
             headers:{
                 'Accept': 'application/json',
@@ -27,10 +25,13 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('http://localhost:5002/api/v1/users/login', { email, password }, config)
+        const { data } = await axios.post('http://localhost:5002/api/v1/users/login', auth, config)
+        if(data.token){
+            localStorage.setItem("token", JSON.stringify(data.token));
+        }
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: data
+            payload: data.message
         })
 
     } catch (error) {
@@ -44,25 +45,23 @@ export const login = (email, password) => async (dispatch) => {
 // Register user
 export const register = (userData) => async (dispatch) => {
     try {
-
         dispatch({ type: REGISTER_USER_REQUEST })
-
         const config = {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
-
         const { data } = await axios.post('http://localhost:5002/api/v1/users/signup', userData, config)
-        console.log(data);
+        if(data.token){
+            localStorage.setItem("token", JSON.stringify(data.token));
+        }
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: data
+            payload: data.message
         })
 
     } catch (error) {
-        console.log(error)
         dispatch({
             type: REGISTER_USER_FAIL,
             payload: error.response.data.message
@@ -71,7 +70,7 @@ export const register = (userData) => async (dispatch) => {
 }
 
 // Load user
-export const loadUser = () => async (dispatch) => {
+export const loadUser = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: LOAD_USER_REQUEST })
@@ -81,12 +80,11 @@ export const loadUser = () => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-
-        const { data } = await axios.get('http://localhost:5002/api/v1/me', config)
+        const { data } = await axios.get(`http://localhost:5002/api/v1/me/${id}`, config)
 
         dispatch({
             type: LOAD_USER_SUCCESS,
-            payload: data.user
+            payload: data
         })
 
     } catch (error) {
@@ -107,7 +105,7 @@ export const logout = () => async (dispatch) => {
             }
         }
         await axios.get('http://localhost:5002/api/v1/logout', config)
-
+        localStorage.removeItem("token");
         dispatch({
             type: LOGOUT_SUCCESS,
         })
@@ -119,9 +117,6 @@ export const logout = () => async (dispatch) => {
         })
     }
 }
-
-
-
 
 
 // Clear Errors

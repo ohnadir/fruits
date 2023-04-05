@@ -1,3 +1,5 @@
-module.exports = func => (req, res, next) =>
-    Promise.resolve(func(req, res, next))
-    .catch(next)
+const catchAsyncErrors =(passedFunction)=>(req, res, next)=>{
+    Promise.resolve(passedFunction(req, res, next)).catch(next) 
+}
+
+module.exports =catchAsyncErrors

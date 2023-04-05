@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const dotenv = require("dotenv");
 const app = express();
 const connectDb = require("./src/api/v1/config");
-const errorMiddleware = require('./src/api/v1/middleware/errors')
+// const ErrorMiddleware = require('./src/api/v1/middleware/errors')
 
 // config dot env file and connected mongodb
 dotenv.config();
@@ -13,7 +13,7 @@ connectDb();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(errorMiddleware)
+// app.use(ErrorMiddleware)
 
 // all route
 const productRoute = require("./src/api/v1/routes/products");
