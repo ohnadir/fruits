@@ -6,16 +6,19 @@ import { FaUser } from 'react-icons/fa';
 import { RiFileHistoryLine } from 'react-icons/ri';
 import AccountDetails from './Profile/AccountDetails';
 import Address from './Profile/Address';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Order from './Profile/Order';
 import Dashboard from './Profile/Dashboard';
 import { logout } from "../Redux/actions/user"
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [direction, setDirection] = useState("dashboard")
     if(direction === "logout"){
         dispatch(logout())
+        navigate("/")
     }
     return (
         <div className='overflow-hidden'>

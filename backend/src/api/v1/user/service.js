@@ -1,4 +1,5 @@
 const { User } = require("../models")
+const jwt = require('jsonwebtoken');
 exports.registrationService = async ({ user_name, email, password}) => {
     const response = {
       code: 200,
@@ -27,6 +28,7 @@ exports.registrationService = async ({ user_name, email, password}) => {
         await newUser.save();
         const token = newUser.getJwtToken();
         response.token = token
+        response.user= newUser
         return response;
     } catch (error) {
         response.code = 500;
@@ -61,6 +63,7 @@ exports.loginService = async ({ user_name, password}) => {
         }
         
         const token = user.getJwtToken();
+        response.user= user
         response.token = token
         return response;
     } catch (error) {
@@ -179,6 +182,31 @@ exports.getUsersService=async()=>{
             response.message = 'No user product';
             return response;
         }
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
+exports.getLoadUserService=async({token})=>{
+    const response = {
+        code: 200,
+        status: 'success',
+        message: 'Load user successfully',
+    };
+    try {
+        if (!token) {
+            response.code = 401;
+            response.status = 'failed';
+            response.message = 'User not found by this token';
+            return response;
+        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById({_id: decoded.id});
+        response.user = user;
         return response;
     } catch (error) {
         response.code = 500;

@@ -1,4 +1,4 @@
-import { Route, Routes, Switch  } from 'react-router-dom';
+import { Route, Routes  } from 'react-router-dom';
 import Checkout from './Page/Checkout';
 import Cart from './Page/Cart';
 import Home from './Page/Home';
@@ -12,13 +12,23 @@ import Product_Details from './Page/Product-Details';
 import ConfirmPayment from './Page/ConfirmPayment';
 import NotFound from './Page/404';
 import Profile from './Page/Profile';
+import { useEffect } from 'react';
+import { loadUser } from './Redux/actions/user';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
+  const dispatch = useDispatch()
   AOS.init({ duration : 1000});
   setTimeout(() => {
     localStorage.removeItem("token");
   }, 7 * 24  *60  *60 * 1000);
+  const token = localStorage.getItem("token");
+  useEffect(()=>{
+    if(token){
+      dispatch(loadUser(JSON.parse(token)));
+    }
+  },[ dispatch, token])
   return (
       <div className="bg-[#f8f8f8]">
         <Routes>

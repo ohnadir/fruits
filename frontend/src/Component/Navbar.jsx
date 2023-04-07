@@ -14,7 +14,7 @@ import category from "../JSON/category.json"
 import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
-    const { isAuthenticated  } = useSelector(state => state.auth);
+    const { isAuthenticated, user  } = useSelector(state => state.auth);
     const [open, setOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const [keyword, setKeyword] = useState('');

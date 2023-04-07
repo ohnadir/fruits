@@ -4,17 +4,18 @@ const {
   updateService,
   deleteUserService,
   getUserService,
-  getUsersService
+  getUsersService,
+  getLoadUserService
 } = require('./service');
 
 exports.userRegister = async (req, res) => {
-  const { status, code, message, token } = await registrationService({...req.body});
-  res.status(code).json({ code, status, message, token });
+  const { status, code, message, token, user } = await registrationService({...req.body});
+  res.status(code).json({ code, status, message, token, user });
 };
 
 exports.userLogin = async (req, res) => {
-  const { status, code, message, token } = await loginService({...req.body});
-  res.status(code).json({ code, status, message, token });
+  const response = await loginService({...req.body});
+  res.status(response.code).json(response);
 };
 
 exports.updateUser =  async(req, res) => {
@@ -37,6 +38,10 @@ exports.getSingleUser = async (req, res) => {
   res.status(code).json({ code, status, message });
 };
 
+exports.getLoadUser = async (req, res) => {
+  const { status, code, message, user } = await getLoadUserService({...req.params});
+  res.status(code).json({ code, status, message, user });
+};
 exports.logoutUser = async (req, res) => {
   res.status(200).json({
     success: true,

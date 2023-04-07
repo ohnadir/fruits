@@ -26,12 +26,13 @@ export const login = (auth) => async (dispatch) => {
         }
 
         const { data } = await axios.post('http://localhost:5002/api/v1/users/login', auth, config)
+        console.log(data)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: data.message
+            payload: data
         })
 
     } catch (error) {
@@ -58,7 +59,7 @@ export const register = (userData) => async (dispatch) => {
         }
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: data.message
+            payload: data
         })
 
     } catch (error) {
@@ -70,9 +71,8 @@ export const register = (userData) => async (dispatch) => {
 }
 
 // Load user
-export const loadUser = (id) => async (dispatch) => {
+export const loadUser = (token) => async (dispatch) => {
     try {
-
         dispatch({ type: LOAD_USER_REQUEST })
         const config = {
             headers:{
@@ -80,8 +80,7 @@ export const loadUser = (id) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(`http://localhost:5002/api/v1/me/${id}`, config)
-
+        const { data } = await axios.get(`http://localhost:5002/api/v1/users/me/${token}`, config)
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data
@@ -104,7 +103,7 @@ export const logout = () => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        await axios.get('http://localhost:5002/api/v1/logout', config)
+        await axios.get('http://localhost:5002/api/v1/users/logout', config)
         localStorage.removeItem("token");
         dispatch({
             type: LOGOUT_SUCCESS,
