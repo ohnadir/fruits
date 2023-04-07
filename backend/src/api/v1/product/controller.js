@@ -1,119 +1,38 @@
-const { Product } = require('../models');
-const ErrorHandler = require('../utils/ErrorHandler');
-const APIFeatures = require('../utils/APIFeatures');
-const catchAsyncErrors = require('../middleware/catchAsyncErrors')
+const {
+  getProductsService, 
+  getProductService, 
+  searchProductService,
+  deleteProductService,
+  updateProductService,
+  addProductService 
+} = require("./service")
 
-exports.addProduct = catchAsyncErrors(async (req, res, next) => {
-  const { name, price, desc, productPictures, category}= req.body;
+exports.addProduct = async (req, res) => {
+  const { status, code, message } = await addProductService({...req.query, ...req.body});
+  res.status(code).json({ code, status, message });
+};
 
-  const isNameExist = await Product.findOne({ name });
-  if (isNameExist) {
-    return next(new ErrorHandler('Name already taken', 422))
-  }
+exports.updateProduct = async (req, res) => {
+  const { status, code, message } = await updateProductService({...req.query, ...req.body});
+  res.status(code).json({ code, status, message });
+};
 
-  const newProduct = new Product({
-    name,
-    price,
-    desc,
-    productPictures,
-    category
-  });
-  await newProduct.save();
-  res.status(200).json({
-    status: true,
-    statusCode: 200,
-    message:"Add Product Successfully"
-  })
-});
+exports.deleteProduct = async (req, res)=> {
+  const { status, code, message } = await deleteProductService({...req.query});
+  res.status(code).json({ code, status, message });
+};
 
-exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
-  const id = req.params.id;
-  const { name, price, desc } = req.body;
+exports.getProducts = async (req, res ) => {
+  const { status, code, message, products } = await getProductsService({...req.params});
+  res.status(code).json({ code, status, message, products });
+};
 
-    const product = await Product.findOne({ _id: id }).exec();
-    if (!product) {
-      return next(new ErrorHandler('No Product Found', 422))
-    }
+exports.getProduct = async (req, res ) => {
+  const { status, code, message, product } = await getProductService({...req.params});
+  res.status(code).json({ code, status, message, product });
+};
 
-    const isNameExist = await Product.findOne({ name });
-    if (
-      isNameExist &&
-      name === isNameExist.name &&
-      String(product._id) !== String(isNameExist._id)
-    ) {
-      return next(new ErrorHandler('Already taken this name', 422))
-    }
-
-    product.name = name ? name : product.name;
-    product.price = price ? price : product.price;
-    product.desc = desc ? desc : product.desc;
-
-    await product.save();
-    res.status(200).json({
-      status: true,
-      statusCode: 200,
-      message:"updated Product Successfully"
-    })
-    
- 
-});
-
-exports.deleteProduct = catchAsyncErrors(async (req, res, next)=> {
-  const id = req.params.id;
-  const product = await Product.findOneAndDelete({ _id: id });
-  if (!product) {
-    return next(new ErrorHandler('No Product found by this id', 404))
-  }
-  await product.save();
-  res.status(200).json({
-    status: true,
-    statusCode: 200,
-    message:"Delete Product Successfully"
-  })
-  
-});
-
-exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const products = await Product.find();
-  const reverseProduct = (await Product.find().limit(10)).reverse();
-  if (!products) {
-    return next(new ErrorHandler('No Product found at this moment'))
-  }
-  res.status(200).json({
-    success: true,
-    statusCode: 200,
-    message:"Fetch Product Successfully",
-    products,
-    reverseProduct
-  })
-});
-
-exports.getProduct = catchAsyncErrors(async (req, res, next) => {
-  const id = req.params.id;
-  const product = await Product.findById({_id:id});
-
-  if (!product) {
-    return next(new ErrorHandler('Product not found', 404));
-  }
-  res.status(200).json({
-    success: true,
-    product
-  })
-});
-exports.searchProduct = catchAsyncErrors(async (req, res, next) => {
-
-  const apiFeatures = new APIFeatures(Product.find(), req.query)
-  .search()
-  .filter()
-
-  let products = await apiFeatures.query;
-  if (!products) {
-    return next(new ErrorHandler('Product not found', 404));
-  }
-
-  res.status(200).json({
-    status: true,
-    statusCode:200,
-    products
-  })
-});
+exports.searchProduct = async (req, res) => {
+  const { status, code, message, products } = await searchProductService({...req.query});
+  res.status(code).json({ code, status, message, products });
+};
