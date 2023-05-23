@@ -1,80 +1,104 @@
+.brand-logo{
+    // width: 250px;
+    // height: 100px;
+}
 .search-container{
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: white;
+    border-radius: 8px;
     .category-container{
         display: flex;
         align-items: center;
+        justify-content: space-between;
         border-right: 1px solid #ddd;
         padding: 4px 8px;
-        .category-dropdown{
-            background-color: white;
-            position: absolute;
-            top: 31px;
-            left: 0;
-            border: 1px solid #ddd;
-            width: 100%;
-            .active{
-                background-color: #f8f8f8;
-                font-weight: 500 !important;
-                cursor: default;
-            }
-            ul li {
-                padding: 6px 8px;
-                font-size: 13px;
-                background-color: transparent;
-                border-bottom: 1px solid #ddd;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-            ul li:hover{
-                background-color: #f8f8f8;
-            }
-        }
-        // absolute top-[31px] border bg-gray-600 w-full left-0
     }
     input{
         padding: 4px 8px;
-        width: 100% ;
         outline: none;
         border: none;
         background-color: transparent;
-        font-size: 13px !important;
+        font-size: 14px !important;
     }
     button{
-        padding: 8px 10px;
-        border-left: 1px solid #ddd;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 .right-content{
-    .cart-content{
+    .cart-counter-container{
+        background-color: #ef4444;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
         position: absolute;
-        top: -18px;
-        left: 5px;
-        color: #669900;
-
+        top: -8px;
+        left: 12px;
+        font-size: 13px;
     }
 }
-.cart-drawer-button{
-    button{
-        font-size: 13px;
-        padding: 4px 0;
-        border-radius: 6px;
-        color: white;
-        background-color: #669900;
-        transition: all 0.2s ease;
+.cart-drawer{
+    .cart-header{
+        display: flex;
+        justify-content: space-between;
+        background-color: #eef2ff;
+        padding: 16px;
+        .cart-header-content{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
     }
-    button:hover{
-        background-color: #2A660A;
-        color: white;
+    .cart-body{
+        padding: 16px;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .empty-cart{
+            height: 80px;
+            width: 80px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(209 250 229);
+            border-radius: 50%;
+        }
     }
-    .active{
-        border: 1px solid #669900;;
-        background-color: white;
-        color: black;
-        transition: all 0.2s ease;
-    }
-    .active:hover{
-        background-color: #2A660A;
-        color: white;
+    .cart-footer-btn{
+        width: 100%;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 16px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .checkout-btn{
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            background-color: rgb(16 185 129);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .price-container{
+                background-color: white;
+                padding: 3px 16px;
+                border-radius: 6px;
+                color: rgb(5 150 105);
+            }
+        }
+        .checkout-btn:hover{
+            background-color: #059669;
+        }
     }
 }

@@ -32,7 +32,7 @@ export const authReducer = (state = { user: {} }, action) => {
                 loading: false,
                 isAuthenticated: true,
                 user: action.payload.user,
-                messages: action.message
+                messages: action.payload.message
             }
 
         case LOGOUT_SUCCESS:

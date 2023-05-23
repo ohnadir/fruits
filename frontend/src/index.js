@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'antd/dist/antd.min.css'
 import "slick-carousel/slick/slick.css"; 
@@ -24,4 +23,3 @@ root.render(
   </Provider>
   
 );
-reportWebVitals();

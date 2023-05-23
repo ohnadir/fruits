@@ -27,7 +27,7 @@ const Login = () => {
             if(isAuthenticated === true){
                 navigate('/')
             }
-        },2000)
+        },1000)
     }, [messages, isAuthenticated])
     const onSubmit = () => {
         if(!auth.user_name || !auth.password){
