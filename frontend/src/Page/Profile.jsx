@@ -11,6 +11,7 @@ import Order from './Profile/Order';
 import Dashboard from './Profile/Dashboard';
 import { logout } from "../Redux/actions/user"
 import { useNavigate } from "react-router-dom"
+import Cover from '../Component/Cover';
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -21,33 +22,43 @@ const Profile = () => {
         navigate("/")
     }
     return (
-        <div className='overflow-hidden'>
-            <div className='relative'>
-                    <img src={cartHeader} className='h-[200px] w-full' alt="" />
-                    <div className=" absolute bottom-0  text-center w-full h-full flex justify-center items-center">
-                        <div className='flex gap-8'>
-                            <div>
-                                <h1 className="text-2xl font-bold text-white">My account</h1>
-                                <h5 className='flex items-center gap-4 text-xl text-white'>Home <MdOutlineDoubleArrow className='' /> My account</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div className='profile max-w-4xl mx-auto px-10 flex flex-col sm:flex-row justify-between mt-10'>
-                <aside className='w-full sm:w-[20%]'>
+        <div className='overflow-hidden bg-gray-50'>
+            <Cover name="Dashboard"/>
+            <div className='profile max-w-[1380px] mx-auto px-10 flex gap-5 lg:gap-10 flex-col lg:flex-row justify-between mt-10'>
+                <aside className='w-full lg:w-[15%]'>
                     <ul>
-                        <li onClick={()=>setDirection("dashboard")} style={{backgroundColor: direction === "dashboard" ? "#679509" : null, color: direction === "dashboard" ? "white" : null}}>Dashboard<MdOutlineDashboardCustomize size={15}/></li>
-                        <li onClick={()=>setDirection("order")} style={{backgroundColor: direction === "order" ? "#679509" : null, color: direction === "order" ? "white" : null}}>Orders<RiFileHistoryLine size={15}/></li>
-                        <li onClick={()=>setDirection("address")} style={{backgroundColor: direction === "address" ? "#679509" : null, color: direction === "address" ? "white" : null}}>Address<MdLocationOn size={15}/></li>
-                        <li onClick={()=>setDirection("account")} style={{backgroundColor: direction === "account" ? "#679509" : null, color: direction === "account" ? "white" : null}}>Account Details<FaUser size={15}/></li>
-                        <li onClick={()=>setDirection("logout")} style={{backgroundColor: direction === "logout" ? "#679509" : null, color: direction === "logout" ? "white" : null}}>Logout<MdOutlineLogout size={15}/></li>
+                        <li onClick={()=>setDirection("dashboard")} ><MdOutlineDashboardCustomize size={15}/> Dashboard</li>
+                        <li onClick={()=>setDirection("order")}>
+                            <span>
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="flex-shrink-0 h-[18px] w-[18px]" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 144h288M160 256h288M160 368h288"></path>
+                                    <circle cx="80" cy="144" r="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle><circle cx="80" cy="256" r="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle><circle cx="80" cy="368" r="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle>
+                                </svg>
+                            </span>
+                            <span>My Orders</span>
+                        </li>
+                        <li onClick={()=>setDirection("account")}>
+                            <svg stroke="currentColor" fill="#eee" stroke-width="0" viewBox="0 0 512 512" class="flex-shrink-0 h-4 w-4" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M262.29 192.31a64 64 0 1057.4 57.4 64.13 64.13 0 00-57.4-57.4zM416.39 256a154.34 154.34 0 01-1.53 20.79l45.21 35.46a10.81 10.81 0 012.45 13.75l-42.77 74a10.81 10.81 0 01-13.14 4.59l-44.9-18.08a16.11 16.11 0 00-15.17 1.75A164.48 164.48 0 01325 400.8a15.94 15.94 0 00-8.82 12.14l-6.73 47.89a11.08 11.08 0 01-10.68 9.17h-85.54a11.11 11.11 0 01-10.69-8.87l-6.72-47.82a16.07 16.07 0 00-9-12.22 155.3 155.3 0 01-21.46-12.57 16 16 0 00-15.11-1.71l-44.89 18.07a10.81 10.81 0 01-13.14-4.58l-42.77-74a10.8 10.8 0 012.45-13.75l38.21-30a16.05 16.05 0 006-14.08c-.36-4.17-.58-8.33-.58-12.5s.21-8.27.58-12.35a16 16 0 00-6.07-13.94l-38.19-30A10.81 10.81 0 0149.48 186l42.77-74a10.81 10.81 0 0113.14-4.59l44.9 18.08a16.11 16.11 0 0015.17-1.75A164.48 164.48 0 01187 111.2a15.94 15.94 0 008.82-12.14l6.73-47.89A11.08 11.08 0 01213.23 42h85.54a11.11 11.11 0 0110.69 8.87l6.72 47.82a16.07 16.07 0 009 12.22 155.3 155.3 0 0121.46 12.57 16 16 0 0015.11 1.71l44.89-18.07a10.81 10.81 0 0113.14 4.58l42.77 74a10.8 10.8 0 01-2.45 13.75l-38.21 30a16.05 16.05 0 00-6.05 14.08c.33 4.14.55 8.3.55 12.47z"></path>
+                            </svg>
+                            <span>Update Profile</span>
+                        </li>
+                        <li onClick={()=>setDirection("password")}>
+                            <span>
+                                <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="flex-shrink-0 h-4 w-4" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </span>
+                            <span>Change Password</span>
+                        </li>
+                        <li onClick={()=>setDirection("logout")}><MdOutlineLogout size={15}/>Logout</li>
                     </ul>
                 </aside>
-                <main className='w-full sm:w-[75%] mt-5 sm:mt-0'>
+                <main className='w-full lg:w-[85%] mt-5 sm:mt-0'>
                     <div>
                         { direction === "dashboard" && <Dashboard/> }
                         { direction === "account" && <AccountDetails/> }
-                        { direction === "address" && <Address/> }
+                        { direction === "password" && <Address/> }
                         { direction === "order" && <Order/> }
                         
                     </div>

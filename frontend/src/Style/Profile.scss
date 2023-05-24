@@ -1,23 +1,29 @@
 
 .profile{
     aside{
+        background-color: white;
+        padding: 18px;
+        border-radius: 8px;
+        height: fit-content;
         ul {
             margin: 0;
-            border: 1px solid #eee;
             li{
                 display: flex;
-                justify-content: space-between;
-                border-bottom: 1px solid #eee;
                 padding: 8px;
-                font-size: 13px;
+                font-size: 15px;
                 font-weight: 600;
                 cursor: pointer;
                 align-items: center;
                 gap: 10px;
+                background-color: transparent;
                 transition: all 0.2s ease;
             }
             li:hover{
-                color: #679509;
+                background-color: #f9fafb;
+                color: rgb(5 150 105);
+            }
+            li:visited{
+                background-color: red !important;
             }
         }
     }
@@ -25,27 +31,56 @@
 
 // account details component
 .account-details, .address-container{
+    border-radius: 8px;
+    background-color: white;
     label{
         color: #4d4d4d;
         font-size: 13px;
         margin-bottom: 3px;
     }
-    input, textarea{
+    input{
         width: 100%;
         font-size: 13px;
         border: 1px solid #eee;
-        padding: 6px 12px ;
+        padding: 8px 12px ;
+        border-radius: 6px;
         color: black !important;
         outline: none;
         background-color: white;
     }
-    input:focus, textarea:focus{
-        border: 1px solid #679509;
+    input:focus{
+        border: 1px solid #059669 ;
+    }
+    .update-btn{
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-top: 20px;
+        button{
+            width: fit-content;
+            padding: 8px 15px;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            background-color: rgb(5 150 105);
+        }
+        
     }
 }
-
+@media screen and (max-width: 639px){
+    .account-details, .address-container{
+        .update-btn{
+            button{
+                width: 100%;
+            }
+            
+        }
+    }
+}
 .address-container{
     .address-content{
+        background-color: white;
         p{
             margin: 0;
             padding: 0;
