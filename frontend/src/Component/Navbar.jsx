@@ -9,10 +9,12 @@ import {  BsCart } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import "../Style/Navbar.scss"
 import { useSelector } from 'react-redux';
+import Authentication from './Authentication';
 
 const Navbar = () => {
     const { isAuthenticated } = useSelector(state => state.auth);
     const [open, setOpen] = useState(false);
+    const [modal, setModal] = useState(false)
     const [keyword, setKeyword] = useState('');
     const navigate =useNavigate()
     const handleClick=()=>{
@@ -43,7 +45,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="cursor-pointer ">
-                            <FiUser size={24} style={{color: "white"}} onClick={handleClick} />
+                            <FiUser size={24} style={{color: "white"}} onClick={()=>setModal(true)} />
                         </div>
                     </div>
                 </div>
@@ -54,6 +56,9 @@ const Navbar = () => {
                     placement="right" closeIcon={false} open={open}>
                     <CartDrawer setOpen={setOpen}></CartDrawer>
                 </Drawer>
+                {
+                    modal && <Authentication modal={modal} setModal={setModal} />
+                }
             </div>
         </div>
     )

@@ -4,8 +4,6 @@ import Cart from './Page/Cart';
 import Home from './Page/Home';
 import Wishlist from './Page/Wishlist';
 import SearchResult from './Component/SearchResult';
-import Login from './Page/Login';
-import Signup from './Page/Signup';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import Product_Details from './Page/Product-Details';
@@ -33,8 +31,6 @@ function App() {
       <div className="bg-[#f8f8f8]">
         <Routes>
           <Route path='/' element={<Home/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/signup' element={<Signup/>}></Route>
           <Route path="/search/:keyword" element={<SearchResult/>} />
           <Route path='/checkout' element={<Checkout/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
