@@ -4,7 +4,6 @@ import { Drawer } from 'antd';
 import { FiUser } from 'react-icons/fi';
 import { BsSearch } from 'react-icons/bs';
 import CartDrawer from './CartDrawer';
-import 'rsuite/styles/index.less';
 import {  BsCart } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import "../Style/Navbar.scss"
