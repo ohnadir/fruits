@@ -36,21 +36,24 @@
   height: 26px;
   width: 26px;
   padding: 0 3px;
-  background-color: white;
+  background-color: rgba(5, 150, 105, 0.5);
   box-shadow: 0px 0px 10px 0px #cccccc3b;
   border-radius: 50%;
   font-size: 20px;
   position: absolute;
+  transition: all 0.1s ease;
 }
 .prev{
   right: 55px;
 }
 .prev:hover{
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgb(5 150 105);
+  color: white;
 }
 .next{
   right: 13px;
 }
 .next:hover{
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgb(5 150 105);
+  color: white;
 }

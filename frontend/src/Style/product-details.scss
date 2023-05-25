@@ -42,3 +42,93 @@
         }
     }
 }
+
+.product-details-modal{
+    padding: 30px 30px 30px 0;
+    position: relative;
+    .modal-close-icon{
+        background-color: #ddd;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        transition: background-color 0.1s ease;
+    }
+    .modal-close-icon:hover{
+        background-color: rgba(239, 68, 68, 0.2);
+    }
+    .product{
+        display: flex;
+        .img-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-details{
+            width: 100%;
+            .product-name{
+                margin: 0;
+                font-size: 20px;
+                font-weight: 700;
+            }
+            .product-stock{
+                margin: 0;
+                color: rgb(16, 185, 129);
+            }
+            .product-description{
+                margin: 0;
+                padding: 8px 0;
+                font-size: 15px;
+            }
+            .product-price{
+                margin: 0;
+                padding: 0 0 12px 0;
+                font-size: 25px;
+                font-weight: 700;
+            }
+        }
+        .button-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .counter-btn-container{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid grey;
+                border-radius: 8px;
+                button{
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: black;
+                    padding: 6px 12px;
+                }
+            }
+        }
+        .cart-btn{
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 12px;
+            color: white;
+            border-radius: 8px;
+            background-color: rgb(16, 185, 129);
+            transition: all 0.1s ease;
+        }
+        .cart-btn:hover{
+            background-color: rgb(4, 120, 87);
+        }
+    }
+}
+// ant design custom css
+.ant-modal-content{
+    border-radius: 14px !important;
+}
