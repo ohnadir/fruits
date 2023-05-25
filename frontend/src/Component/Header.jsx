@@ -1,32 +1,79 @@
 import React from 'react';
-import hero from "../assets/hero1.png"
-import "../Style/Deal.css"
+import "../Style/Header.scss"
+import Slider from "react-slick";
 const Header = () => {
+    const settings = {
+        arrows: false,
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+    
     return (
-        <div className='HeaderContainer overflow-hidden'>
-            <div className='max-w-7xl mx-auto  mb-16 px-10 py-16'>
-                <div className='flex flex-col-reverse md:flex-row items-center justify-between'>
-                    <div className='mt-10 md:mt-0'>
-                        <h5 data-aos="fade-up" data-aos-delay="100" className="text-lg sm:text-xl md:text-xl m-0">Organic and fresh food</h5>
-                        <h1 data-aos="fade-up" data-aos-delay="300" className='text-xl sm:text-3xl md:text-3xl lg:text-4xl font-bold py-2'>Get freshness delivered <br /> on your doorstep.</h1>
-                        <div data-aos="fade-up" data-aos-delay="500" className='flex gap-10 '>
-                            <button className='bg-[rgb(103,149,9)] px-5 py-[5px]  lg:px-8 lg:py-3 text-white lg:font-bold'>Shop Now</button>
-                            <button className='bg-white px-5  lg:px-6  text-black lg:font-bold '>Category</button>
-                        </div>
-                    </div>
-                    <div className=''>
-                        <div className='relative'>
-                            <img data-aos="fade-left" data-aos-delay="300" className='' src={hero} alt="" />
-                            <div className='headerOverlay' data-aos="fade-left" >
-                                <div className='headerOverlayContainer' >
-                                    <p className='m-0'>45%</p>
-                                    <p className='m-0'>Off</p>
+        <div className='header'>
+            <div className='header-container'>
+                <div className='slider-container'>
+                    <div className='slider'>
+                        <Slider {...settings}>
+                            <div className='slider-item'>
+                                <img src="https://res.cloudinary.com/ddqovbzxy/image/upload/v1684986067/slider-1_yobsp0.webp" alt="" />
+                                <div className='slider-content'>
+                                    <h1 data-aos="fade-up" data-aos-delay="300" className='slider-slogan mb-1 text-xl sm:text-lg md:text-2xl  lg:text-3xl font-bold text-gray-800'>The Best Quality Products Guaranteed</h1>
+                                    <h5 data-aos="fade-up" data-aos-delay="100" className="slider-text text-gray-600 text-base leading-6">Dramatically facility effective total linkage for go forward processes.</h5>
+                                    <div data-aos="fade-up" data-aos-delay="500" className='flex gap-10 '>
+                                        <button className='shop-btn '>Shop Now</button>
+                                    </div>
                                 </div>
                             </div>
+                            <div className='slider-item'>
+                                <img src="https://res.cloudinary.com/ddqovbzxy/image/upload/v1684989918/slider-2_nd9yl9.webp" alt="" />
+                                <div className='slider-content'>
+                                    <h1 data-aos="fade-up" data-aos-delay="300" className='slider-slogan mb-1 text-xl sm:text-lg md:text-2xl  lg:text-3xl font-bold text-gray-800'>Best Different Type of Grocery Store</h1>
+                                    <h5 data-aos="fade-up" data-aos-delay="100" className="slider-text text-gray-600 text-base leading-6">Quickly aggregate empowered networks after emerging products</h5>
+                                    <div data-aos="fade-up" data-aos-delay="500" className='flex gap-10 '>
+                                        <button className='shop-btn '>Shop Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='slider-item'>
+                                <img src="https://res.cloudinary.com/ddqovbzxy/image/upload/v1684989969/slider-3_qj0nwr.webp" alt="" />
+                                <div className='slider-content'>
+                                    <h1 data-aos="fade-up" data-aos-delay="300" className='slider-slogan mb-1 text-xl sm:text-lg md:text-2xl  lg:text-3xl font-bold text-gray-800'>Quality Freshness Guaranteed</h1>
+                                    <h5 data-aos="fade-up" data-aos-delay="100" className="slider-text text-gray-600 text-base leading-6">Intrinsically fashion performance based products rather after than accurate benefit.</h5>
+                                    <div data-aos="fade-up" data-aos-delay="500" className='flex gap-10 '>
+                                        <button className='shop-btn '>Shop Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Slider>
+                    </div>
+                    <div className="side-header border rounded-[8px]">
+                        <p className="loram">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates reiciendis laboriosam alias possimus facere pariatur laborum cum eveniet ratione magni hic similique, iure ad, accusantium maiores mollitia sapiente quisquam! Recusandae.
+                        </p>
+                    </div>
+                </div>
+                <div className='discount-cart'>
+                    <div className='discount-container '>
+                        <div>
+                            <h1>
+                                <span className='text-emerald-600 font-bold'>100% Natural quality </span>
+                                <span className='text-black'>Organic Product</span>
+                            </h1>
+                            <p>
+                                See our latest discounted products from here and get a special
+                                <span className='text-emerald-600'> discount product</span>
+                            </p>
+                        </div>
+                        <div>
+                            <button>Shop Now</button>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };

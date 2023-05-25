@@ -1,0 +1,181 @@
+.header{
+    overflow: hidden;
+    background-color: white;
+    .header-container{
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 32px 20px;
+    }
+    .slider-container{
+        .slider{
+            width : 100%;
+        }
+        .slider-content{
+            position: absolute;
+            z-index: 2;
+            top: 35%;
+            left: 5%;
+        }
+        .slider-item{
+            position: relative;
+            img{
+                border-radius: 8px;
+            }
+        }
+        .slider-slogan{
+            font-size: 20px;
+            line-height: 28px;
+            color: rgb(31, 41, 55);
+        }
+        .slider-text{
+            // text-gray-600 text-base leading-6
+        }
+        .shop-btn{
+            display: none;
+            width: fit-content;
+            padding: 8px 20px;
+            margin-top: 15px;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            background-color: rgb(16, 185, 129);
+            transition: background-color 0.1s ease;
+        }
+        .shop-btn:hover{
+            background-color: rgb(4, 120, 87);
+        } 
+        .side-header{
+            width: 30%;
+            display: none;
+
+        }
+    }
+    .discount-cart{
+        background-color: rgb(255, 237, 213);
+        border-radius: 8px;
+        margin-top: 20px;
+        display: none;
+        .discount-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            h1{
+                font-size: 22px;
+                line-height: 28px;
+                margin: 0;
+            }
+            p{
+                color: rgb(107, 114, 128);
+                font-size: 17px;
+                line-height: 28px;
+            }
+            button{
+                background-color: rgb(16, 185, 129);
+                width: fit-content;
+                padding: 8px 20px;
+                color: white;
+                font-weight: 600;
+                border-radius: 6px;
+                transition: background-color 0.1s ease;
+            }
+            button:hover{
+                background-color: rgb(4, 120, 87);
+            }
+        }
+    }
+    // custom slick slider css
+    .slick-dots{
+        bottom: 25px;
+        button:before{
+            font-size: 10px;
+            line-height: 20px;
+        }
+        li{
+            margin: 0 ;
+        }
+        li button:before {
+            color: rgb(5 150 105);
+        }
+    }
+}
+@media screen and (min-width: 1024px){
+    .header {
+        .slider-container{
+            display : flex;
+            gap: 30px;
+            .slider{
+                width : 70%;
+                height: 100%;
+            }
+            .slider-content{
+                top: 25%;
+                width: 40%;
+            }
+            .side-header{
+                display: block;
+            }
+            .slider-slogan{
+                font-size: 30px;
+                line-height: 36px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1023px){
+    .header {
+        .slider-container{
+            .slider-slogan{
+                font-size: 24px;
+                line-height: 32px;
+            }
+            .shop-btn{
+                display: block;
+            }
+        }
+    }
+}
+@media screen and (min-width: 870px){
+    .header {
+        .discount-cart{
+            display: block;
+        }
+    }
+}
+@media screen and (min-width: 640px){
+    .header {
+        .slider-container{
+            .shop-btn{
+                display: block;
+            }
+        }
+    }
+}
+ @media screen and (max-width: 639px){
+    .header {
+        .slider-container{
+            .slider-content{
+                top: 35%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 557px){
+    .header {
+        .slider-container{
+            .slider-content{
+                top: 30%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 417px){
+    .header {
+        .slider-container{
+            .slider-content{
+                top: 15%;
+            }
+        }
+    }
+}
