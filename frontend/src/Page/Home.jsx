@@ -18,7 +18,6 @@ const Home = (props) => {
         <Layout>
             <div className='bg-[#f8f8f8]'>
                 <Header></Header>
-                <Services/>
                 <Category/>
                 <AllProducts></AllProducts>
                 <NewestProduct/>
@@ -26,6 +25,7 @@ const Home = (props) => {
                 <ProductWidgets/>
                 <Question></Question>
                 <Newsletter/>
+                <Services/>
             </div>
         </Layout>
     );

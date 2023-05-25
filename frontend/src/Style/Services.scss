@@ -1,9 +1,8 @@
 .services-container{
     max-width: 1280px;
-    margin: 64px auto;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 0 20px;
     .service{
-        background-color: white;
         padding: 20px;
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
