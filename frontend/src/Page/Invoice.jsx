@@ -3,10 +3,7 @@ import "../Style/Invoice.scss"
 import ReactToPrint from "react-to-print";
 
 const Invoice = () => {
-    const componentRef = useRef();
-    const handlePrint = () => {
-        window.print();
-    };
+    const componentRef = useRef(null);
     return (
         <div className='bg-gray-50 h-full'>
             <div className='invoice-container'>
@@ -14,81 +11,74 @@ const Invoice = () => {
                     <h1>Thank you <span className="font-bold text-emerald-600">Nadir Hossain</span>, Your order have been received !</h1>
                 </div>
                 <div className='invoice-body' ref={componentRef}>
-                    <div className='invoice-content'>
-                        <div className='invoice-heading'>
+                    <div className=' bg-[#eef2ff] p-[30px]'>
+                        <div className='flex items-center justify-between border-b-[1px] border-white pb-[15px]'>
                             <div>
-                                <h1>INVOICE</h1>
-                                <p>Status : <span className='text-orange-500'>Pending</span></p>
+                                <h1 className='text-[20px] font-[700] m-0'>INVOICE</h1>
+                                <p className='m-0 text-[15px]'>Status : <span className='text-orange-500'>Pending</span></p>
                             </div>
                             <div className='brand-logo'>
-                                <img src="https://kachabazar-store.vercel.app/logo/logo-color.svg" alt="" />
+                                <img className='w-[100px] mb-[7px]' src="https://kachabazar-store.vercel.app/logo/logo-color.svg" alt="" />
                                 <p>Bambali, Sédhiou, Senegal</p>
                             </div>
                         </div>
-                        <div className='client-info'>
+                        <div className=' pt-[15px] flex justify-between'>
                             <div>
-                                <h1>DATE</h1>
-                                <p>May 26, 2023</p>
+                                <h1 className='m-0 font-[700]'>DATE</h1>
+                                <p className='m-0 text-[14px] font-[600]'>May 26, 2023</p>
                             </div>
                             <div>
-                                <h1>INVOICE NO.</h1>
-                                <p>#10083</p>
+                                <h1 className='m-0 font-[700]'>INVOICE NO.</h1>
+                                <p className='m-0 text-[14px] font-[600]'>#10083</p>
                             </div>
                             <div>
-                                <h1>INVOICE NO.</h1>
-                                <p>Nadir Hossain</p>
-                                <p>nadirhossain336@gmail.com</p>
-                                <p>H-282, R-02, Shantipur, Khailgaon</p>
+                                <h1 className='m-0 font-[700]'>INVOICE NO.</h1>
+                                <p className='m-0 text-[14px] font-[600]'>Nadir Hossain</p>
+                                <p className='m-0 text-[14px] font-[600]'>nadirhossain336@gmail.com</p>
+                                <p className='m-0 text-[14px] font-[600]'>H-282, R-02, Shantipur, Khailgaon</p>
                             </div>
                         </div>
                     </div>
-                    <div className='product-info'>
-                        <table>
+                    <div className=' bg-white p-[30px]'>
+                        <table className='w-full text-center'>
                             <tr>
-                                <th>SR.</th>
-                                <th>PRODUCT NAME</th>
-                                <th>QUANTITY</th>
-                                <th>ITEM PRICE</th>
-                                <th>AMOUNT</th>
+                                <th className='bg-[#ddd] py-[6px]'>SR.</th>
+                                <th className='bg-[#ddd] py-[6px]'>PRODUCT NAME</th>
+                                <th className='bg-[#ddd] py-[6px]'>QUANTITY</th>
+                                <th className='bg-[#ddd] py-[6px]'>ITEM PRICE</th>
+                                <th className='bg-[#ddd] py-[6px]'>AMOUNT</th>
                             </tr>
                             <tr>
-                                <td>1</td>
-                                <td>Rainbow Chard</td>
-                                <td>2</td>
-                                <td>$7.2</td>
-                                <td>$14.14</td>
+                                <td className='py-[6px]'>1</td>
+                                <td className='py-[6px]'>Rainbow Chard</td>
+                                <td className='py-[6px]'>2</td>
+                                <td className='py-[6px]'>$7.2</td>
+                                <td className='py-[6px]'>$14.14</td>
                             </tr>
                         </table>
                     </div>
-                    <div className='order-status'>
+                    <div className='flex items-center justify-between p-[30px] bg-[#ecfdf5]'>
                         <div>
-                            <h1>PAYMENT METHOD</h1>
-                            <p>Cash</p>
+                            <h1 className='m-0 font-[700]'>PAYMENT METHOD</h1>
+                            <p className='font-[600] m-0 text-[14px]'>Cash</p>
                         </div>
                         <div>
-                            <h1>SHIPPING COST</h1>
-                            <p>$60.00</p>
+                            <h1 className='m-0 font-[700]'>SHIPPING COST</h1>
+                            <p className='font-[600] m-0 text-[14px]'>$60.00</p>
                         </div>
                         <div>
-                            <h1>DISCOUNT</h1>
-                            <p>$0.00</p>
+                            <h1 className='m-0 font-[700]'>DISCOUNT</h1>
+                            <p className='font-[600] m-0 text-[14px]'>$0.00</p>
                         </div>
                         <div>
-                            <h1>TOTAL AMOUNT</h1>
-                            <p className='text-red-500 total-price'>$74.14</p>
+                            <h1 className='m-0 font-[700]'>TOTAL AMOUNT</h1>
+                            <p className='text-red-500 text-[18px] font-[700] m-0'>$74.14</p>
                         </div>
                     </div>
                 </div>
                 <div className="btn-container">
                     <button>Download Invoice</button>
-                    <ReactToPrint
-            trigger={() => (
-              <button className="bg-blue-500 ml-5 text-white font-bold py-2 px-8 rounded hover:bg-blue-600 hover:text-white transition-all duration-150 hover:ring-4 hover:ring-blue-400">
-                Print / Download
-              </button>
-            )}
-            content={() => componentRef.current}
-          />
+                    <ReactToPrint trigger={() => (<button >Print / Download</button>)}content={() => componentRef.current}/>
                 </div>
             </div>
         </div>
