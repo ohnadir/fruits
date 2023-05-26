@@ -1,114 +1,202 @@
 import React, { useState } from 'react';
-import cartHeader from '../assets/breadcrumb.jpg'
-import { MdOutlineDoubleArrow } from 'react-icons/md'
-import MetaData from '../Component/Layout/MetaData';
-import { Modal } from 'antd';
 import "../Style/Checkout.scss"
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import {PaymentElement} from '@stripe/react-stripe-js';
 
+const options = {
+    style: {
+        base: {
+            fontSize: '14px'
+        },
+        invalid: {
+            color: '#C13515'
+        }
+    }
+}
 const Checkout = () => {
     const [auth, setAuth] = useState('');
-    const [modal, setModal] = useState(false)
+    // const [ payment, setPayment ] = useState(false)
+    console.log(auth)
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
-    const onSubmit = () => {
-        if(auth.payment === "online" ){
-            setModal(true);
-        }
-    }
+    const handleSubmit = () => {}
+    
     return (
-        <div className='bg-[#f8f8f8] pb-12 checkout-container'>
-            <MetaData title={'Checkout'} />
-            <div>
-                <div className='relative'>
-                    <img src={cartHeader} className='h-[250px] w-full' alt="" />
-                    <div className=" absolute bottom-0  text-center w-full h-full flex justify-center items-center">
-                        <div className='flex gap-8'>
-                            <div>
-                                <h1 className="text-2xl font-bold text-white">Checkout</h1>
-                                <h5 className='flex items-center gap-4 text-xl text-white'>Home <MdOutlineDoubleArrow className='' /> Checkout</h5>
+        <div className='checkout'>
+                <div className=' checkout-container'>
+                    <div className='form-container'>
+                        <div className='persona-details'>
+                            <h1>01.Personal Details</h1>
+                            <div className='personal-details-container'>
+                                <div>
+                                    <label htmlFor="firstName">First Name</label>
+                                    <input onChange={handleChange} name="first-name"  type="text" placeholder='First Name' />
+                                </div>
+                                <div>
+                                    <label htmlFor="Last Name">Last Name</label>
+                                    <input onChange={handleChange} name="last-name" type="text" placeholder='Last Name' />
+                                </div>
+                                <div>
+                                    <label htmlFor="Email">Email Address</label>
+                                    <input onChange={handleChange} name="email" type="text" placeholder='Email Address' />
+                                </div>
+                                <div>
+                                    <label htmlFor="Phone Number">Phone Number</label>
+                                    <input onChange={handleChange} name="phone" type="text" placeholder='Phone Number' />
+                                </div>
                             </div>
                         </div>
+                        <div className='shipping-details'>
+                            <h1>02.Shipping Details</h1>
+                            <div className='shipping-details-container'>
+                                <div>
+                                    <label htmlFor="Street address">Street address</label>
+                                    <input onChange={handleChange} name="address" type="text" placeholder='Street address' />
+                                </div>
+                                <div>
+                                    <label htmlFor="" >Country</label>
+                                    <input onChange={handleChange} name="country"  type="text" placeholder='Country' />
+                                </div>
+                                <div className='city-zip-container'>
+                                    <div>
+                                        <label htmlFor="city" >City</label>
+                                        <input onChange={handleChange} name="city"  type="text" placeholder='City' />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">ZIP/Postal</label>
+                                        <input onChange={handleChange} name="zipCode"  type="text" placeholder='ZIP Code' />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="cost">Shipping Cost</label>
+                                    <div className='shipping-option-container'>
+                                        <div className='shipping-option' >
+                                            <div className='flex items-center gap-3'>
+                                                <span className='text-gray-400'>
+                                                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.7em" width="1.7em" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="1" y="3" width="15" height="13"></rect>
+                                                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                                    </svg>
+                                                </span>
+                                                <div >
+                                                    <h2>FedEx</h2>
+                                                    <p>Delivery: Today Cost :- $60.00</p>
+                                                </div>
+                                            </div>
+                                            <input type="radio" onChange={handleChange} name="cost" value="fedEx" id="" />
+                                        </div>
+                                        <div className='shipping-option'>
+                                            <div className='flex items-center gap-3'>
+                                                <span className='text-gray-400'>
+                                              <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.7em" width="1.7em" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="1" y="3" width="15" height="13"></rect>
+                                                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                                              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                                    </svg>
+                                                </span>
+                                                <div>
+                                                    <h2>UPS</h2>
+                                                    <p>Delivery: Today Cost :- $60.00</p>
+                                                </div>
+                                            </div>
+                                            <input type="radio" onChange={handleChange} name="cost" value="ups" id="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='payment-details'>
+                            <h1>03.Payment Details</h1>
+                            <div className='payment-container'>
+                                <div className='payment-option' >
+                                    <div className='flex items-center gap-3'>
+                                        <span className="text-gray-400">
+                                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M47.5 104H432V51.52a16 16 0 00-19.14-15.69l-368 60.48a16 16 0 00-12 10.47A39.69 39.69 0 0147.5 104zm416 24h-416a16 16 0 00-16 16v288a16 16 0 0016 16h416a16 16 0 0016-16V144a16 16 0 00-16-16zM368 320a32 32 0 1132-32 32 32 0 01-32 32z"></path>
+                                                <path d="M31.33 259.5V116c0-12.33 5.72-18.48 15.42-20 35.2-5.53 108.58-8.5 108.58-8.5s-8.33 16-27.33 16V128c18.5 0 31.33 23.5 31.33 23.5L84.83 236z"></path>
+                                            </svg>
+                                        </span>
+                                        <p>Cash On Delivery</p>
+                                    </div>
+                                    <input type="radio" onChange={handleChange} name="payment" value="" id="" />
+                                </div>
+                                <div className='payment-option'>
+                                    <div className='flex items-center gap-3'>
+                                    <span className="text-gray-400">
+                                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" version="1.1" viewBox="0 0 16 16" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.5 2h-13c-0.825 0-1.5 0.675-1.5 1.5v9c0 0.825 0.675 1.5 1.5 1.5h13c0.825 0 1.5-0.675 1.5-1.5v-9c0-0.825-0.675-1.5-1.5-1.5zM1.5 3h13c0.271 0 0.5 0.229 0.5 0.5v1.5h-14v-1.5c0-0.271 0.229-0.5 0.5-0.5zM14.5 13h-13c-0.271 0-0.5-0.229-0.5-0.5v-4.5h14v4.5c0 0.271-0.229 0.5-0.5 0.5zM2 10h1v2h-1zM4 10h1v2h-1zM6 10h1v2h-1z"></path>
+                                        </svg>
+                                    </span>
+                                    <p>Credit Card</p>
+                                    </div>
+                                    <input type="radio" onChange={handleChange} name="payment" value="card" id="" />
+                                </div>
+                            </div>
+                            {/* {
+                                    auth.payment === "card"
+                                    ?
+                                    <div className='payment-option'></div>
+                                    :
+                                    null
+                                } */}
+                            <div className='stripe-card'>
+                                {/* <CardElement options={options}/> */}
+                            </div>
+                        </div>
+                        <div className="button-container">
+                            <button className='continue-btn'>
+                                <span>
+                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.7em" width="1.7em" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M112 160l-64 64 64 64"></path>
+                                        <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M64 224h294c58.76 0 106 49.33 106 108v20"></path>
+                                    </svg>
+                                </span>
+                                <span>Continue Shopping</span>
+                            </button>
+                            <button className='confirm-btn' onClick={handleSubmit}>
+                                <span>Confirm Order</span>
+                                <span>
+                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M268 112l144 144-144 144m124-144H100"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
                     </div>
+                    <section className='card-container'>
+                        <h1 className='card-heading'>Order Summary</h1>
+                        <div>
+                            <div className="cart-item-container"></div>
+                        </div>
+                        <div className="coupon-section">
+                            <input type="text" placeholder='Enter your coupon code' />
+                            <button>Apply</button>
+                        </div>
+                        <div className="price-container">
+                            <h2>
+                                <span className='text'>Subtotal</span>
+                                <span>$4.14</span>
+                            </h2>
+                            <h2>
+                                <span className='text'>Shipping Cost</span>
+                                <span>$0.0</span>
+                            </h2>
+                            <h2>
+                                <span className='text'>Discount</span>
+                                <span className='text-orange-500'>$0.0</span>
+                            </h2>
+                        </div>
+                        <div className="checkout-divider"></div>
+                        <h1 className='total-price'>
+                            <span>TOTAL COST</span>
+                            <span className='price'>$418</span>
+                        </h1>
+                    </section>
                 </div>
-            </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto px-10 mt-12 '>
-                <div className='bg-white p-4 shadow-lg'>
-                    <div className='grid grid-cols-1 gap-5 address-container'>
-                        <p className='card-header'>Billing Details</p>
-                        <hr className='' />
-                        <div className='grid grid-cols-1 md:grid-cols-2  gap-5 '>
-                            <div className=''>
-                                <label htmlhtmlFor="First Name" >First Name <span className='text-red-500'>*</span></label>
-                                <input onChange={handleChange} name="fName" type="text"  />
-                            </div>
-                            <div>
-                                <label htmlhtmlFor="Last Name" >Last Name <span className='text-red-500'>*</span></label>
-                                <input onChange={handleChange} name="lName"  type="text"  />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlhtmlFor="" >Email <span className='text-red-500'>*</span></label>
-                            <input onChange={handleChange} name="email"  type="text" />
-                        </div>
-                        <div>
-                            <label htmlhtmlFor="" >Phone <span className='text-red-500'>*</span></label>
-                            <input onChange={handleChange} name="phone"  type="text" />
-                        </div>
-                        <div>
-                            <label htmlhtmlFor="" >Country <span className='text-red-500'>*</span></label>
-                            <input onChange={handleChange} name="country"  type="text" />
-                        </div>
-                        <div>
-                            <label htmlhtmlFor="">Zip <span className='text-red-500'>*</span></label>
-                            <input onChange={handleChange} name="zipCode"  type="number" />
-                        </div>
-                        <div className='flex gap-3 items-center'>
-                            <input onChange={handleChange} name="anotherAddress" className='' type="checkbox" />
-                            <label htmlhtmlFor="" >Ship to a different address?</label>
-                        </div>
-                        <div>
-                            <label htmlhtmlFor="" >Order notes (Optional)</label>
-                            <textarea onChange={handleChange} name="message" className=' p-2 w-full outline-none border-[1px]' type="text" />
-                        </div>
-                    </div>
-                </div>
-                <div className='gap-5 checkout-summary'>
-                    <div className=' summary-container'>
-                        <p className='card-header'>Checkout Summary</p>
-                        <div className='w-full h-[1px] bg-[#eee] mt-3 mb-5'></div>
-                        <p className='active'>Sub Total <span>$530.00</span></p>
-                        <p>Shipping <span>$530.00</span></p>
-                        <p>Coupon <span>$530.00</span></p>
-                        <p>Total <span>$530.00</span></p>
-                        <p>Payable Total<span>$530.00</span></p>
-                        
-                    </div>
-                    <div className='payment-container'>
-                        <p className='card-header pb-4'>Payment Method</p>
-                        <hr className='pb-6' />
-                        <div className='grid grid-cols-1 gap-2'>
-                            
-                            <div className='flex gap-3 items-center'>
-                                <input onChange={handleChange} name="cash" className='' value="cashOn" type="checkbox" />
-                                <label htmlhtmlFor="" className='text-[15px]'>Cash on delivery</label>
-                            </div>
-                            <div className='flex gap-3 items-center'>
-                                <input onChange={handleChange} name="online" value="online" className='' type="checkbox" />
-                                <label htmlhtmlFor="" className='text-[15px]'>Online payments</label>
-                            </div>
-                            <button onClick={onSubmit}>Place Order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Modal title="Payment options" 
-                open={modal}
-                footer={null}
-                centered 
-                onCancel={()=>setModal(false)}>
-                    {/* <Payment auth={auth} total={total} setModal={setModal} /> */}
-            </Modal>
         </div>
     );
 };

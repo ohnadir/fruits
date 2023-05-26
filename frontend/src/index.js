@@ -9,12 +9,19 @@ import "slick-carousel/slick/slick-theme.css";
 import { Provider }  from 'react-redux'
 import store from './Redux/store';
 
+// stripe
+import { Elements } from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>
