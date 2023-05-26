@@ -13,6 +13,7 @@ import Profile from './Page/Profile';
 import { useEffect } from 'react';
 import { loadUser } from './Redux/actions/user';
 import { useDispatch } from 'react-redux';
+import Invoice from './Page/Invoice';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/confirm-payment' element={<ConfirmPayment/>}></Route>
           <Route path='/wishList' element={<Wishlist/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
+          <Route path='/invoice' element={<Invoice/>}></Route>
           <Route path='*' element={<NotFound/>}></Route>
         </Routes>
       </div>

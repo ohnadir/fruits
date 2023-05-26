@@ -1,0 +1,108 @@
+.invoice-container{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    .invoice-title{
+        background-color: rgb(209 250 229);
+        padding: 15px 30px ;
+        margin-bottom: 20px;
+        h1{
+            margin: 0;
+            font-size: 16px;
+        }
+    }
+    .invoice-content{
+        background-color: rgb(238 242 255);
+        padding: 30px;
+    }
+    .invoice-heading{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid white;
+        padding-bottom: 15px;
+        h1{
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+        p{
+            margin: 0;
+            font-size: 15px;
+        }
+        .brand-logo{
+            img{
+                width: 100px;
+                margin-bottom: 7px;
+            }
+        }
+    }
+    .client-info{
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        h1{
+            margin: 0;
+            font-weight: 700;
+        }
+        p{
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+    .product-info{
+        background-color: white;
+        padding: 30px;
+        table{
+            width: 100%;
+            text-align: center;
+            th{
+                background-color: #ddd;
+                padding: 6px 0 !important;
+            }
+            td{
+                padding: 6px 0 !important;
+            }
+        }
+    }
+    .order-status{
+        background-color: rgb(236 253 245);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px;
+        h1{
+            margin: 0;
+            font-weight: 700;
+        }
+        p{
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .total-price{
+            font-size: 18px;
+            font-weight: 700 !important;
+        }
+    }
+    .btn-container{
+        background-color: white;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button{
+            background-color: rgb(16, 185, 129);
+            width: fit-content;
+            padding: 8px 20px;
+            color: white;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background-color 0.1s ease;
+        }
+        button:hover{
+            background-color: rgb(4, 120, 87);
+        }
+    }
+}
