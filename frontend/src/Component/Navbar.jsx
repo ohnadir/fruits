@@ -22,7 +22,7 @@ const Navbar = () => {
     
     useEffect(()=>{
         setCount(cart?.length);
-    },[cart.length]);
+    },[cart]);
 
     return (
         <div className='bg-[#10b981] top-0 sticky z-10'>

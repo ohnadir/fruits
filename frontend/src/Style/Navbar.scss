@@ -50,20 +50,85 @@
         }
     }
     .cart-body{
-        padding: 16px;
-        height: 90vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .empty-cart{
-            height: 80px;
-            width: 80px;
-            margin: 0 auto;
+        .cart{
+            margin-top: 20px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: rgb(209 250 229);
-            border-radius: 50%;
+            justify-content: space-between;
+            .product-photo{
+                width: 20%;
+                border: 1px solid #ddd;
+                border-radius: 50%;
+                padding: 8px;
+            }
+            .cart-info{
+                h2{
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #808080;
+                    line-height: 15px;
+                }
+                p{
+                    margin: 0;
+                    font-size: 12px;
+                }
+                .cart-footer{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    p{
+                        margin: 0;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: black;
+                    }
+                    .btn-container{
+                        width: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        border: 1px solid #eee;
+                        border-radius: 4px;
+                        button{
+                            font-size: 14px;
+                            padding: 4px 12px  ;
+                            font-weight: 700;
+                        }
+                    }
+                    .delete-btn{
+                        background-color: rgba(239, 68, 68, 0.2);
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        :first-child{
+                            color: rgb(239 68 68);
+                        }
+                    }
+                }
+            }
+        }
+        
+        .empty-cart-container{
+            padding: 16px;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .empty-cart{
+                height: 80px;
+                width: 80px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(209 250 229);
+                border-radius: 50%;
+            }
         }
     }
     .cart-footer-btn{
