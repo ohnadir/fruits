@@ -9,12 +9,10 @@ import "../../Style/Product-Details.scss"
 
 
 const ProductDetails = ({ detailsModal, setDetailsModal }) => {
-    console.log(detailsModal)
     const [count, setCount] = useState(1);
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { product } = useSelector(state => state.productDetails);
-    console.log(product)
     useEffect(() => {
         dispatch(getProductDetails(detailsModal));
     }, [ dispatch, detailsModal ]);

@@ -47,7 +47,6 @@ export const getProductDetails = (id) => async (dispatch) => {
             }
         }
         const { data } = await axios.get(`http://localhost:5002/api/v1/products/${id}`, config);
-        console.log(data);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload:data

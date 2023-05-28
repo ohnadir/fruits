@@ -4,7 +4,7 @@ const productSchema = Schema({
   name: { type: String, required: true, trim: true },
   desc: { type: String, required: true},
   price: { type: String, required: true},
-  productPictures: [],
+  productPictures: String,
   reviews: [],
   category: { type: String, required: true}
 },

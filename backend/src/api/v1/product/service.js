@@ -55,14 +55,14 @@ exports.getProductsService = async()=>{
     }
 }
 
-exports.getProductService = async(id)=>{
+exports.getProductService = async({id})=>{
     const response = {
         code: 200,
         status: 'success',
         message: 'Product fetch successfully',
     };
     try {
-        const product = await Product.findOne({id});
+        const product = await Product.findOne({ _id : id});
         if (!product) {
             response.code = 404;
             response.status = 'failed';
