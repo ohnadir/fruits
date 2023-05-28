@@ -1,73 +1,74 @@
-const { User } = require("../models")
+const { User } = require("./Model")
 const jwt = require('jsonwebtoken');
-exports.registrationService = async ({ user_name, email, password}) => {
+
+exports.registrationService = async ({ body, email }) => {
     const response = {
       code: 200,
+      success : true,
       status: 'success',
-      message: 'Registration successfully',
+      message: 'Registration successfully'
     };
-  
     try {
-        const isUserNameExist = await User.findOne({ user_name });
-        if (isUserNameExist) {
-            response.code = 400;
-            response.status = 'failed';
-            response.message = 'User Name already taken';
-            return response;
-        }
+        console.log(User)
         if(email){
             const isEmailExist = await User.findOne({ email });
             if (isEmailExist) {
                 response.code = 400;
+                response.success = false;
                 response.status = 'failed';
                 response.message = 'User Name already taken';
                 return response;
             }
         }
-        const newUser = new User({ user_name, email, password });
+        console.log(body);
+        const newUser = new User(body);
+        console.log(newUser)
         await newUser.save();
-        const token = newUser.getJwtToken();
-        response.token = token
-        response.user= newUser
+        console.log(newUser)
+        // response.token = newUser.getJwtToken();
+        // response.user= newUser;
         return response;
     } catch (error) {
         response.code = 500;
+        response.success = false;
         response.status = 'failed';
         response.message = 'Error. Try again';
         return response;
     }
 };
 
-exports.loginService = async ({ user_name, password}) => {
+exports.loginService = async ({ email, password }) => {
     const response = {
       code: 200,
+      success : true,
       status: 'success',
       message: 'login successfully',
     };
   
     try {
-        const user = await User.findOne({ user_name });
+        const user = await User.findOne({email : email});
         if (!user) {
             response.code = 404;
+            response.success = false;
             response.status = 'failed';
             response.message = 'Incorrect credential';
             return response;
         }
-            
         const isPasswordMatched = await user.comparePassword(password);
         if (!isPasswordMatched) {
             response.code = 404;
+            response.success = false;
             response.status = 'failed';
             response.message = 'Incorrect credential';
             return response;
         }
         
-        const token = user.getJwtToken();
+        response.token = user.getJwtToken();
         response.user= user
-        response.token = token
         return response;
     } catch (error) {
         response.code = 500;
+        response.success = false;
         response.status = 'failed';
         response.message = 'Error. Try again';
         return response;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Metadata from '../Layout/MetaData';
-// import { useDispatch, useSelector } from 'react-redux'
-// import { getProductDetails, clearErrors } from '../../actions/productActions';
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductDetails, clearErrors } from '../../Redux/actions/product';
 import { message, Alert, Modal } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { addToCart } from '../../utils/LocalStorage';
@@ -9,14 +9,15 @@ import "../../Style/Product-Details.scss"
 
 
 const ProductDetails = ({ detailsModal, setDetailsModal }) => {
+    console.log(detailsModal)
     const [count, setCount] = useState(1);
     const navigate = useNavigate()
-    /* const dispatch = useDispatch();
-    const { loading, product, error } = useSelector(state => state.product);
-
+    const dispatch = useDispatch();
+    const { product } = useSelector(state => state.productDetails);
+    console.log(product)
     useEffect(() => {
-        dispatch(getProductDetails());
-    }, [dispatch]); */
+        dispatch(getProductDetails(detailsModal));
+    }, [ dispatch, detailsModal ]);
     
     const handleCart=()=>{
         const data = {
@@ -46,13 +47,13 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
                 {/* <Metadata title={'Product Details'} /> */}
                 <div className='product' >
                     <div className='img-container'>
-                        <img className='w-[60%]' src="https://res.cloudinary.com/ddqovbzxy/image/upload/v1685022002/Calabaza-Squash-Package-each_hpdnst.webp" alt="" />
+                        <img className='w-[60%]' src={product?.productPictures} alt="" />
                     </div>
                     <div className='w-full product-details'>
-                        <h2 className='product-name'>Vegetables Juices </h2>
+                        <h2 className='product-name'>{product?.name}</h2>
                         <h3 className='product-stock'>Stock : 28</h3>
-                        <p className='product-description'>Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi.</p>
-                        <p className='product-price'>$200</p>
+                        <p className='product-description'>{product?.desc}</p>
+                        <p className='product-price'>${product?.price}</p>
                         <div className='flex gap-5 button-container'>
                             <div className='counter-btn-container'>
                                 <button disabled={count === 1} onClick={()=>setCount(count - 1)}  >-</button>

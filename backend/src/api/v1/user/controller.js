@@ -9,13 +9,19 @@ const {
 } = require('./service');
 
 exports.userRegister = async (req, res) => {
-  const { status, code, message, token, user } = await registrationService({...req.body});
-  res.status(code).json({ code, status, message, token, user });
+  const { status, code, message, success, token, user } = await registrationService({
+    body:req.body,
+    ...req.body
+  });
+  res.status(code).json({ code, status, message, success, token, user });
 };
 
 exports.userLogin = async (req, res) => {
-  const response = await loginService({...req.body});
-  res.status(response.code).json(response);
+  const { status, code, message, success, token, user } = await loginService({
+    body:req.body,
+    ...req.body
+  });
+  res.status(code).json({ code, status, message,  success, token, user });
 };
 
 exports.updateUser =  async(req, res) => {

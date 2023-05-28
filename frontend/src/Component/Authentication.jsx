@@ -4,7 +4,7 @@ import "../Style/Authentication.scss"
 import Login from "../Page/Login"
 import SignUp from "../Page/SignUp"
 
-const Authentication = ({ modal, setModal }) => {
+const Authentication = ({ modal, setModal } ) => {
     const [ Switch, setSwitch] = useState(false)
     return (
         <Modal

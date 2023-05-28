@@ -15,8 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Products.scss"
 import ProductDetails from './Modal/Product-Details-Modal';
 
-const AllProducts = () => {
-  const [detailsModal, setDetailsModal] = useState(false)
+const Products = () => {
+  const [detailsModal, setDetailsModal] = useState("")
   const dispatch = useDispatch();
   const { loading, products } = useSelector(state => state.products);
   useEffect(() => {
@@ -95,7 +95,7 @@ const AllProducts = () => {
                               <span className='button-text' >add to cart</span>
                               <AiOutlineShoppingCart className='button-icon' />
                             </button>
-                            <button className='hover-btn' onClick={()=>setDetailsModal(true)}>
+                            <button className='hover-btn' onClick={()=> setDetailsModal(item?._id)}>
                               <span className='button-text' >quick view</span>
                               <AiOutlineEye className='button-icon' />
                             </button>
@@ -115,6 +115,7 @@ const AllProducts = () => {
                         <p className='m-0 text-center'>{item.name}</p>
                         <p className='m-0 text-center text-[#10b981] font-extrabold'>$200</p>
                       </div>
+                      
                     </div>
                   )}
               </Slider>
@@ -127,4 +128,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default Products;

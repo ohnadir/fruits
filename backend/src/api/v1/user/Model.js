@@ -4,17 +4,11 @@ const jwt = require('jsonwebtoken');
 
 const userSchema = Schema(
   {
-    user_name: { type: String, required: true, trim: true },
+    name: { type: String, required: true, trim: true },
     phone: String,
     email: { type: String, required: true, trim: true, unique: true },
     password: { type: String, required: true, trim: true },
-    updatedBy: String,
-    avatar: String,
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    }
+    avatar: String
   },
   { timestamps: true }
 );
@@ -39,4 +33,4 @@ userSchema.methods.getJwtToken = function () {
   })
 }
   
-module.exports = model('user', userSchema);
+module.exports.User = model('User', userSchema);

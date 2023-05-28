@@ -8,7 +8,7 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { FcGoogle } from 'react-icons/fc';
 import { BsEyeSlash } from 'react-icons/bs';
 
-const SignUp = ({setSwitch}) => {
+const SignUp = ({setSwitch} ) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)

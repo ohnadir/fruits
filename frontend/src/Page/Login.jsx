@@ -8,7 +8,7 @@ import {  message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import "../Style/Authentication.scss"
 
-const Login = ({setSwitch}) => {
+const Login = ( {setSwitch}) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)

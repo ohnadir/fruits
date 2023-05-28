@@ -28,7 +28,7 @@ exports.getProducts = async (req, res ) => {
 };
 
 exports.getProduct = async (req, res ) => {
-  const { status, code, message, product } = await getProductService({...req.params});
+  const { status, code, message, product } = await getProductService({ id:req.params.id});
   res.status(code).json({ code, status, message, product });
 };
 
