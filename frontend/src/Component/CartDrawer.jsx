@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { MdClose } from 'react-icons/md';
-import { getStoredCart, RemoveFromCart, addToCart } from '../utils/LocalStorage';
+import { getStoredCart, RemoveFromCart, addToCart, decreaseQuantity } from '../utils/LocalStorage';
 import { BsTrash } from 'react-icons/bs';
 import { message } from "antd"
 
@@ -9,6 +9,7 @@ import { message } from "antd"
 const CartDrawer = ({ setOpen }) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [cart, setCart] = useState([])
+    console.log(cart)
     const navigate = useNavigate()
     // const cart = getStoredCart();
     const handleRemove=(item)=>{
@@ -20,6 +21,10 @@ const CartDrawer = ({ setOpen }) => {
     useEffect(()=>{
         setCart(data)
     },[])
+
+    const total = cart?.reduce((a, b) => {return a + b.total}, 0);
+
+
     return (
         <>
             {contextHolder}
@@ -40,7 +45,7 @@ const CartDrawer = ({ setOpen }) => {
                 </div>
                 <div className='cart-body'>
                     {
-                        cart
+                        cart.length
                         ?
                         <div className='cart-item'>
                             {
@@ -54,9 +59,9 @@ const CartDrawer = ({ setOpen }) => {
                                                 <h2>{item?.name}</h2>
                                                 <p>Item Price ${item?.price}</p>
                                                 <div className='cart-footer mt-2'>
-                                                    <p className='total'>${item?.price}</p>
+                                                    <p className='total'>${item?.total}</p>
                                                     <div className='btn-container'>
-                                                        <button>-</button>
+                                                        <button onClick={()=>decreaseQuantity(item.id)}>-</button>
                                                         <button>{item?.quantity}</button>
                                                         <button onClick={()=>addToCart(item)}>+</button>
                                                     </div>
@@ -92,7 +97,7 @@ const CartDrawer = ({ setOpen }) => {
                     {/* <button onClick={()=>navigate('/cart')} className='active'>View cart</button> */}
                     <button className='checkout-btn' onClick={()=>navigate('/checkout')}>
                         <span>Proceed To Checkout</span>
-                        <span className='price-container'>$0.00</span>
+                        <span className='price-container'>${total}</span>
                     </button>
                 </div>
             </div>

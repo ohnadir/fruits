@@ -23,7 +23,8 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
             id:product?._id,
             price: product?.price,
             quantity : count,
-            image : product?.productPictures
+            image : product?.productPictures,
+            total: Number(product?.price) * count
         }
         addToCart(data)
         messageApi.success('Product added to cart')
