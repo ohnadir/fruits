@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/logo-light.svg'
 import { Drawer } from 'antd';
 import { FiUser } from 'react-icons/fi';
@@ -9,20 +9,21 @@ import { useNavigate } from "react-router-dom";
 import "../Style/Navbar.scss"
 import { useSelector } from 'react-redux';
 import Authentication from './Authentication';
+import { getStoredCart } from '../utils/LocalStorage';
 
 const Navbar = () => {
     const { isAuthenticated } = useSelector(state => state.auth);
+    const [count, setCount] = useState(0)
     const [open, setOpen] = useState(false);
     const [modal, setModal] = useState(false)
     const [keyword, setKeyword] = useState('');
-    const navigate =useNavigate()
-    const handleClick=()=>{
-        if( isAuthenticated === true){
-            navigate('/profile')
-        } else{
-            navigate('/login')
-        }
-    }
+    const navigate =useNavigate();
+    const cart = getStoredCart();
+    
+    useEffect(()=>{
+        setCount(cart?.length);
+    },[cart.length]);
+
     return (
         <div className='bg-[#10b981] top-0 sticky z-10'>
             <div className="px-10 max-w-7xl mx-auto ">
@@ -40,7 +41,7 @@ const Navbar = () => {
                         <div className='relative cursor-pointer'>
                             <BsCart onClick={()=>setOpen(true)} size={22} style={{color: "white"}} />
                             <div className='cart-counter-container'>
-                                <p className="">10</p>
+                                <p className="">{count}</p>
                             </div>
                         </div>
                         <div className="cursor-pointer ">

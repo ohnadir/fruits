@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
-const NavDrawer = () => {
+const MobileDrawer = () => {
 
     return (
         <div className='px-4'>
@@ -18,4 +18,4 @@ const NavDrawer = () => {
     );
 };
 
-export default NavDrawer;
+export default MobileDrawer;
