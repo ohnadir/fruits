@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Metadata from '../Layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetails, clearErrors } from '../../Redux/actions/product';
-import { message, Alert, Modal } from 'antd';
+import { getProductDetails, } from '../../Redux/actions/product';
+import { message, Modal } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { addToCart } from '../../utils/LocalStorage';
 import "../../Style/Product-Details.scss"

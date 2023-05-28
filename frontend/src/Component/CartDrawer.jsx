@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { MdClose } from 'react-icons/md';
-import { getStoredCart, RemoveFromCart } from '../utils/LocalStorage';
+import { getStoredCart, RemoveFromCart, addToCart } from '../utils/LocalStorage';
 import { BsTrash } from 'react-icons/bs';
 import { message } from "antd"
 
@@ -46,7 +46,7 @@ const CartDrawer = ({ setOpen }) => {
                             {
                                 cart?.map((item)=>
                                     <div className='mb-[20px]  mx-2' key={item.id}>
-                                        <div className='cart gap-5'>
+                                        <div className='cart'>
                                             <div className='product-photo w-[20%] border border-red-500 rounded-full p-[10px]'>
                                                 <img className='w-full' src={item?.image} alt="" />
                                             </div>
@@ -58,7 +58,7 @@ const CartDrawer = ({ setOpen }) => {
                                                     <div className='btn-container'>
                                                         <button>-</button>
                                                         <button>{item?.quantity}</button>
-                                                        <button>+</button>
+                                                        <button onClick={()=>addToCart(item)}>+</button>
                                                     </div>
                                                     <div className='delete-btn' onClick={()=>handleRemove(item)}>
                                                         <BsTrash size={15} style={{color : "red"}}/>
