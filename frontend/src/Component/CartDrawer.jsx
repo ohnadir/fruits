@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../assets/hr1.png';
 import { useNavigate } from 'react-router-dom'
 import { MdClose } from 'react-icons/md';
 

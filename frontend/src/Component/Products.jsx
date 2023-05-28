@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import '../App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../Redux/actions/product';
 import Loader from './Loader';
@@ -19,9 +16,11 @@ const Products = () => {
   const [detailsModal, setDetailsModal] = useState("")
   const dispatch = useDispatch();
   const { loading, products } = useSelector(state => state.products);
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
   const ArrowLeft = (props) => (
     <button
         {...props}
@@ -29,6 +28,7 @@ const Products = () => {
         <BiChevronLeft/>
     </button>
   );
+
   const ArrowRight = (props) => (
     <button
       {...props}
@@ -36,6 +36,7 @@ const Products = () => {
         <BiChevronRight/>
     </button>
   );
+
   const settings = {
     dots: false,
     arrows:true,
@@ -71,6 +72,7 @@ const Products = () => {
       }
     ]
   };
+  
   return (
       <div className='products-container'>
         {

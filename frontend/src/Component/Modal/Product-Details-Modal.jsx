@@ -37,7 +37,7 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
             bodyStyle={{margin:"0", border:"none", padding: 0}}
         >
             <div className='product-details-modal'>
-                <div className='modal-close-icon' onClick={()=>setDetailsModal(false)}>
+                <div className='modal-close-icon' onClick={()=>setDetailsModal("")}>
                     <svg stroke="none" fill="#ef4444" strokeWidth="0" viewBox="0 0 512 512" height="1.3em" width="1.3em" xmlns="http://www.w3.org/2000/svg">
                         <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
                     </svg>
@@ -68,9 +68,7 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
                     </div>
                 </div>
             </div>
-      </Modal>
-        
-        
+        </Modal>
     );
 };
 
