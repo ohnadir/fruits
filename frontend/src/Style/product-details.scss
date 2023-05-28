@@ -65,6 +65,7 @@
     }
     .product{
         display: flex;
+        flex-direction: row;
         .img-container{
             width: 100%;
             display: flex;
@@ -131,4 +132,13 @@
 // ant design custom css
 .ant-modal-content{
     border-radius: 14px !important;
+}
+
+@media screen and (max-width: 634px){
+    .product-details-modal{
+        padding: 30px;
+        .product{
+            flex-direction: column;
+        }
+    }
 }

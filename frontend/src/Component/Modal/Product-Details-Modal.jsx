@@ -19,11 +19,11 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
     
     const handleCart=()=>{
         const data = {
-            /* name: product?.name,
+            name: product?.name,
             id:product?._id,
             price: product?.price,
             quantity : count,
-            image : product?.productPictures[0] */
+            image : product?.productPictures
         }
         addToCart(data)
     }
@@ -45,7 +45,7 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
                 {/* <Metadata title={'Product Details'} /> */}
                 <div className='product' >
                     <div className='img-container'>
-                        <img className='w-[60%]' src={product?.productPictures} alt="" />
+                        <img className='w-[100%]' src={product?.productPictures} alt="" />
                     </div>
                     <div className='w-full product-details'>
                         <h2 className='product-name'>{product?.name}</h2>
