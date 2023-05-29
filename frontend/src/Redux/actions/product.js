@@ -9,7 +9,8 @@ import {
     PRODUCT_DETAILS_FAIL,
     CLEAR_ERRORS
 } from '../constants/product';
- 
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
+
 export const getProducts = () => async (dispatch) => {
     try {
         dispatch({
@@ -21,7 +22,7 @@ export const getProducts = () => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get('http://localhost:5002/api/v1/products', config);
+        const { data } = await axios.get(`${baseUrl}/products`, config);
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,
             payload:data
@@ -46,7 +47,7 @@ export const getProductDetails = (id) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(`http://localhost:5002/api/v1/products/${id}`, config);
+        const { data } = await axios.get(`${baseUrl}/products/${id}`, config);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload:data

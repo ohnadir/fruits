@@ -32,7 +32,7 @@ const HOST = process.env.HOST
 app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.get('/', (req, res) => {
-  res.send('Fruits Testing connection')
+  res.send('Bazar Testing connection')
 })
 
 app.listen(PORT, HOST, () => {
