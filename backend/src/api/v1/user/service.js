@@ -13,7 +13,7 @@ exports.registration = async ({ body, email, name, password }) => {
             if (isEmailExist) {
                 response.code = 400;
                 response.status = 'failed';
-                response.message = 'User Name already taken';
+                response.message = 'Email already taken';
                 return response;
             }
         }
