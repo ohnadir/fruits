@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../Style/Dashboard.scss"
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
+import CountUp from 'react-countup';
 
 const Dashboard = () => {
   const columns = [
@@ -72,7 +73,9 @@ const Dashboard = () => {
             </div>
             <div>
               <p className='counter-text'>Total Order</p>
-              <p className='counter-number'>59</p>
+              <p className='counter-number'>
+                <CountUp end={20} />
+              </p>
             </div>
           </div>
           <div className='category-item'>
@@ -85,7 +88,9 @@ const Dashboard = () => {
             </div>
             <div>
               <p className='counter-text'>Pending Order</p>
-              <p className='counter-number'>18</p>
+              <p className='counter-number'>
+                <CountUp end={18} />
+              </p>
             </div>
           </div>
           <div className='category-item'>
@@ -100,7 +105,9 @@ const Dashboard = () => {
             </div>
             <div>
               <p className='counter-text'>Processing Order</p>
-              <p className='counter-number'>11</p>
+              <p className='counter-number'>
+                <CountUp end={11} />
+              </p>
             </div>
           </div>
           <div className='category-item'>
@@ -113,7 +120,9 @@ const Dashboard = () => {
             </div>
             <div>
               <p className='counter-text'>Complete Order</p>
-              <p className='counter-number'>29</p>
+              <p className='counter-number'>
+                <CountUp end={29} />
+              </p>
             </div>
           </div>
         </div>
