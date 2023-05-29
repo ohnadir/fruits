@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import "../Style/Profile.scss"
-import cartHeader from '../assets/breadcrumb.jpg'
-import { MdOutlineDashboardCustomize, MdLocationOn, MdOutlineLogout, MdOutlineDoubleArrow } from 'react-icons/md';
-import { FaUser } from 'react-icons/fa';
-import { RiFileHistoryLine } from 'react-icons/ri';
+import { MdOutlineDashboardCustomize,  MdOutlineLogout } from 'react-icons/md';
+
 import AccountDetails from './Profile/AccountDetails';
 import Address from './Profile/Address';
 import { useDispatch, useSelector } from "react-redux"
@@ -11,7 +9,6 @@ import Order from './Profile/Order';
 import Dashboard from './Profile/Dashboard';
 import { logout } from "../Redux/actions/user"
 import { useNavigate } from "react-router-dom"
-import Cover from '../Component/Cover';
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -22,10 +19,9 @@ const Profile = () => {
         navigate("/")
     }
     return (
-        <div className='overflow-hidden bg-gray-50'>
-            <Cover name="Dashboard"/>
+        <div className='profile-container'>
             <div className='profile max-w-[1380px] mx-auto px-10 flex gap-5 lg:gap-10 flex-col lg:flex-row justify-between mt-10'>
-                <aside className='w-full lg:w-[15%]'>
+                <aside className='w-full lg:w-[20%]'>
                     <ul>
                         <li onClick={()=>setDirection("dashboard")} ><MdOutlineDashboardCustomize size={15}/> Dashboard</li>
                         <li onClick={()=>setDirection("order")}>
@@ -54,7 +50,7 @@ const Profile = () => {
                         <li onClick={()=>setDirection("logout")}><MdOutlineLogout size={15}/>Logout</li>
                     </ul>
                 </aside>
-                <main className='w-full lg:w-[85%] mt-5 sm:mt-0'>
+                <main className='w-full lg:w-[80%] mt-5 sm:mt-0'>
                     <div>
                         { direction === "dashboard" && <Dashboard/> }
                         { direction === "account" && <AccountDetails/> }

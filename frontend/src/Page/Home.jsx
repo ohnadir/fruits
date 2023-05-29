@@ -1,21 +1,20 @@
 import React from 'react';
 import Products from '../Component/Products';
 import Header from '../Component/Header';
-import Layout from '../Component/Layout/Layout';
 import Category from '../Component/Category';
 import Services from '../Component/Services';
+import Helmet from "../Component/Layout/Helmet"
 
 
-const Home = (props) => {
+const Home = () => {
     return (
-        <Layout>
-            <div>
-                <Header></Header>
-                <Category/>
-                <Products></Products>
-                <Services/>
-            </div>
-        </Layout>
+        <div>
+            <Helmet title={"Your Desire Product"} />
+            <Header></Header>
+            <Category/>
+            <Products></Products>
+            <Services/>
+        </div>
     );
 };
 

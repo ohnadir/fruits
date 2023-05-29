@@ -4,12 +4,13 @@ import { MdClose } from 'react-icons/md';
 import { getStoredCart, RemoveFromCart, addToCart, decreaseQuantity } from '../utils/LocalStorage';
 import { BsTrash } from 'react-icons/bs';
 import { message } from "antd"
+import Helmet from "../Component/Layout/Helmet"
 
 
 const CartDrawer = ({ setOpen }) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [cart, setCart] = useState([])
-    console.log(cart)
+
     const navigate = useNavigate()
     // const cart = getStoredCart();
     const handleRemove=(item)=>{
@@ -23,12 +24,18 @@ const CartDrawer = ({ setOpen }) => {
     },[])
 
     const total = cart?.reduce((a, b) => {return a + b.total}, 0);
-
+    const handleCheckout=()=>{
+        if(total > 1){
+            navigate('/checkout')
+            setOpen(false)
+        }
+    }
 
     return (
         <>
             {contextHolder}
             <div className='cart-drawer'>
+                <Helmet title="Checkout" />
                 {/* Cart Header */}
                 <div  className='cart-header'>
                     <div className='cart-header-content'>
@@ -95,7 +102,7 @@ const CartDrawer = ({ setOpen }) => {
                 </div>
                 <div className="cart-footer-btn">
                     {/* <button onClick={()=>navigate('/cart')} className='active'>View cart</button> */}
-                    <button className='checkout-btn' onClick={()=>navigate('/checkout')}>
+                    <button disabled={ total === 0} className='checkout-btn' onClick={handleCheckout}>
                         <span>Proceed To Checkout</span>
                         <span className='price-container'>${total}</span>
                     </button>

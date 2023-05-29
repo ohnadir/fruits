@@ -14,22 +14,29 @@ import { useEffect } from 'react';
 import { loadUser } from './Redux/actions/user';
 import { useDispatch } from 'react-redux';
 import Invoice from './Page/Invoice';
+import Navbar from './Component/Navbar';
 
 
 function App() {
   const dispatch = useDispatch()
+
+  // animation
   AOS.init({ duration : 1000});
+
   setTimeout(() => {
     localStorage.removeItem("token");
   }, 7 * 24  *60  *60 * 1000);
+
   const token = localStorage.getItem("token");
   useEffect(()=>{
     if(token){
       dispatch(loadUser(JSON.parse(token)));
     }
   },[ dispatch, token])
+
   return (
       <div className="bg-[#f8f8f8]">
+        <Navbar/>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path="/search/:keyword" element={<SearchResult/>} />

@@ -1,4 +1,10 @@
 
+.profile-container{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: rgb(249, 250, 251);
+    height: calc(100vh - 82px);
+}
 .profile{
     aside{
         background-color: white;

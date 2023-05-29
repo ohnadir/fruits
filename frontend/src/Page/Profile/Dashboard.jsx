@@ -62,6 +62,7 @@ const Dashboard = () => {
 
       {/* order monitoring */}
       <div>
+        <h3 className='font-bold text-[18px] mb-5'>Update Profile</h3>
         <div className=' category-container'>
           <div className='category-item'>
             <div className='category-icon cart-icon'>
