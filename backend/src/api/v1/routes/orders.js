@@ -1,8 +1,6 @@
 const router = require('express').Router();
-const {
-  newOrder,
-  emailBaseOrder
-} = require('../order/controller');
-router.post('/', newOrder);
-router.get('/:email', emailBaseOrder);
+const { order, emailOrder} = require('../order/controller');
+
+router.post('/', order);
+router.get('/:email', emailOrder);
 module.exports = router;

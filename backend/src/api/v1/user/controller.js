@@ -1,56 +1,22 @@
-const {
-  registrationService, 
-  loginService,
-  updateService,
-  deleteUserService,
-  getUserService,
-  getUsersService,
-  getLoadUserService
-} = require('./service');
+const { registration, login, loadUser } = require("./service")
 
-exports.userRegister = async (req, res) => {
-  const { status, code, message, success, token, user } = await registrationService({
+exports.register = async (req, res) => {
+  const { status, code, message, token, user } = await registration({
     body:req.body,
     ...req.body
   });
-  res.status(code).json({ code, status, message, success, token, user });
+  res.status(code).json({ code, status, message, token, user });
 };
-
-exports.userLogin = async (req, res) => {
-  const { status, code, message, success, token, user } = await loginService({
+  
+exports.login = async (req, res) => {
+  const { status, code, message, token, user } = await login({
     body:req.body,
     ...req.body
   });
-  res.status(code).json({ code, status, message,  success, token, user });
+  res.status(code).json({ code, status, message, token, user });
 };
 
-exports.updateUser =  async(req, res) => {
-  const { status, code, message } = await updateService({ ...req.query,...req.body});
-  res.status(code).json({ code, status, message });
-};
-
-exports.deleteUser = async (req, res) => {
-  const { status, code, message } = await deleteUserService({ ...req.query});
-  res.status(code).json({ code, status, message });
-};
-
-exports.getUsers = async (req, res)=> {
-  const { status, code, message, products } = await getUsersService();
-  res.status(code).json({ code, status, message, products });
-};
-
-exports.getSingleUser = async (req, res) => {
-  const { status, code, message } = await getUserService({ ...req.query});
-  res.status(code).json({ code, status, message });
-};
-
-exports.getLoadUser = async (req, res) => {
-  const { status, code, message, user } = await getLoadUserService({...req.params});
+exports.loadUser = async (req, res) => {
+  const { status, code, message, user } = await loadUser({...req.params});
   res.status(code).json({ code, status, message, user });
-};
-exports.logoutUser = async (req, res) => {
-  res.status(200).json({
-    success: true,
-    message : "logout Successfully"
-  })
 };

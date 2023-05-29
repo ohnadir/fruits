@@ -13,9 +13,10 @@ exports.processPayment = async (req, res) => {
             client_secret: paymentIntent.client_secret
         })
     } catch (error) {
-        response.code = 500;
-        response.status = 'failed';
-        response.message = 'Error. Try again';
-        return response;
+        res.status(500).json({
+            code : 500,
+            status : 'failed',
+            message : 'Error. Try again'
+        })
     }
 }

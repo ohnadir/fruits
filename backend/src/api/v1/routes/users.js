@@ -1,21 +1,10 @@
 const router = require('express').Router();
-const {
-  userRegister,
-  userLogin,
-  deleteUser,
-  updateUser,
-  getUsers,
-  getSingleUser,
-  getLoadUser,
-  logoutUser
-} = require('../user/controller');
+const { register, login, loadUser } = require("../user/controller")
+const { registerValidate } = require("../user/Validator")
+const validationResult = require('../validators');
 
-router.post('/signup',  userRegister);
-router.post('/login', userLogin);
-router.patch('/:id', updateUser);
-router.delete('/:id',  deleteUser);
-router.get('/', getUsers);
-router.get('/logout', logoutUser);
-router.get('/:id', getSingleUser);
-router.get('/me/:token', getLoadUser);
-module.exports = router;
+router.post('/signup', registerValidate, validationResult,  register);
+router.post('/login', login);
+router.get('/me/:token', loadUser);
+
+module.exports = router

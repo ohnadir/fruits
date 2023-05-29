@@ -1,14 +1,32 @@
-const { Schema, model } = require('mongoose');
+const { mongoose } = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
-const userSchema = Schema(
+const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
+    name: {
+      type: String,
+      required: [true, 'Please enter your name']
+  },
+  email: {
+    type: String,
+    required: [true, 'Please enter your email'],
+    unique: true,
+    validate: [validator.isEmail, 'Please enter valid email address']
+  },
+  password: {
+    type: String,
+    required: [true, 'Please enter your password'],
+    minlength: [6, 'Your password must be longer than 6 characters']
+  },
     phone: String,
-    email: { type: String, required: true, trim: true, unique: true },
-    password: { type: String, required: true, trim: true },
-    avatar: String
+    updatedBy: Date,
+    avatar: String,
+    role: {
+      type: String,
+      default: 'user'
+  },
   },
   { timestamps: true }
 );
@@ -33,4 +51,4 @@ userSchema.methods.getJwtToken = function () {
   })
 }
   
-module.exports.User = model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

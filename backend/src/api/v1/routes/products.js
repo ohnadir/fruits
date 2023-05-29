@@ -1,38 +1,10 @@
 const router = require('express').Router();
-const {
-  addProduct,
-  deleteProduct,
-  updateProduct,
-  getProduct,
-  getProducts,
-  searchProduct
-} = require('../product/controller');
+const { addProduct, products, product } = require("../product/controller")
 
-
-const {
-  addProductValidator,
-  updateProductValidator,
-  idValidator,
-} = require('../product/validator');
-
-// const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth')
+const { addValidator, id } = require('../product/validator');
 const validationResult = require('../validators');
 
-router.post('/', addProductValidator, validationResult, addProduct);
-
-router.patch(
-  '/:id',
-  idValidator,
-  updateProductValidator,
-  validationResult,
-  updateProduct
-);
-
-router.delete('/:id', idValidator, validationResult, deleteProduct);
-
-router.get('/', getProducts);
-
-router.get('/search', searchProduct);
-
-router.get('/:id', idValidator, validationResult, getProduct);
+router.post('/', addValidator, validationResult, addProduct);
+router.get('/', products);
+router.get('/:id', id, validationResult, product);
 module.exports = router;

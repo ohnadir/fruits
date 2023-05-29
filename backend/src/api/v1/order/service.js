@@ -1,14 +1,13 @@
-const {Order} = require('../models');
-exports.orderService=async(productInfo, shippingInfo, paymentInfo)=>{
+const {Order} = require('./Model');
+
+exports.order = async({ body })=>{
     const response = {
         status: true,
         statusCode: 200,
         message:"Add Product Successfully"
     };
     try {
-        const result = await Order.create({
-            productInfo, shippingInfo, paymentInfo
-        });
+        const result = await Order.create(body);
         await result.save();
         return response;
     } catch (error) {
@@ -18,7 +17,8 @@ exports.orderService=async(productInfo, shippingInfo, paymentInfo)=>{
         return response;
     }
 }
-exports.emailOrderService=async({email})=>{
+
+exports.emailOrder=async({email})=>{
     const response = {
         status: true,
         statusCode: 200,
