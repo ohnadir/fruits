@@ -24,7 +24,7 @@ const Authentication = ({ modal, setModal } ) => {
                 {
                     Switch
                     ?
-                    <SignUp setSwitch={setSwitch}/>
+                    <SignUp setSwitch={setSwitch} setModal={setModal} />
                     :
                     <Login setSwitch={setSwitch} setModal={setModal} />
                 }

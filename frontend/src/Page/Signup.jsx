@@ -8,7 +8,7 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { FcGoogle } from 'react-icons/fc';
 import { BsEyeSlash } from 'react-icons/bs';
 
-const SignUp = ({setSwitch} ) => {
+const SignUp = ({setSwitch , setModal} ) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)
@@ -25,6 +25,7 @@ const SignUp = ({setSwitch} ) => {
         setTimeout( ()=>{
             if(isAuthenticated === true){
                 navigate('/')
+                setModal(false)
             }
         },2000)
     }, [messages, isAuthenticated])

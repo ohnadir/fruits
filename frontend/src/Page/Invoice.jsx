@@ -12,7 +12,7 @@ const Invoice = () => {
                 </div>
                 <div className='invoice-body' ref={componentRef}>
                     <div className=' bg-[#eef2ff] p-[30px]'>
-                        <div className='flex items-center justify-between border-b-[1px] border-white pb-[15px]'>
+                        <div className='flex flex-col md:flex-row gap-5 md:gap-0 md:items-center justify-between border-b-[1px] border-white pb-[15px]'>
                             <div>
                                 <h1 className='text-[20px] font-[700] m-0'>INVOICE</h1>
                                 <p className='m-0 text-[15px]'>Status : <span className='text-orange-500'>Pending</span></p>
@@ -22,7 +22,7 @@ const Invoice = () => {
                                 <p>Bambali, Sédhiou, Senegal</p>
                             </div>
                         </div>
-                        <div className=' pt-[15px] flex justify-between'>
+                        <div className=' pt-[15px] flex flex-col md:flex-row gap-4 md:gap-0 justify-between'>
                             <div>
                                 <h1 className='m-0 font-[700]'>DATE</h1>
                                 <p className='m-0 text-[14px] font-[600]'>May 26, 2023</p>
@@ -57,7 +57,7 @@ const Invoice = () => {
                             </tr>
                         </table>
                     </div>
-                    <div className='flex items-center justify-between p-[30px] bg-[#ecfdf5]'>
+                    <div className='flex flex-col md:flex-row md:items-center gap-4 md:gap-4 justify-between p-[30px] bg-[#ecfdf5]'>
                         <div>
                             <h1 className='m-0 font-[700]'>PAYMENT METHOD</h1>
                             <p className='font-[600] m-0 text-[14px]'>Cash</p>
@@ -77,7 +77,6 @@ const Invoice = () => {
                     </div>
                 </div>
                 <div className="btn-container">
-                    <button>Download Invoice</button>
                     <ReactToPrint trigger={() => (<button >Print / Download</button>)}content={() => componentRef.current}/>
                 </div>
             </div>

@@ -90,8 +90,8 @@
         background-color: white;
         padding: 30px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        align-items: flex-end;
+        justify-content: flex-end;
         button{
             background-color: rgb(16, 185, 129);
             width: fit-content;
