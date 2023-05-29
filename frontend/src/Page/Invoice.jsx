@@ -35,6 +35,7 @@ const Invoice = () => {
                                 <h1 className='m-0 font-[700]'>INVOICE NO.</h1>
                                 <p className='m-0 text-[14px] font-[600]'>Nadir Hossain</p>
                                 <p className='m-0 text-[14px] font-[600]'>nadirhossain336@gmail.com</p>
+                                <p className='m-0 text-[14px] font-[600]'>01756953936</p>
                                 <p className='m-0 text-[14px] font-[600]'>H-282, R-02, Shantipur, Khailgaon</p>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import {  useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
-import { getStoredCart, addToCart } from "../utils/LocalStorage"
+import { getStoredCart, addToCart, decreaseQuantity } from "../utils/LocalStorage"
 
 const options = {
     style: {
@@ -20,7 +20,7 @@ const options = {
 const Checkout = () => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
-    const [count, setCount] = useState(0);
+    const [discount, setDiscount] = useState(0)
     const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
@@ -33,6 +33,33 @@ const Checkout = () => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
 
+    const handleClick=()=>{
+        document.getElementById('fedEx').querySelector('input[type="radio"]').click();
+    }
+    const handleClick2=()=>{
+        document.getElementById('ups').querySelector('input[type="radio"]').click();
+    }
+    const handleClick3=()=>{
+        document.getElementById('cash').querySelector('input[type="radio"]').click();
+    }
+    const handleClick4=(e)=>{
+        document.getElementById('card').querySelector('input[type="radio"]').click();
+    }
+    const handleCoupon=()=>{
+        if(!auth.coupon){
+            messageApi.error('Please enter coupon code')
+        }
+        if(auth.coupon === "bazar20"){
+            messageApi.success('Congratulation you got 50% discount')
+            setDiscount(20)
+        }
+    }
+    const subTotal = cart?.reduce((a, b) => {return a + b.total}, 0);
+    const shippingCost = auth.deliveryMethod === "fedEx" && 60 || auth.deliveryMethod === "ups" && 20 || 0  
+    const total = subTotal + shippingCost; 
+
+    const discountAmount = total * (discount / 100);
+    const totalPrice = total - (discountAmount || 0);
 
 
     const paymentAmount = {
@@ -42,6 +69,7 @@ const Checkout = () => {
         dispatch(postPayment(paymentAmount));
     }, []); */
     const handleSubmit =async (e) => {
+        navigate(`/invoice/${user?.email}`)
         e.preventDefault();
         if (!stripe || !elements) {
             return;
@@ -73,27 +101,6 @@ const Checkout = () => {
             },
         );
 
-    }
-
-    const handleClick=()=>{
-        document.getElementById('fedEx').querySelector('input[type="radio"]').click();
-    }
-    const handleClick2=()=>{
-        document.getElementById('ups').querySelector('input[type="radio"]').click();
-    }
-    const handleClick3=()=>{
-        document.getElementById('cash').querySelector('input[type="radio"]').click();
-    }
-    const handleClick4=(e)=>{
-        document.getElementById('card').querySelector('input[type="radio"]').click();
-    }
-    const handleCoupon=()=>{
-        if(!auth.coupon){
-            messageApi.error('Please enter coupon code')
-        }
-        if(auth.coupon === "bazar50"){
-            messageApi.success('Congratulation you got 50% discount')
-        }
     }
     return (
         <>  
@@ -161,7 +168,7 @@ const Checkout = () => {
                                                         <p>Delivery: Today Cost :- $60.00</p>
                                                     </div>
                                                 </div>
-                                                <input type="radio" onChange={handleChange} name="delivery-method" value="fedEx" id="" />
+                                                <input type="radio" onChange={handleChange} name="deliveryMethod" value="fedEx" id="" />
                                             </div>
                                             <div className='shipping-option' id='ups' onClick={handleClick2}>
                                                 <div className='flex items-center gap-3'>
@@ -178,7 +185,7 @@ const Checkout = () => {
                                                         <p>Delivery: 7 Days Cost :- $20.00</p>
                                                     </div>
                                                 </div>
-                                                <input type="radio" onChange={handleChange} name="delivery-method" value="ups" id="" />
+                                                <input type="radio" onChange={handleChange} name="deliveryMethod" value="ups" id="" />
                                             </div>
                                         </div>
                                     </div>
@@ -258,10 +265,10 @@ const Checkout = () => {
                                                     <h2>{item?.name}</h2>
                                                     <p>Item Price ${item?.price}</p>
                                                     <div className='cart-footer mt-2'>
-                                                        <p className='total'>${item?.price}</p>
+                                                        <p className='total'>${item?.total}</p>
                                                         <div className='btn-container'>
-                                                            <button disabled={count === 1} onClick={()=>setCount(count - 1)}  >-</button>
-                                                            <button>{item?.quantity + count}</button>
+                                                            <button onClick={()=>decreaseQuantity(item.id)}  >-</button>
+                                                            <button>{item?.quantity}</button>
                                                             <button onClick={()=>addToCart(item)}>+</button>
                                                         </div>
                                                         <div className='delete-btn'>
@@ -277,26 +284,26 @@ const Checkout = () => {
                             </div>
                             <div className="coupon-section">
                                 <input onChange={handleChange} name="coupon" type="text" placeholder='Enter your coupon code' />
-                                <button onClick={handleCoupon}>Apply</button>
+                                <button disabled={discount === 20} onClick={handleCoupon}>Apply</button>
                             </div>
                             <div className="price-container">
                                 <h2>
                                     <span className='text'>Subtotal</span>
-                                    <span>$4.14</span>
+                                    <span>${subTotal}</span>
                                 </h2>
                                 <h2>
                                     <span className='text'>Shipping Cost</span>
-                                    <span>$0.0</span>
+                                    <span>${shippingCost}</span>
                                 </h2>
                                 <h2>
                                     <span className='text'>Discount</span>
-                                    <span className='text-orange-500'>$0.0</span>
+                                    <span className='text-orange-500'>${discountAmount}</span>
                                 </h2>
                             </div>
                             <div className="checkout-divider"></div>
                             <h1 className='total-price'>
                                 <span>TOTAL COST</span>
-                                <span className='price'>$418</span>
+                                <span className='price'>${totalPrice}</span>
                             </h1>
                         </section>
                     </div>
