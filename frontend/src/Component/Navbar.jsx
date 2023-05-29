@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from '../assets/logo-light.svg'
 import { Drawer } from 'antd';
 import { FiUser } from 'react-icons/fi';
+import { HiOutlineUserCircle } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
 import CartDrawer from './CartDrawer';
 import {  BsCart } from 'react-icons/bs';
@@ -44,9 +45,17 @@ const Navbar = () => {
                                 <p className="">{count}</p>
                             </div>
                         </div>
-                        <div className="cursor-pointer ">
-                            <FiUser size={24} style={{color: "white"}} onClick={()=>setModal(true)} />
-                        </div>
+                        {
+                            isAuthenticated
+                            ?
+                            <div className='cursor-pointer' onClick={()=>navigate('/profile')}>
+                                <HiOutlineUserCircle size={28} style={{color: "white"}} />
+                            </div>
+                            :
+                            <div className="cursor-pointer">
+                                <FiUser size={24} style={{color: "white"}} onClick={()=>setModal(true)} />
+                            </div>
+                        }
                     </div>
                 </div>
                 <Drawer

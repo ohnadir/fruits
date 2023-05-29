@@ -26,7 +26,6 @@ export const login = (auth) => async (dispatch) => {
         }
 
         const { data } = await axios.post('http://localhost:5002/api/v1/users/login', auth, config)
-        console.log(data)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }
