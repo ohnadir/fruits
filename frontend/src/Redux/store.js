@@ -10,7 +10,7 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     auth: authReducer,
     order : orderReducer,
-    email_order : emailOrderReducer,
+    emailOrder : emailOrderReducer,
 
 })
 

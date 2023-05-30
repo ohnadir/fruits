@@ -15,22 +15,20 @@ export const orderReducer = (state = {  }, action) => {
                 ...state,
                 loading: true
             }
-        case EMAIL_ORDER_SUCCESS:
+        case ORDER_SUCCESS:
             return {
                 loading: false,
-                message: action.payload
+                order: action.payload
             }
-        case EMAIL_ORDER_FAIL:
+        case ORDER_FAIL:
             return {
                 loading: false,
-                error: action.payload,
-                message: null
+                error: action.payload
             }
         
         case CLEAR_ERRORS:
             return {
                 ...state,
-                message: null,
                 error: null
             }
         default:
@@ -40,7 +38,7 @@ export const orderReducer = (state = {  }, action) => {
 } 
 export const emailOrderReducer = (state = { orders: []}, action) => {
     switch (action.type) {
-        case ORDER_REQUEST:
+        case EMAIL_ORDER_REQUEST:
             return {
                 ...state,
                 loading: true
@@ -48,7 +46,7 @@ export const emailOrderReducer = (state = { orders: []}, action) => {
         case EMAIL_ORDER_SUCCESS:
             return {
                 loading: false,
-                products: action.payload
+                orders : action.payload
             }
         case EMAIL_ORDER_FAIL:
             return {

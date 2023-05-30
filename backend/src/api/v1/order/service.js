@@ -1,10 +1,10 @@
-const {Order} = require('./Model');
+const Order = require('./Model');
 
 exports.order = async({ body })=>{
     const response = {
         status: true,
         statusCode: 200,
-        message:"Add Product Successfully"
+        message:"Order Successfully"
     };
     try {
         const result = await Order.create(body);

@@ -68,9 +68,10 @@ const Checkout = () => {
     /* useEffect(() => {
         dispatch(postPayment(paymentAmount));
     }, []); */
-    const handleSubmit =async (e) => {
-        navigate(`/invoice/${user?.email}`)
-        e.preventDefault();
+
+    
+
+    const stripeCall= async()=>{
         if (!stripe || !elements) {
             return;
         }
@@ -100,7 +101,34 @@ const Checkout = () => {
               },
             },
         );
+    }
 
+
+    const handleSubmit =async (e) => {
+        navigate(`/invoice/${user?.email}`)
+        e.preventDefault();
+        const order = {
+            productInfo: cart,
+            shippingInfo : {
+                name: auth.firstName + auth.lastName,
+                email : auth.email,
+                phone: auth.phone
+            },
+            shippingAddress: {
+                address : auth.address,
+                country: auth.country,
+                city: auth.city,
+                zip : auth.zip
+            },
+            deliveryMethod : auth.deliveryMethod,
+            paymentMethod : auth.payment,
+            shippingCost : shippingCost,
+            discount :discountAmount,
+            total : totalPrice,
+            userEmail : user.email,
+            userName : user.name
+        }
+        
     }
     return (
         <>  
@@ -113,11 +141,11 @@ const Checkout = () => {
                                 <div className='personal-details-container'>
                                     <div>
                                         <label htmlFor="firstName">First Name</label>
-                                        <input onChange={handleChange} name="first-name"  type="text" placeholder='First Name' />
+                                        <input onChange={handleChange} name="firstName"  type="text" placeholder='First Name' />
                                     </div>
                                     <div>
                                         <label htmlFor="Last Name">Last Name</label>
-                                        <input onChange={handleChange} name="last-name" type="text" placeholder='Last Name' />
+                                        <input onChange={handleChange} name="lastName" type="text" placeholder='Last Name' />
                                     </div>
                                     <div>
                                         <label htmlFor="Email">Email Address</label>

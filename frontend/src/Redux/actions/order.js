@@ -8,6 +8,8 @@ import {
     EMAIL_ORDER_FAIL,
     CLEAR_ERRORS
 } from "../constants/order"
+// const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
+const baseUrl = "http://localhost:5002/api/v1"
 
 export const newOrder = (order) => async (dispatch) => {
     try {
@@ -17,10 +19,11 @@ export const newOrder = (order) => async (dispatch) => {
         const config = {
             headers:{
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }
-        const { data } = await axios.post('http://localhost:5002/api/v1/products', order, config);
+        const { data } = await axios.post(`${baseUrl}/products`, order, config);
         dispatch({
             type: ORDER_SUCCESS,
             payload:data
@@ -42,10 +45,11 @@ export const emailOrder = (email) => async (dispatch) => {
         const config = {
             headers:{
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         }
-        const { data } = await axios.get(`http://localhost:5002/api/v1/products/${email}`, config);
+        const { data } = await axios.get(`${baseUrl}/products/${email}`, config);
         dispatch({
             type: EMAIL_ORDER_SUCCESS,
             payload:data

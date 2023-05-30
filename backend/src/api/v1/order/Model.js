@@ -2,39 +2,15 @@ const { Schema, model } = require('mongoose');
 
 const orderSchema = Schema({
     productInfo: [],
-    shippingInfo: {
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        },
-        phone: {
-            type: String,
-            required: true
-        },
-        address: {
-            type: String
-        }
-    },
-    paymentInfo: {
-        id: {
-            type: String,
-            required: true
-        },
-        status: {
-            type: String,
-            required: true
-        }
-    },
-    userName:{
-        type : String
-    },
-    userEmail:{
-        type : String
-    },
+    shippingInfo: {},
+    shippingAddress: {},
+    userName: String,
+    userEmail: String,
+    deliveryMethod : String,
+    paymentMethod : String,
+    shippingCost : Number,
+    discount : String,
+    total : String,
     paidAt: {
         type: Date,
         default: Date.now()
@@ -46,11 +22,11 @@ const orderSchema = Schema({
     deliveryStatus: {
         type: String,
         required: true,
-        default: 'Processing'
+        default: 'Pending'
     },
     createdAt: {
         type: Date,
         default: Date.now()
     }
 })
-module.exports.Order = model('Order', orderSchema);
+module.exports = model('Order', orderSchema);
