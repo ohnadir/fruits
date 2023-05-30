@@ -18,6 +18,30 @@ exports.Order = async({ body })=>{
     }
 }
 
+exports.OrderDetails = async({ id })=>{
+    const response = {
+        code: 200,
+        status: "success",
+        message:"Order Details fetch Successfully"
+    };
+    try {
+        const order = await Order.findById({ _id : id })
+        if(!order){
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Order found by this id';
+            return response;
+        }
+        response.order= order;
+        return response; 
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
 exports.emailOrder=async({email})=>{
     const response = {
         status: true,

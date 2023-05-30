@@ -146,7 +146,7 @@ const Checkout = () => {
         if(order?._id){
             messageApi.success("Order is successful")
             setTimeout(() => {
-                // localStorage.removeItem("shoppingCart");
+                localStorage.removeItem("shopping-cart");
                 navigate(`/invoice/${order?._id}`)
               }, 1000);
         }

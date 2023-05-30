@@ -14,7 +14,7 @@ const orderSchema = Schema({
     total : String,
     paidAt: {
         type: Date,
-        default: Date.now()
+        default: new Date(Date.now()).toLocaleString()
     },
     orderNumber:{
         type: Number,

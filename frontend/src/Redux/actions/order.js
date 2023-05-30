@@ -3,13 +3,16 @@ import {
     ORDER_REQUEST,
     ORDER_SUCCESS,
     ORDER_FAIL,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_DETAILS_FAIL,
     EMAIL_ORDER_REQUEST,
     EMAIL_ORDER_SUCCESS,
     EMAIL_ORDER_FAIL,
     CLEAR_ERRORS
 } from "../constants/order"
-// const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
-const baseUrl = "http://localhost:5002/api/v1"
+
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
 
 export const newOrder = (order) => async (dispatch) => {
     try {
@@ -36,6 +39,34 @@ export const newOrder = (order) => async (dispatch) => {
         })
     }
 }
+
+
+export const orderDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ORDER_DETAILS_REQUEST
+        })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/orders/${id}`, config);
+        dispatch({
+            type: ORDER_DETAILS_SUCCESS,
+            payload:data.order
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: ORDER_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 
 export const emailOrder = (email) => async (dispatch) => {
     try {

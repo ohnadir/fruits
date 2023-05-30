@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { order, emailOrder} = require('../order/controller');
+const { order, emailOrder, orderDetails } = require('../order/controller');
 const { isAuthenticatedUser } = require("../middlewares/auth")
 
 router.post('/', order);
-router.get('/:email', emailOrder);
+// router.get('/:email', emailOrder);
+router.get('/:id', orderDetails);
 module.exports = router;

@@ -42,7 +42,7 @@ const Navbar = () => {
                         <div className='relative cursor-pointer'>
                             <BsCart onClick={()=>setOpen(true)} size={22} style={{color: "white"}} />
                             <div className='cart-counter-container'>
-                                <p className="">{count}</p>
+                                <p className="">{count ? count : 0}</p>
                             </div>
                         </div>
                         {

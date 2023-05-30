@@ -6,7 +6,7 @@ import {
     CLEAR_ERRORS
 } from "../constants/payment.js"
 
-const baseUrl = "http://localhost:5002/api/v1"
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
 
 export const  makePayment = (paymentData)=> async(dispatch)=>{
     try {

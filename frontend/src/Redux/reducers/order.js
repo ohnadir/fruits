@@ -2,6 +2,9 @@ import {
     ORDER_REQUEST,
     ORDER_SUCCESS,
     ORDER_FAIL,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_DETAILS_FAIL,
     EMAIL_ORDER_REQUEST,
     EMAIL_ORDER_SUCCESS,
     EMAIL_ORDER_FAIL,
@@ -36,6 +39,36 @@ export const orderReducer = (state = {  }, action) => {
     }
     
 } 
+
+export const OrderDetailsReducer = (state = { order: []}, action) => {
+    switch (action.type) {
+        case ORDER_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case ORDER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                order : action.payload
+            }
+        case ORDER_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+    
+} 
+
 export const emailOrderReducer = (state = { orders: []}, action) => {
     switch (action.type) {
         case EMAIL_ORDER_REQUEST:

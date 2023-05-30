@@ -14,6 +14,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/user'
 
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
 // Login
 export const login = (auth) => async (dispatch) => {
     try {
@@ -25,7 +26,7 @@ export const login = (auth) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('http://localhost:5002/api/v1/users/login', auth, config)
+        const { data } = await axios.post(`${baseUrl}/users/login`, auth, config)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }
@@ -52,7 +53,7 @@ export const register = (userData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.post('http://localhost:5002/api/v1/users/signup', userData, config)
+        const { data } = await axios.post(`${baseUrl}/users/signup`, userData, config)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }
@@ -79,7 +80,7 @@ export const loadUser = (token) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(`http://localhost:5002/api/v1/users/me/${token}`, config)
+        const { data } = await axios.get(`${baseUrl}/users/me/${token}`, config)
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data
