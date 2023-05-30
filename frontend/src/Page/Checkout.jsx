@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../Style/Checkout.scss"
 import { message } from 'antd';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import {  useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
+import { newOrder } from "../Redux/actions/order"
+import { makePayment } from "../Redux/actions/payment"
 import { getStoredCart, addToCart, decreaseQuantity } from "../utils/LocalStorage"
 
 const options = {
@@ -25,8 +27,10 @@ const Checkout = () => {
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useSelector(state => state.auth);
-    // const { payment } = useSelector(state => state.payment);
+    const { client_secret } = useSelector(state => state.payment);
+    const { order } = useSelector(state => state.order);
     const cart = getStoredCart();
+    const dispatch = useDispatch();
 
 
     const handleChange = (e) => {
@@ -63,11 +67,11 @@ const Checkout = () => {
 
 
     const paymentAmount = {
-        amount: Math.round(50 * 100)
+        amount: Math.round(totalPrice * 100)
     }
-    /* useEffect(() => {
-        dispatch(postPayment(paymentAmount));
-    }, []); */
+    useEffect(() => {
+        dispatch(makePayment(paymentAmount));
+    }, []);
 
     
 
@@ -80,14 +84,10 @@ const Checkout = () => {
         if (card == null) {
           return;
         }
-        const { error, paymentMethod } = await stripe.createPaymentMethod(
-            {
-            type: 'card',
-            card
-        });
+        
         // confirm payment 
         const result = await stripe.confirmCardPayment(
-            // payment,
+            client_secret,
             {
               payment_method: {
                 card: card,
@@ -101,16 +101,22 @@ const Checkout = () => {
               },
             },
         );
+        return result;
     }
 
 
     const handleSubmit = async (e) => {
-        navigate(`/invoice/${user?.email}`)
-        e.preventDefault();
+        // navigate(`/invoice/${order?._id}`)
+        
+        let data ;
+        if(auth.payment === "card"){
+            data = await stripeCall()
+        }
         const order = {
             products: cart,
             shippingInfo : {
-                name: auth.firstName + auth.lastName,
+                firstName: auth.firstName,
+                lastName: auth.lastName ,
                 email : auth.email,
                 phone: auth.phone
             },
@@ -118,7 +124,12 @@ const Checkout = () => {
                 address : auth.address,
                 country: auth.country,
                 city: auth.city,
-                zip : auth.zip
+                zip : auth.zipCode
+            },
+            paymentStatus : {
+                id : data?.paymentIntent?.id,
+                status : data?.paymentIntent?.status 
+    
             },
             deliveryMethod : auth.deliveryMethod,
             paymentMethod : auth.payment,
@@ -128,8 +139,18 @@ const Checkout = () => {
             userEmail : user.email,
             userName : user.name
         }
+        dispatch(newOrder(order))
         
     }
+    useEffect(()=>{
+        if(order?._id){
+            messageApi.success("Order is successful")
+            setTimeout(() => {
+                // localStorage.removeItem("shoppingCart");
+                navigate(`/invoice/${order?._id}`)
+              }, 1000);
+        }
+        },[order])
     return (
         <>  
             {contextHolder}

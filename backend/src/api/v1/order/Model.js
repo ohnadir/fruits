@@ -4,6 +4,7 @@ const orderSchema = Schema({
     products: [],
     shippingInfo: {},
     shippingAddress: {},
+    paymentStatus : {},
     userName: String,
     userEmail: String,
     deliveryMethod : String,

@@ -7,11 +7,8 @@ exports.Order = async({ body })=>{
         message:"Order Successfully"
     };
     try {
-        console.log(Order)
-        const result = await Order.create({...body});
-        console.log("data")
+        const result = await Order.create(body);
         response.order= result;
-        console.log(result)
         return response; 
     } catch (error) {
         response.code = 500;

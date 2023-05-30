@@ -23,7 +23,7 @@ export const newOrder = (order) => async (dispatch) => {
                 'authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }
-        const { data } = await axios.post(`${baseUrl}/products`, order, config);
+        const { data } = await axios.post(`${baseUrl}/orders`, order, config);
         dispatch({
             type: ORDER_SUCCESS,
             payload:data
