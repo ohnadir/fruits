@@ -16,8 +16,8 @@ app.use(morgan('dev'));
 // all route
 const productRoute = require("./src/api/v1/routes/products");
 const userRoute = require("./src/api/v1/routes/users");  
-const orderRoute = require("./src/api/v1/routes/orders");  
 const paymentRoute = require("./src/api/v1/routes/payment");
+const orderRoute = require("./src/api/v1/routes/orders")
 
 // user route 
 app.use("/api/v1/users", userRoute);

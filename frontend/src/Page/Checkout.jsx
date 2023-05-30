@@ -104,11 +104,11 @@ const Checkout = () => {
     }
 
 
-    const handleSubmit =async (e) => {
+    const handleSubmit = async (e) => {
         navigate(`/invoice/${user?.email}`)
         e.preventDefault();
         const order = {
-            productInfo: cart,
+            products: cart,
             shippingInfo : {
                 name: auth.firstName + auth.lastName,
                 email : auth.email,

@@ -1,15 +1,18 @@
 const Order = require('./Model');
 
-exports.order = async({ body })=>{
+exports.Order = async({ body })=>{
     const response = {
-        status: true,
-        statusCode: 200,
+        code: 200,
+        status: "success",
         message:"Order Successfully"
     };
     try {
-        const result = await Order.create(body);
-        await result.save();
-        return response;
+        console.log(Order)
+        const result = await Order.create({...body});
+        console.log("data")
+        response.order= result;
+        console.log(result)
+        return response; 
     } catch (error) {
         response.code = 500;
         response.status = 'failed';
