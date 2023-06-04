@@ -11,9 +11,9 @@ const Home = () => {
     return (
         <div>
             <Helmet title={"Your Desire Product"} />
-            <Header></Header>
+            <Header/>
             <Category/>
-            <Products></Products>
+            <Products/>
             <MobileApp/>
             <Services/>
         </div>

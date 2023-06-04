@@ -79,8 +79,8 @@ const Products = () => {
           loading
             ? <Loader></Loader>
             : 
-            <div >
-              <div className='text-center pb-5 products-header'>
+            <div className=' py-10'>
+              <div className='text-center mb-10 products-header'>
                 <h1>Popular Products for Daily Shopping</h1>
                 <p>See all our popular products in this week. You can choose your daily needs products from this list and get some special offer with free shipping.</p>
               </div>

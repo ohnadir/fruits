@@ -6,7 +6,7 @@ import { TbLeaf, TbTruckDelivery } from 'react-icons/tb';
 
 const Services = () => {
     return (
-        <div className='bg-white py-5 border border-b-1'>
+        <div className='bg-white py-5 services'>
             <div className='services-container'>
                 <div className='service'>
                     <div className='service-item'>

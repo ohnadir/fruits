@@ -7,7 +7,6 @@ import SearchResult from './Component/SearchResult';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 // import Product_Details from './Page/Product-Details';
-import ConfirmPayment from './Page/ConfirmPayment';
 import NotFound from './Page/404';
 import Profile from './Page/Profile';
 import { useEffect } from 'react';
@@ -15,6 +14,7 @@ import { loadUser } from './Redux/actions/user';
 import { useDispatch } from 'react-redux';
 import Invoice from './Page/Invoice';
 import Navbar from './Component/Navbar';
+import Footer from './Component/Footer';
 
 
 function App() {
@@ -43,12 +43,12 @@ function App() {
           <Route path='/checkout' element={<Checkout/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
           {/* <Route path='/product-details' element={<Product_Details/>}></Route> */}
-          <Route path='/confirm-payment' element={<ConfirmPayment/>}></Route>
           <Route path='/wishList' element={<Wishlist/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/invoice/:id' element={<Invoice/>}></Route>
           <Route path='*' element={<NotFound/>}></Route>
         </Routes>
+        <Footer/>
       </div>
   );
 }
