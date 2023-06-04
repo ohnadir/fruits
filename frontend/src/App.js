@@ -35,7 +35,7 @@ function App() {
   },[ dispatch, token])
 
   return (
-      <div className="bg-[#f8f8f8]">
+      <div>
         <Navbar/>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
