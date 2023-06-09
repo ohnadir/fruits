@@ -1,23 +1,79 @@
-.footer-container{
-    .footer-body h1{
-        font-size: 16px;
-        font-weight: 600;
+.footer{
+    .footer-container{
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 64px 40px;
+        .footer-body{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 20px;
+            .input-container{
+                position: relative;
+                width: fit-content;
+                .message-icon{
+                    position: absolute;
+                    left: 12px;
+                    top: 30%;
+                }
+                input{
+                    border: 1px solid #eee;
+                    outline: none;
+                    padding: 8px 40px;
+                    border-radius: 4px;
+                    &:focus{
+                        border:1px solid rgb(5 150 105);
+                    }
+                }
+                button{
+                    position: absolute;
+                    right: 12px;
+                    top: 30%;
+                }
+            }
+            h1{
+                font-size: 16px;
+                font-weight: 600;
+            }
+            li{
+                font-size: 13px;
+                padding-bottom: 10px;
+            }
+            .social-icon{
+                background-color:  #eee;
+                width: 30px;
+                height: 30px;
+                color:  rgb(5 150 105);
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all ease-in 0.1s;
+                cursor: pointer;
+                &:hover{
+                    background-color:  rgb(5 150 105);
+                    color: white;
+                }
+            }
+        }
+        
     }
-    .footer-body li{
-        font-size: 13px;
-        padding-bottom: 10px;
+}
+@media screen and (min-width : 768px) {
+    .footer{
+        .footer-container{
+            .footer-body{
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
     }
-    .social-icon{
-        background-color: #d5d5d5;
-        color: #679509;
-        padding: 5px;
-        border-radius: 50%;
-        font-size: 30px;
-        transition: ease-in 0.3s;
-        cursor: pointer;
-    }
-    .social-icon:hover{
-        background-color: #679509;
-        color: white;
+}
+@media screen and ( min-width: 640px) and (max-width : 767px) {
+    .footer{
+        .footer-container{
+            .footer-body{
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
     }
 }
