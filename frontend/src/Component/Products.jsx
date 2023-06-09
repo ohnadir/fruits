@@ -11,8 +11,11 @@ import Rating from 'react-rating';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Products.scss"
 import ProductDetails from './Modal/Product-Details-Modal';
+import { message } from 'antd';
+import { addToCart } from '../utils/LocalStorage';
 
 const Products = () => {
+  const [messageApi, contextHolder ] = message.useMessage();
   const [detailsModal, setDetailsModal] = useState("")
   const dispatch = useDispatch();
   const { loading, products } = useSelector(state => state.products);
@@ -72,8 +75,21 @@ const Products = () => {
       }
     ]
   };
-  
+  const handleCart=(product)=>{
+    const data = {
+        name: product?.name,
+        id:product?._id,
+        price: product?.price,
+        quantity : 1,
+        image : product?.productPictures,
+        total: Number(product?.price) * 1
+    }
+    addToCart(data)
+    messageApi.success('Product added to cart')
+}
   return (
+    <>
+      {contextHolder}
       <div className='products-container'>
         {
           loading
@@ -93,7 +109,7 @@ const Products = () => {
                       {/* hover button */}
                       <div className='hover-btn-container'>
                         <div className='grid grid-cols-1 gap-3'>
-                            <button className='hover-btn'>
+                            <button className='hover-btn' onClick={()=>handleCart(item)}>
                               <span className='button-text' >add to cart</span>
                               <AiOutlineShoppingCart className='button-icon' />
                             </button>
@@ -127,6 +143,7 @@ const Products = () => {
             </div>
         }
       </div>
+    </>
   );
 };
 

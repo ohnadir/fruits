@@ -29,6 +29,7 @@ const Checkout = () => {
     const { user } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
     const { order } = useSelector(state => state.order);
+    console.log(order);
     const cart = getStoredCart();
     const dispatch = useDispatch();
 
