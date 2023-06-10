@@ -14,13 +14,13 @@ const SignUp = ({setSwitch , setModal} ) => {
     const [password, setPassword] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isAuthenticated, messages  } = useSelector(state => state.auth);
+    const { isAuthenticated  } = useSelector(state => state.auth);
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
     useEffect(() => {
-        if (messages) {
-            messageApi.info(messages);
+        if (isAuthenticated) {
+            messageApi.info("Registration Successful");
         }
         setTimeout( ()=>{
             if(isAuthenticated === true){
@@ -28,7 +28,7 @@ const SignUp = ({setSwitch , setModal} ) => {
                 setModal(false)
             }
         },2000)
-    }, [messages, isAuthenticated])
+    }, [ isAuthenticated])
     const onSubmit = () => {
         if(!auth.name || !auth.email || !auth.password){
             messageApi.error("Input Required ")
