@@ -72,7 +72,6 @@ const Checkout = () => {
     useEffect(() => {
         dispatch(makePayment(paymentAmount));
     }, []);
-
     
 
     const stripeCall= async()=>{
@@ -106,7 +105,6 @@ const Checkout = () => {
 
 
     const handleSubmit = async (e) => {
-        // navigate(`/invoice/${order?._id}`)
         
         let data ;
         if(auth.payment === "card"){
@@ -246,7 +244,7 @@ const Checkout = () => {
                                     auth.payment === "card"
                                     ?
                                     <div className='stripe-card'>
-                                        <CardElement options={options}/> 
+                                        <CardElement options={options}/>
                                     </div>
                                     :
                                     null
