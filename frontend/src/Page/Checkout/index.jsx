@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import "../Style/Checkout.scss"
+import "./Checkout.scss"
 import { message } from 'antd';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import {  useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
-import { newOrder } from "../Redux/actions/order"
-import { makePayment } from "../Redux/actions/payment"
-import { getStoredCart, addToCart, decreaseQuantity } from "../utils/LocalStorage"
+import { newOrder } from "../../Redux/actions/order"
+import { makePayment } from "../../Redux/actions/payment"
+import { getStoredCart, addToCart, decreaseQuantity } from "../../utils/LocalStorage"
 
 const options = {
     style: {
@@ -29,7 +29,6 @@ const Checkout = () => {
     const { user } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
     const { order } = useSelector(state => state.order);
-    console.log(order);
     const cart = getStoredCart();
     const dispatch = useDispatch();
 

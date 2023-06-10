@@ -6,7 +6,6 @@ import Wishlist from './Page/Wishlist';
 import SearchResult from './Component/SearchResult';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-// import Product_Details from './Page/Product-Details';
 import NotFound from './Page/404';
 import Profile from './Page/Profile';
 import { useEffect } from 'react';

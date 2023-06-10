@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import "../Style/Invoice.scss"
+import "./Invoice.scss"
 import ReactToPrint from "react-to-print";
 import { useParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { orderDetails } from "../Redux/actions/order";
+import { orderDetails } from "../../Redux/actions/order";
 import { Table } from 'antd';
-import Loader from "../Component/Loader"
+import Loader from "../../Component/Loader"
 
 
 const columns = [
