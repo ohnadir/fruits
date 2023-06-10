@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Modal } from 'antd';
-import "../Style/Authentication.scss"
-import Login from "../Page/Login"
-import SignUp from "../Page/SignUp"
+import "./Authentication.scss"
+import Login from "./Login"
+import Signup from "./Signup"
 
 const Authentication = ({ modal, setModal } ) => {
     const [ Switch, setSwitch] = useState(false)
@@ -24,7 +24,7 @@ const Authentication = ({ modal, setModal } ) => {
                 {
                     Switch
                     ?
-                    <SignUp setSwitch={setSwitch} setModal={setModal} />
+                    <Signup setSwitch={setSwitch} setModal={setModal} />
                     :
                     <Login setSwitch={setSwitch} setModal={setModal} />
                 }

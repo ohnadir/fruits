@@ -9,7 +9,7 @@ import {  BsCart } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import "../Style/Navbar.scss"
 import { useSelector } from 'react-redux';
-import Authentication from './Authentication';
+import Authentication from '../Component/Authentication';
 import { getStoredCart } from '../utils/LocalStorage';
 
 const Navbar = () => {

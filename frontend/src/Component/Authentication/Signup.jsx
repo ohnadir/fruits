@@ -1,59 +1,69 @@
 import React, { useEffect, useState } from 'react';
-import { BsEyeSlash } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../Redux/actions/user'
+import {  message } from 'antd';
+import { useNavigate } from 'react-router-dom'
+import "./Authentication.scss"
 import { GrFacebookOption } from 'react-icons/gr';
 import { FcGoogle } from 'react-icons/fc';
-import { login} from '../Redux/actions/user'
-import { useDispatch, useSelector } from 'react-redux';
-import {  message } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import "../Style/Authentication.scss"
+import { BsEyeSlash } from 'react-icons/bs';
 
-const Login = ( {setSwitch, setModal }) => {
+const Signup = ({setSwitch , setModal} ) => {
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isAuthenticated, messages } = useSelector(state => state.auth);
-    
+    const { isAuthenticated  } = useSelector(state => state.auth);
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
     useEffect(() => {
-        if (messages) {
-            messageApi.info(messages);
+        if (isAuthenticated) {
+            messageApi.info("Registration Successful");
         }
         setTimeout( ()=>{
             if(isAuthenticated === true){
                 navigate('/')
                 setModal(false)
             }
-        },1000)
-    }, [messages, isAuthenticated])
+        },2000)
+    }, [ isAuthenticated])
     const onSubmit = () => {
-        if(!auth.email || !auth.password){
-            messageApi.error("Input Require")
+        if(!auth.name || !auth.email || !auth.password){
+            messageApi.error("Input Required ")
         }else{
-            dispatch(login(auth))
+            dispatch(register(auth))
         }
     }
     return (
             <>
                 {contextHolder}
-                <div className='login-container'>
+                <div className='registration-container'>
                     <div>
-                        {/* modal header */}
+                        {/* header section */}
                         <div className='mb-8'>
-                            <h1 className='text-[30px] font-bold text-center m-0'>Login</h1>
-                            <h3 className='m-0 text-[#6b7280] text-center text-[16px]'>Login with your email and password</h3>
+                            <h1 className='text-[30px] font-bold text-center m-0'>Signing Up</h1>
+                            <h3 className='m-0 text-[#6b7280] text-center text-[16px]'>Create an account with email</h3>
                         </div>
 
-                        {/* modal body */}
+                        {/* modal body section */}
                         <div className='grid grid-cols-1 gap-5'>
+                            <div>
+                                <p className='label-text'>Name</p>
+                                <div className='input-container'> 
+                                    <label htmlFor="">
+                                    <svg stroke="#808080" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    </label>
+                                    <input onChange={handleChange}  name='name' type="text" placeholder='Full Name' required />
+                                </div>
+                            </div>
                             <div>
                                 <p className='label-text'>Email</p>
                                 <div className='input-container'> 
-                                    <label htmlFor="">
+                                    <label className='absolute left-3 top-[13px]  z-10' htmlFor="">
                                         <svg stroke="#808080" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                             <polyline points="22,6 12,13 2,6"></polyline>
@@ -85,13 +95,11 @@ const Login = ( {setSwitch, setModal }) => {
                             <div>
                                 <p className='m-0 underline'> Forgot password</p>
                             </div>
-                            <button className='login-btn' onClick={onSubmit}>Login</button>
+                            <button className='register-btn' onClick={onSubmit}>Register</button>
                         </div>
 
-                        {/* Divider */}
-                        <div className='login-divider'>OR</div>
-                        
-                        {/* Modal Social Button */}
+                        {/* divider */}
+                        <div className='registration-divider'>OR</div>
                         <div className='social-auth grid grid-cols-1 lg:grid-cols-2 gap-4'>
                             <button className='social-btn'>
                                 <GrFacebookOption size={19} style={{backgroundColor : "transparent"}} />
@@ -104,16 +112,15 @@ const Login = ( {setSwitch, setModal }) => {
                             
                         </div>
 
-                        {/* Modal Footer */}
+                        {/* modal footer */}
                         <div className='text-[15px] text-center mt-3'>
-                            <span className='text-[#6b7280] '>Not have an account ? 
-                                <span onClick={()=>setSwitch(true)} className='text-black cursor-pointer font-bold ml-1'>  Register</span>
-                            </span>
+                            <span className='text-[#6b7280] '>Already have an account ? 
+                            <span onClick={()=>setSwitch(false)} className='text-black cursor-pointer font-bold ml-1'> Login</span></span>
+                        </div>
                         </div>
                     </div>
-                </div>
             </>
     );
 };
 
-export default Login;
+export default Signup;
