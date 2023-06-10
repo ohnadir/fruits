@@ -10,7 +10,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Products.scss"
-import ProductDetails from './Modal/Product-Details-Modal';
+import ProductDetails from '../Page/ProductDetails';
 import { message } from 'antd';
 import { addToCart } from '../utils/LocalStorage';
 

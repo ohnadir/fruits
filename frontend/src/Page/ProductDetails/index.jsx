@@ -4,8 +4,8 @@ import { getProductDetails, } from '../../Redux/actions/product';
 import { message, Modal } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { addToCart } from '../../utils/LocalStorage';
-import "../../Style/Product-Details.scss";
-import Loader from "../Loader"
+import "./ProductDetails.scss";
+import Loader from "../../Component/Loader"
 
 
 const ProductDetails = ({ detailsModal, setDetailsModal }) => {
@@ -14,7 +14,6 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { product, loading } = useSelector(state => state.productDetails);
-    console.log(loading)
     useEffect(() => {
         dispatch(getProductDetails(detailsModal));
     }, [ dispatch, detailsModal ]);
