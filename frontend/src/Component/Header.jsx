@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../Style/Header.scss"
 import Slider from "react-slick";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 const Header = () => {
+    const [copy, setCopy] = useState("")
     const settings = {
         arrows: false,
         dots: true,
@@ -50,9 +53,69 @@ const Header = () => {
                         </Slider>
                     </div>
                     <div className="side-header border rounded-[8px]">
-                        <p className="loram">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates reiciendis laboriosam alias possimus facere pariatur laborum cum eveniet ratione magni hic similique, iure ad, accusantium maiores mollitia sapiente quisquam! Recusandae.
-                        </p>
+                        <p className="heading">Latest Super Discount Active Coupon Code</p>
+                        <div className='flex flex-col justify-between max-h-[87%] bg-[#eee]'>
+                            <div className='coupon-item flex border justify-between items-center gap-5'>
+                                <div className='flex gap-5 items-center'>
+                                    <img src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75" alt="" />
+                                    <div className='coupon'>
+                                        <span>10%</span>
+                                        <span>Off</span>
+                                        <p className='p-0 m-0'>SUMMER23</p>
+                                        <div className='timer'>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='clipboard-container'>
+                                    <CopyToClipboard text="SUMMER23">
+                                        {
+                                            copy === "SUMMER23"
+                                            ?
+                                            <p className='p-0 m-0 clipboard'>Copied!</p>
+                                            :
+                                            <p onClick={()=>setCopy("SUMMER23")} className='p-0 m-0 clipboard'>SUMMER23</p>
+                                        }
+                                    </CopyToClipboard>
+                                </div>
+                            </div>
+                            <div className='coupon-item flex border justify-between items-center gap-5'>
+                                <div className='flex gap-5 items-center'>
+                                    <img src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75" alt="" />
+                                    <div className='coupon'>
+                                        <span>10%</span>
+                                        <span>Off</span>
+                                        <p className='p-0 m-0'>SUMMER23</p>
+                                        <div className='timer'>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                            <div className='timer-colon'>:</div>
+                                            <div className='timer-item'>00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='clipboard-container'>
+                                    <CopyToClipboard text="SUMMER23GIFT">
+                                        {
+                                            copy === "SUMMER23GIFT"
+                                            ?
+                                            <p className='p-0 m-0 clipboard'>Copied!</p>
+                                            :
+                                            <p onClick={()=>setCopy("SUMMER23GIFT")} className='p-0 m-0 clipboard'>SUMMER23</p>
+                                        }
+                                    </CopyToClipboard>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='discount-cart'>

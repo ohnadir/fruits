@@ -8,46 +8,119 @@
     }
     .slider-container{
         .slider{
-            width : 100%;
-        }
-        .slider-content{
-            position: absolute;
-            z-index: 2;
-            top: 35%;
-            left: 5%;
-        }
-        .slider-item{
-            position: relative;
-            img{
-                border-radius: 8px;
+            width : 100% ;
+            .slider-item{
+                position: relative;
+                img{
+                    border-radius: 8px;
+                }
+                .slider-content{
+                    position: absolute;
+                    z-index: 2;
+                    top: 35%;
+                    left: 5%;
+                    .slider-slogan{
+                        font-size: 20px;
+                        line-height: 28px;
+                        color: rgb(31, 41, 55);
+                    }
+                    .shop-btn{
+                        display: none;
+                        width: fit-content;
+                        padding: 8px 20px;
+                        margin-top: 15px;
+                        color: white;
+                        font-weight: 600;
+                        border-radius: 6px;
+                        background-color: rgb(16, 185, 129);
+                        transition: background-color 0.1s ease;
+                        &:hover{
+                            background-color: rgb(4, 120, 87);
+                        } 
+                    }
+                }
             }
         }
-        .slider-slogan{
-            font-size: 20px;
-            line-height: 28px;
-            color: rgb(31, 41, 55);
-        }
-        .slider-text{
-            // text-gray-600 text-base leading-6
-        }
-        .shop-btn{
-            display: none;
-            width: fit-content;
-            padding: 8px 20px;
-            margin-top: 15px;
-            color: white;
-            font-weight: 600;
-            border-radius: 6px;
-            background-color: rgb(16, 185, 129);
-            transition: background-color 0.1s ease;
-        }
-        .shop-btn:hover{
-            background-color: rgb(4, 120, 87);
-        } 
         .side-header{
-            width: 30%;
+            
+            width: 40%;
             display: none;
+            // height: 100%;
+            .heading{
+                background-color: rgb(255, 237, 213);
+                font-size: 15px;
+                font-weight: 500;
+                padding: 10px 0;
+                margin: 0;
+                text-align: center;
+                z-index: 1000;
+            }
+            .coupon-item{
+                position: relative;
+                background-color: #fff;
+                padding: 17px 10px;
+                margin: 14px;
+                // height: 50;
+                img{
+                    width: 80px;
+                    height: 80px;
+                }
+                .timer{
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    padding: 0;
+                    margin: 0;
+                    .timer-item{
+                        background-color: #ef4444;
+                        font-weight: 600;
+                        color: white;
+                        padding: 0 6px;
+                        border-radius: 4px;
+                    }
+                    .timer-colon{
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                }
+            }
+            .clipboard-container{
+                border-left: 3px dashed #eee;
+                padding-left: 25px;
+                height: 100% !important;
+                &::before{
+                    content: '';
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    position: absolute;
+                    background-color: #eee;
+                    top: -15px;
+                    right: 125px;
+                    z-index: 1;
+                }
+                &::after{
+                    content: '';
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    position: absolute;
+                    background-color: #eee;
+                    bottom: -15px;
+                    right: 125px;
+                    z-index: 1;
+                }
+            }
+            .clipboard{
+                background-color: rgb(236 253 245);
+                color: rgb(5 150 105);
+                text-align: center;
+                outline: 1px dashed rgb(5 150 105);
+                border-radius: 4px;
+                padding: 5px 15px;
+                cursor: pointer;
 
+            }
         }
     }
     .discount-cart{
@@ -105,7 +178,7 @@
             display : flex;
             gap: 30px;
             .slider{
-                width : 70%;
+                width : 60%;
                 height: 100%;
             }
             .slider-content{

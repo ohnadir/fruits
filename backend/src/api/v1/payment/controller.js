@@ -20,21 +20,3 @@ exports.processPayment = async (req, res) => {
         })
     }
 }
-
-exports.paymentApi = async (req, res) => {
-    try {
-        console.log("done")
-        res.status(200).json({
-            code: 200,
-            status: "success",
-            message:"Fetch client site api key",
-            api: process.env.STRIPE_CLIENT_API
-        })
-    } catch (error) {
-        res.status(500).json({
-            code: 500,
-            status: "success",
-            message:"Error. Try again"
-        })
-    }
-}
