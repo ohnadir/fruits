@@ -12,6 +12,6 @@ exports.orderDetails = async (req, res) => {
 };
 
 exports.emailOrder = async (req, res) => {
-    const { status, code, message } = await emailOrder({email : req.query.email});
-    res.status(code).json({ code, status, message });
+    const { status, code, message, orders } = await emailOrder({email : req.params.email});
+    res.status(code).json({ code, status, message, orders });
 };

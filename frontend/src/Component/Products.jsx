@@ -86,7 +86,7 @@ const Products = () => {
     }
     addToCart(data)
     messageApi.success('Product added to cart')
-}
+  }
   return (
     <>
       {contextHolder}

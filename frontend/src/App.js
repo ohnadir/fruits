@@ -3,7 +3,7 @@ import Checkout from './Page/Checkout';
 import Cart from './Page/Cart';
 import Home from './Page/Home';
 import Wishlist from './Page/Wishlist';
-import SearchResult from './Component/SearchResult';
+import Search from './Page/Search';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import NotFound from './Page/404';
@@ -38,7 +38,7 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
-          <Route path="/search/:keyword" element={<SearchResult/>} />
+          <Route path="/search/:keyword" element={<Search/>} />
           <Route path='/checkout' element={<Checkout/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
           {/* <Route path='/product-details' element={<Product_Details/>}></Route> */}

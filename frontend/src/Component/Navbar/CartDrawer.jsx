@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { MdClose } from 'react-icons/md';
-import { getStoredCart, RemoveFromCart, addToCart, decreaseQuantity } from '../utils/LocalStorage';
+import { getStoredCart, RemoveFromCart, addToCart, decreaseQuantity } from '../../utils/LocalStorage';
 import { BsTrash } from 'react-icons/bs';
 import { message } from "antd"
-import Helmet from "../Component/Layout/Helmet"
+import Helmet from "../Layout/Helmet"
 
 
 const CartDrawer = ({ setOpen }) => {

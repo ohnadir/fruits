@@ -71,3 +71,33 @@ exports.Product = async({id})=>{
         return response;
     }
 }
+exports.SearchProduct= async ({ req }) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+        const q = req;
+        let query = {};
+        if (q !== 'undefined' || q !== undefined || q) {
+            let regex = new RegExp(q, 'i');
+            query = { ...query, $or: [{ name: regex }, { category: regex }]};
+        }
+  
+        const data = await Product.find(query)
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+        }
+        response.products = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};

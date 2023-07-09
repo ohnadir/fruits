@@ -7,6 +7,9 @@ import {
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
+    SEARCH_PRODUCT_REQUEST,
+    SEARCH_PRODUCT_SUCCESS,
+    SEARCH_PRODUCT_FAIL,
     CLEAR_ERRORS
 } from '../constants/product';
 const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
@@ -56,6 +59,30 @@ export const getProductDetails = (id) => async (dispatch) => {
     catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+export const getSearchProduct = (keyword) => async (dispatch) => {
+    try {
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/search?q=${keyword}`, config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
             payload: error.response.data.message
         })
     }

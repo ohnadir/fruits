@@ -44,19 +44,19 @@ exports.OrderDetails = async({ id })=>{
 
 exports.emailOrder=async({email})=>{
     const response = {
+        code: 200,
         status: true,
-        statusCode: 200,
-        message:"Email based Product Successfully"
+        message:"Email based Order Successfully"
     };
     try {
         const result = await Order.find({email: email});
         if(!result){
             response.code = 404;
             response.status = 'failed';
-            response.message = 'No Product found by this id';
+            response.message = 'No Order found by this id';
             return response;
         }
-        response.product = result
+        response.orders = result
         return response;
     } catch (error) {
         response.code = 500;

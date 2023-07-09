@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/logo-light.svg'
+import logo from '../../assets/logo-light.svg'
 import { Drawer } from 'antd';
 import { FiUser } from 'react-icons/fi';
 import { HiOutlineUserCircle } from 'react-icons/hi';
@@ -7,10 +7,10 @@ import { BsSearch } from 'react-icons/bs';
 import CartDrawer from './CartDrawer';
 import {  BsCart } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
-import "../Style/Navbar.scss"
+import "./Navbar.scss"
 import { useSelector } from 'react-redux';
-import Authentication from '../Component/Authentication';
-import { getStoredCart } from '../utils/LocalStorage';
+import Authentication from '../../Component/Authentication';
+import { getStoredCart } from '../../utils/LocalStorage';
 
 const Navbar = () => {
     const { isAuthenticated } = useSelector(state => state.auth);
