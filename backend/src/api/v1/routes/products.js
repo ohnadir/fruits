@@ -6,6 +6,6 @@ const validationResult = require('../validators');
 
 router.post('/', addValidator, validationResult, addProduct);
 router.get('/', products);
-router.get('/search/:q', searchProduct);
+router.get('/search', searchProduct);
 router.get('/:id', id, validationResult, product);
 module.exports = router;

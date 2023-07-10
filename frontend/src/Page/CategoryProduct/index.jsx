@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getSearchProduct } from '../../Redux/actions/product';
+import './CategoryProduct.scss'
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import './Search.scss'
-import { getSearchProduct } from "../../Redux/actions/product";
-import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../../Component/Loader';
-import { addToCart } from '../../utils/LocalStorage';
-import { AiOutlineEye, AiOutlineShoppingCart } from 'react-icons/ai';
-import Rating from 'react-rating';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import ProductDetails from '../ProductDetails';
 import { message } from 'antd';
+import { addToCart } from '../../utils/LocalStorage';
+import ProductDetails from '../ProductDetails';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Rating from 'react-rating';
+import { AiOutlineEye, AiOutlineShoppingCart } from 'react-icons/ai';
+import Loader from '../../Component/Loader';
 
-const SearchResult = () => {
+const CategoryProduct = () => {
     const [ detailsModal, setDetailsModal ] = useState('')
     const { loading, products } = useSelector(state => state.searchProduct);
-    const { keyword } = useParams()
+    const { category } = useParams();
     const [messageApi, contextHolder ] = message.useMessage();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getSearchProduct(keyword))
-    }, [keyword, dispatch]);
+        dispatch(getSearchProduct(category))
+    }, [category, dispatch]);
     const handleCart=(product)=>{
         const data = {
             name: product?.name,
@@ -34,25 +34,20 @@ const SearchResult = () => {
         messageApi.success('Product added to cart')
     }
     return (
-        <>  
+        <>
             {contextHolder}
-            <div className='search-product-container'>
-                {
-                    loading
-                    ?
-                    <Loader/>
-                    :
-                    <>
-                    {
-                        products?.length
-                        ?
-                        <div className='products-container'>
-                        
+            {
+                loading
+                ?
+                <Loader/>
+                :
+                <div>
+                    <h1 className='text-center mt-7 p-0 text-lg'>Category Product for <span className='capitalize text-[#10b981]'>{category}</span></h1>
+                    <div className='category-product-container'>
                         {   
                             products?.map(product => 
                                 <div key={product._id} className='products' >
                                     <img className='product-img' src={product?.productPictures} alt="" />
-
                                     {/* hover button */}
                                     <div className='hover-btn-container'>
                                         <div className='grid grid-cols-1 gap-3'>
@@ -66,7 +61,6 @@ const SearchResult = () => {
                                             </button>
                                         </div>
                                     </div>
-
                                     {/* product body */}
                                     <div>
                                         <p className='m-0 text-center text-[14px]'>
@@ -85,29 +79,12 @@ const SearchResult = () => {
                         {
                             detailsModal && <ProductDetails detailsModal={detailsModal} setDetailsModal={setDetailsModal}/>
                         }
-                        </div>
-                        :
-                        <div className='empty-container'>
-                            <div>
-                                <div className='empty-cart'>
-                                    <span>
-                                        <svg stroke="#059669" fill="#059669" strokeWidth="0" viewBox="0 0 512 512" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M454.65 169.4A31.82 31.82 0 00432 160h-64v-16a112 112 0 00-224 0v16H80a32 32 0 00-32 32v216c0 39 33 72 72 72h272a72.22 72.22 0 0050.48-20.55 69.48 69.48 0 0021.52-50.2V192a31.75 31.75 0 00-9.35-22.6zM176 144a80 80 0 01160 0v16H176zm192 96a112 112 0 01-224 0v-16a16 16 0 0132 0v16a80 80 0 00160 0v-16a16 16 0 0132 0z"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div>
-                                    <h1 className='mt-2 text-center'>No product found by Search</h1>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    
-                    </>
+                    </div>
+                </div>
                 }
-            </div>
         </>
-    );
-};
+        
+    )
+}
 
-export default SearchResult;
+export default CategoryProduct

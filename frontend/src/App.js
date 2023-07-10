@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import { loadUser } from './Redux/actions/user';
 import { useDispatch } from 'react-redux';
 import Invoice from './Page/Invoice';
+import ProductList from './Page/ProductList';
+import CategoryProduct from './Page/CategoryProduct';
 import Navbar from './Component/Navbar';
 import Footer from './Component/Footer';
 
@@ -40,11 +42,12 @@ function App() {
           <Route path='/' element={<Home/>}></Route>
           <Route path="/search/:keyword" element={<Search/>} />
           <Route path='/checkout' element={<Checkout/>}></Route>
+          <Route path='/search' element={<ProductList/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
-          {/* <Route path='/product-details' element={<Product_Details/>}></Route> */}
           <Route path='/wishList' element={<Wishlist/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
-          <Route path='/invoice/:id' element={<Invoice/>}></Route>
+          <Route path='/category/:category' element={<CategoryProduct/>}></Route>
+          <Route path='/invoice' element={<Invoice/>}></Route>
           <Route path='*' element={<NotFound/>}></Route>
         </Routes>
         <Footer/>

@@ -1,8 +1,8 @@
-.search-product-container{
+.product-list-container{
     max-width: 1280px;
     margin: 0 auto;
-    padding: 32px 20px;
-    .products-container{
+    padding: 32px 25px;
+    .products-container-list{
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
         gap: 20px;
@@ -11,6 +11,7 @@
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             width: 200px;
             padding: 15px 0 10px 0;
+            
             .product-img{
                 width: 150px;
                 margin: 0 auto;
@@ -73,49 +74,32 @@
             }
         }
     }
-    .empty-container{
-        padding: 16px;
-        height: calc(100vh - 113px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .empty-cart{
-            height: 80px;
-            width: 80px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgb(209 250 229);
-            border-radius: 50%;
-        }
-    }
 }
 
 @media screen and (min-width: 1114px){
-    .search-product-container{
-        .products-container{
+    .product-list-container{
+        .products-container-list{
             grid-template-columns: repeat(5, minmax(0, 1fr));
         }
     }
 }
 @media screen and (min-width: 883px) and (max-width: 1113px){
-    .search-product-container{
-        .products-container{
+    .product-list-container{
+        .products-container-list{
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
     }
 }
 @media screen and (min-width: 465px) and  (max-width: 882px){
-    .search-product-container{
-        .products-container{
+    .product-list-container{
+        .products-container-list{
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 }
 @media screen and (min-width: 465px) and  (max-width: 688px){
-    .search-product-container{
-        .products-container{
+    .product-list-container{
+        .products-container-list{
             grid-template-columns: repeat(2, minmax(0, 1fr));
             .products{
                 margin: 0 auto;
@@ -124,8 +108,8 @@
     }
 }
 @media screen and (max-width: 464px) {
-    .search-product-container{
-        .products-container{
+    .product-list-container{
+        .products-container-list{
             grid-template-columns: repeat(1, minmax(0, 1fr));
             .products{
                 margin: 0 auto;

@@ -1,4 +1,5 @@
 const { Product } = require('./Model') 
+const APIFeatures = require('../utils/APIFeatures');
 
 exports.addProduct= async({ name, body })=>{
     const response = {
@@ -71,7 +72,7 @@ exports.Product = async({id})=>{
         return response;
     }
 }
-exports.SearchProduct= async ({ req }) => {
+exports.SearchProduct= async ({ q }) => {
     const response = {
       code: 200,
       status: 'success',
@@ -79,18 +80,14 @@ exports.SearchProduct= async ({ req }) => {
     };
   
     try {
-        const q = req;
-        let query = {};
-        if (q !== 'undefined' || q !== undefined || q) {
-            let regex = new RegExp(q, 'i');
-            query = { ...query, $or: [{ name: regex }, { category: regex }]};
-        }
+        const apiFeatures = new APIFeatures(Product.find(), q).search().filter()
   
-        const data = await Product.find(query)
+        const data = await apiFeatures.query
         if (data.length === 0) {
             response.code = 404;
             response.status = 'failed';
             response.message = 'No Search data found';
+            return response
         }
         response.products = data;
         return response;

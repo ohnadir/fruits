@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import "../Style/Header.scss"
 import Slider from "react-slick";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const [copy, setCopy] = useState("")
+    const navigate = useNavigate()
     const settings = {
         arrows: false,
         dots: true,
@@ -131,7 +133,7 @@ const Header = () => {
                             </p>
                         </div>
                         <div>
-                            <button>Shop Now</button>
+                            <button onClick={()=>navigate('/search')}>Shop Now</button>
                         </div>
                     </div>
                 </div>

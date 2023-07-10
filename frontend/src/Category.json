@@ -2,26 +2,26 @@
     {
         "id": 1,
         "img" : "https://preetheme.com/html/fruits/assets/img/cate/2.jpg",
-        "name" : "Vegetables"
+        "name" : "vegetables"
     },
     {
         "id": 2,
         "img" : "https://preetheme.com/html/fruits/assets/img/cate/4.jpg",
-        "name" : "Fruits"
+        "name" : "fruits"
     },
     {
         "id": 3,
         "img" : "https://preetheme.com/html/fruits/assets/img/cate/3.jpg",
-        "name" : "Salads"
+        "name" : "salads"
     },
     {
         "id": 4,
         "img" : "https://preetheme.com/html/fruits/assets/img/cate/2.jpg",
-        "name" : "Fish & Seafood"
+        "name" : "seafood"
     },
     {
         "id": 5,
         "img" : "https://preetheme.com/html/fruits/assets/img/cate/1.jpg",
-        "name" : "Fresh Meat"
+        "name" : "meat"
     }
 ]

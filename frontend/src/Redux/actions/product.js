@@ -63,18 +63,22 @@ export const getProductDetails = (id) => async (dispatch) => {
         })
     }
 }
-export const getSearchProduct = (keyword) => async (dispatch) => {
+export const getSearchProduct = (keyword = '', category) => async (dispatch) => {
     try {
         dispatch({
             type:SEARCH_PRODUCT_REQUEST
         })
+        let link = `${baseUrl}/products/search?q=${keyword}`;
+        if(category){
+            link = `${baseUrl}/products/search?q=${keyword}&category=${category}`            
+        }
         const config = {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(`${baseUrl}/products/search?q=${keyword}`, config);
+        const { data } = await axios.get(link, config);
         dispatch({
             type: SEARCH_PRODUCT_SUCCESS,
             payload:data
