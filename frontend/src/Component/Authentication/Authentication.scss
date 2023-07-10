@@ -14,9 +14,9 @@
         right: 5px;
         cursor: pointer;
         transition: background-color 0.1s ease;
-    }
-    .modal-close-icon:hover{
-        background-color: rgba(239, 68, 68, 0.2);
+        &:hover{
+            background-color: rgba(239, 68, 68, 0.2);
+        }
     }
     .label-text{
         color: #6b7280;

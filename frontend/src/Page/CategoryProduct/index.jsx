@@ -30,8 +30,10 @@ const CategoryProduct = () => {
             image : product?.productPictures,
             total: Number(product?.price) * 1
         }
-        addToCart(data)
-        messageApi.success('Product added to cart')
+        if(data){
+            addToCart(data)
+            messageApi.success('Product added to cart')
+        }
     }
     return (
         <>

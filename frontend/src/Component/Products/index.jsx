@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../Redux/actions/product';
-import Loader from './Loader';
+import { getProducts } from '../../Redux/actions/product';
+import Loader from '../Loader';
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineEye } from 'react-icons/ai';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../Style/Products.scss"
-import ProductDetails from '../Page/ProductDetails';
+import "./Products.scss"
+import ProductDetails from '../../Page/ProductDetails';
 import { message } from 'antd';
-import { addToCart } from '../utils/LocalStorage';
+import { addToCart } from '../../utils/LocalStorage';
 
 const Products = () => {
   const [messageApi, contextHolder ] = message.useMessage();
@@ -84,8 +84,10 @@ const Products = () => {
         image : product?.productPictures,
         total: Number(product?.price) * 1
     }
-    addToCart(data)
-    messageApi.success('Product added to cart')
+    if(data){
+      addToCart(data)
+      messageApi.success('Product added to cart')
+    }
   }
   return (
     <>

@@ -12,7 +12,8 @@ import {
     SEARCH_PRODUCT_FAIL,
     CLEAR_ERRORS
 } from '../constants/product';
-const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
+
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 
 export const getProducts = () => async (dispatch) => {
     try {

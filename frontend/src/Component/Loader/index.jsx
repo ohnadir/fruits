@@ -1,10 +1,9 @@
-import React from 'react';
-import { Spin } from 'antd';
+import './Loader.scss';
 
 const Loader = () => {
     return (
         <div className='flex justify-center items-center'>
-            <Spin />
+            <span className="loader"></span>
         </div>
     );
 };

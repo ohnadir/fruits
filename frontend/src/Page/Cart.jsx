@@ -76,40 +76,7 @@ const Cart = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='max-w-4xl mx-auto px-10'>
-                            {/* table */}
-                        <div className='mt-9'>
-                            <Table
-                                style={{"backgroundColor": "#4d4d4d"}}
-                                columns={columns}
-                                dataSource={data}
-                                pagination={false}
-                                className='border'
-                            />
-                        </div>
-                        <div className='my-7 flex flex-col justify-between gap-3 text-xl items-center sm:flex-row'>
-                            <button className='hover:bg-[#2a660a] text-[14px] transition ease-in-out px-4 py-1 bg-[#679509] text-white'>Continue Shopping</button>
-                            <button className='hover:bg-[#2a660a] text-[14px] transition ease-in-out px-4 py-1 bg-[#679509] text-white'>Update Cart</button>
-                        </div>
-                        <div className='flex justify-center gap-10 flex-col-reverse md:flex-row'>
-                            <div className='border bg-[#f8f8f8] mb-10 w-full '>
-                                <p className='border-b-[1px] p-3 font-bold'>User Coupon Code</p>
-                                <p className='text-md px-3'>Have a Coupon Code ?</p>
-                                <input className='outline-0 py-2 px-4 mx-3' type="text" placeholder='xxx' /> <br />
-                                <button className='bg-[#679509] text-white mx-3 px-7 py-2 my-3 text-[12px]'>Apply</button>
-                            </div>
-                            <div className='border w-full h-fit'>
-                                <p className=' font-bold border-b-[1px] p-3 bg-[#f0f0f0]'>Order Total </p>
-                                <p className='text-[13px] font-bold px-3 flex justify-between'>Sub Total <span className='text-[#7f9195]'>$50</span></p>
-                                <p className='text-[13px] font-bold px-3 flex justify-between'>Taxes <span className='text-[#7f9195]'>$50</span></p>
-                                <hr />
-                                <p className='text-[13px] font-bold mt-4 px-3 flex justify-between'>Grand Total <span className='text-[#7f9195]'>$50</span></p>
-                                <div className='m-3'>
-                                <button className='bg-[#679509]  text-white w-full py-2 font-bold text-[12px]'>PROCEED TO CHECKOUT</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </Layout>

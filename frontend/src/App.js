@@ -6,7 +6,7 @@ import Wishlist from './Page/Wishlist';
 import Search from './Page/Search';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-import NotFound from './Page/404';
+import NotFound from './Page/NotFoundPage';
 import Profile from './Page/Profile';
 import { useEffect } from 'react';
 import { loadUser } from './Redux/actions/user';

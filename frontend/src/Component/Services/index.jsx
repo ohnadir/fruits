@@ -1,5 +1,5 @@
 import React from 'react'
-import "../Style/Services.scss"
+import "./Services.scss"
 import { RiShieldKeyholeLine } from 'react-icons/ri';
 import { FaDollarSign } from 'react-icons/fa';
 import { TbLeaf, TbTruckDelivery } from 'react-icons/tb';

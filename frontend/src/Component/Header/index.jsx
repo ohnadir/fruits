@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../Style/Header.scss"
+import "./Header.scss"
 import Slider from "react-slick";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { useNavigate } from 'react-router-dom';

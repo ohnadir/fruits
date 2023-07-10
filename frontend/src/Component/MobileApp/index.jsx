@@ -8,7 +8,7 @@ const MobileApp = () => {
         <div className='newsletter-content'>
           <h1>Make your online shop easier with our mobile app</h1>
           <h6>Bazar makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.</h6>
-          <div className='w-fit flex flex-col sm:flex-row gap-5 mx-auto lg:mx-0 mt-5'>
+          <div className='w-fit flex flex-col sm:flex-row gap-5 mx-auto md:mx-0 mt-5'>
             <a target="_blank" href="https://play.google.com/store/apps" rel="noreferrer">
               <img className='w-[50%]' src="https://kachabazar-store.vercel.app/app/play-store.svg" alt="" />
             </a>
