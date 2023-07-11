@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import "./Invoice.scss"
 import ReactToPrint from "react-to-print";
-import { useParams  } from 'react-router-dom';
+import { useNavigate, useParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { orderDetails } from "../../Redux/actions/order";
 import { Table } from 'antd';
@@ -32,12 +32,17 @@ const columns = [
   ];
 const Invoice = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { order, loading } = useSelector(state => state.orderDetails);
     useEffect(() => {
         dispatch(orderDetails(id));
     }, [id ,dispatch]);
     const componentRef = useRef(null);
+    const handleContinue=()=>{
+        navigate('/')
+        window.location.reload();
+    }
     return (
         <>
             {
@@ -102,8 +107,13 @@ const Invoice = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="btn-container">
-                        <ReactToPrint trigger={() => (<button >Print / Download</button>)}content={() => componentRef.current}/>
+                    <div className='flex items-center justify-between bg-white'>
+                        <div className="btn-container">
+                            <button onClick={handleContinue}>Continue Order</button>
+                        </div>
+                        <div className="btn-container">
+                            <ReactToPrint trigger={() => (<button >Print / Download</button>)}content={() => componentRef.current}/>
+                        </div>
                     </div>
                 </div>
             </div>

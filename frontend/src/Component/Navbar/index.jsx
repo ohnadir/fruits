@@ -22,18 +22,20 @@ const Navbar = ({modal, setModal}) => {
     const [drawer, setDrawer] = useState(false);
     const navigate =useNavigate();
     const cart = getStoredCart();
-    
     useEffect(()=>{
         setCount(cart?.length);
     },[cart]);
     
-
+    const handleLogo=()=>{
+        navigate('/')
+        window.location.reload();
+    }
     return (
             <div className='bg-[#10b981] top-0 sticky z-10'>
                 <div className="px-[25px] max-w-7xl mx-auto ">
                     <div className="flex items-center py-5 gap-6 sm:gap-10 md:gap-20 lg:gap-52 justify-between">
                         <div className="cursor-pointer hidden sm:block">
-                            <img className=' w-[150px] md:w-[200px] lg:w-[250px] brand-logo' src={logo} onClick={()=>navigate('/')} alt="" />
+                            <img className=' w-[150px] md:w-[200px] lg:w-[250px] brand-logo' src={logo} onClick={handleLogo} alt="" />
                         </div>
                         <div className="cursor-pointer sm:hidden" onClick={()=>setDrawer(true)}>
                             <CgMenuLeft size={30} style={{color: "white"}} />
