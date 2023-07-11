@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../Style/Dashboard.scss"
+import "./Dashboard.scss"
 import { Table } from 'antd';
 import CountUp from 'react-countup';
 

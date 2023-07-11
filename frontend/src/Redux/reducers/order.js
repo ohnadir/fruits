@@ -79,7 +79,7 @@ export const emailOrderReducer = (state = { orders: []}, action) => {
         case EMAIL_ORDER_SUCCESS:
             return {
                 loading: false,
-                orders : action.payload
+                orders : action.payload.orders
             }
         case EMAIL_ORDER_FAIL:
             return {

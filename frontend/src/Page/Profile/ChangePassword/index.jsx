@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import './ChangePassword.scss'
 
-const Address = () => {
+const ChangePassword = () => {
     const { user } = useSelector(state => state.auth);
     
     const handleChange=()=>{}
@@ -29,4 +30,4 @@ const Address = () => {
     )
 }
 
-export default Address
+export default ChangePassword

@@ -12,7 +12,7 @@ import {
     CLEAR_ERRORS
 } from "../constants/order"
 
-const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
+const baseUrl = "http://localhost:5002/api/v1"
 
 export const newOrder = (order) => async (dispatch) => {
     try {
@@ -50,7 +50,7 @@ export const orderDetails = (id) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/orders/order-details/${id}`, config);
@@ -77,10 +77,10 @@ export const emailOrder = (email) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }
-        const { data } = await axios.get(`${baseUrl}/products/${email}`, config);
+        const { data } = await axios.get(`${baseUrl}/orders/${email}`, config);
         dispatch({
             type: EMAIL_ORDER_SUCCESS,
             payload:data

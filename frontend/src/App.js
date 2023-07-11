@@ -15,6 +15,11 @@ import CategoryProduct from './Page/CategoryProduct';
 import Navbar from './Component/Navbar';
 import Footer from './Component/Footer';
 import ProtectedRoute from './Component/ProtectedRoute';
+import UserDetails from "./Page/Profile/UserDetails";
+import UpdateUser from "./Page/Profile/UpdateUser";
+import Order from "./Page/Profile/Orders";
+import Dashboard from "./Page/Profile/Dashboard";
+import ChangePassword from "./Page/Profile/ChangePassword";
 
 
 function App() {
@@ -47,11 +52,13 @@ function App() {
             </ProtectedRoute>
           }></Route>
           <Route path='/search' element={<ProductList/>}></Route>
-          <Route path='/profile' element={
-            <ProtectedRoute setModal={setModal}>
-              <Profile/>
-            </ProtectedRoute>
-          }></Route>
+          <Route path='/profile' element={<ProtectedRoute setModal={setModal}><Profile/></ProtectedRoute>}>
+            <Route index element={<UserDetails/>}></Route>
+            <Route path='update' element={<UpdateUser/>}></Route>
+            <Route path='order' element={<Order/>}></Route>
+            <Route path='dashboard' element={<Dashboard/>}></Route>
+            <Route path='change-pass' element={<ChangePassword/>}></Route>
+          </Route>
           <Route path='/category/:category' element={<CategoryProduct/>}></Route>
           <Route path='/invoice/:id' element={
             <ProtectedRoute setModal={setModal}>

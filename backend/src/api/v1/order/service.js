@@ -42,14 +42,14 @@ exports.OrderDetails = async({ id })=>{
     }
 }
 
-exports.emailOrder=async({email})=>{
+exports.EmailOrder=async({email})=>{
     const response = {
         code: 200,
         status: true,
         message:"Email based Order Successfully"
     };
     try {
-        const result = await Order.find({email: email});
+        const result = await Order.find({userEmail: email});
         if(!result){
             response.code = 404;
             response.status = 'failed';

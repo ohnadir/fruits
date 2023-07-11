@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import "../../Style/Profile.scss"
+import "../Profile.scss"
 import { useDispatch, useSelector } from 'react-redux'
 
-const AccountDetails = () => {
+const UpdateUser = () => {
     const { user } = useSelector(state => state.auth);
     const [Auth, setAuth] = useState("")
     const handleChange=()=>{}
@@ -48,4 +48,4 @@ const AccountDetails = () => {
     )
 }
 
-export default AccountDetails
+export default UpdateUser;
