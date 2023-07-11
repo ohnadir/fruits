@@ -97,14 +97,15 @@ export const loadUser = (token) => async (dispatch) => {
 // Logout user
 export const logout = () => async (dispatch) => {
     try {
+        console.log("fp")
         const config = {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
-        await axios.get('http://localhost:5002/api/v1/users/logout', config)
         localStorage.removeItem("token");
+        await axios.get(`${baseUrl}/users/logout`, config)
         dispatch({
             type: LOGOUT_SUCCESS,
         })

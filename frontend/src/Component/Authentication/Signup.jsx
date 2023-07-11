@@ -13,7 +13,6 @@ const Signup = ({setSwitch , setModal} ) => {
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { isAuthenticated, error  } = useSelector(state => state.auth);
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
@@ -27,7 +26,6 @@ const Signup = ({setSwitch , setModal} ) => {
         }
         setTimeout( ()=>{
             if(isAuthenticated === true){
-                navigate('/')
                 setModal(false)
             }
         },2000)
