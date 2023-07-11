@@ -14,8 +14,8 @@ const Category = () => {
             </div>
             <div className='categories'>
                 {
-                    categories.map((item)=> <div>
-                        <div className='category-item' onClick={()=>navigate(`/category/${item.name}`)}>
+                    categories.map((item)=> <div key={item.id}>
+                        <div  className='category-item' onClick={()=>navigate(`/category/${item.name}`)}>
                             <img src={item.img} alt="" />
                             <div className='itemOverlay'>
                                 <BsPlusLg className='plusIcon'/> 

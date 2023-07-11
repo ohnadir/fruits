@@ -24,7 +24,7 @@ const Products = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const ArrowLeft = (props) => (
+  const ArrowLeft = ({ currentSlide, slideCount, ...props }) => (
     <button
         {...props}
         className="prev">
@@ -32,7 +32,7 @@ const Products = () => {
     </button>
   );
 
-  const ArrowRight = (props) => (
+  const ArrowRight = ({ currentSlide, slideCount, ...props }) => (
     <button
       {...props}
       className="next">

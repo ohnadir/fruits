@@ -14,14 +14,18 @@ const Login = ( {setSwitch, setModal }) => {
     const [password, setPassword] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isAuthenticated, messages } = useSelector(state => state.auth);
+    const { isAuthenticated, messages, error } = useSelector(state => state.auth);
+    console.log(error)
     
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
     useEffect(() => {
-        if (messages) {
-            messageApi.info(messages);
+        if (isAuthenticated === true) {
+            messageApi.success("Login Successful");
+        }
+        if (error ) {
+            messageApi.warning(error);
         }
         setTimeout( ()=>{
             if(isAuthenticated === true){
@@ -29,7 +33,7 @@ const Login = ( {setSwitch, setModal }) => {
                 setModal(false)
             }
         },1000)
-    }, [messages, isAuthenticated])
+    }, [messages, isAuthenticated, error])
     const onSubmit = () => {
         if(!auth.email || !auth.password){
             messageApi.error("Input Require")
