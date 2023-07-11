@@ -75,7 +75,7 @@ const Navbar = () => {
                     modal && <Authentication modal={modal} setModal={setModal} />
                 }
                 {
-                    drawer && <MobileNavbar isAuthenticated={isAuthenticated} setModal={setModal} count={count} drawer={drawer} setDrawer={setDrawer} />
+                    drawer && <MobileNavbar setOpen={setOpen} isAuthenticated={isAuthenticated} setModal={setModal} count={count} drawer={drawer} setDrawer={setDrawer} />
                 }
             </div>
         </div>

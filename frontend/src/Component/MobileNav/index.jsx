@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import'./MobileNavbar.scss'
 import categories from "../../Category.json"
 import { FiHome, FiUser } from "react-icons/fi"
@@ -8,7 +8,7 @@ import { BsCart } from 'react-icons/bs'
 import { Drawer } from 'antd';
 import logo from '../../assets/logo-light.svg'
 
-const MobileNavbar = ({ isAuthenticated, setModal, count, drawer, setDrawer }) => {
+const MobileNavbar = ({ isAuthenticated, setModal, count, drawer, setDrawer, setOpen }) => {
     const navigate = useNavigate();
     const handleCategory=(e)=>{
         if(e){
@@ -21,7 +21,7 @@ const MobileNavbar = ({ isAuthenticated, setModal, count, drawer, setDrawer }) =
             navigate('/')
         }
         if(e === 'cart'){
-            navigate('/cart')
+            setOpen(true)
         }
         if(e === 'profile'){
             navigate('/profile')

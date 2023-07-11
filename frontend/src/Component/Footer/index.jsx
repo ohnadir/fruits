@@ -4,7 +4,6 @@ import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { FaPinterestP } from 'react-icons/fa';
-import Logo from '../../assets/logo.png'
 import {message} from "antd"
  
 const Footer=()=>{
@@ -35,7 +34,7 @@ const Footer=()=>{
                 <div className='footer-container'>
                     <div className='footer-body'>
                         <div className='mx-auto w-fit'>
-                            <img src={Logo} alt="" />
+                            <img className='mb-1' src="https://kachabazar-store.vercel.app/logo/logo-color.svg" alt="" />
                             <p className='text-[14px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et</p>
                             <div className='flex gap-5'>
                                 <div className='social-icon'>

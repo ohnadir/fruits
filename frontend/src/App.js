@@ -1,8 +1,6 @@
 import { Route, Routes  } from 'react-router-dom';
 import Checkout from './Page/Checkout';
-import Cart from './Page/Cart';
 import Home from './Page/Home';
-import Wishlist from './Page/Wishlist';
 import Search from './Page/Search';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
@@ -43,8 +41,6 @@ function App() {
           <Route path="/search/:keyword" element={<Search/>} />
           <Route path='/checkout' element={<Checkout/>}></Route>
           <Route path='/search' element={<ProductList/>}></Route>
-          <Route path='/cart' element={<Cart/>}></Route>
-          <Route path='/wishList' element={<Wishlist/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/category/:category' element={<CategoryProduct/>}></Route>
           <Route path='/invoice' element={<Invoice/>}></Route>
