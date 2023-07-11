@@ -9,8 +9,6 @@ import Helmet from "../Layout/Helmet"
 
 const CartDrawer = ({ setOpen }) => {
     const [messageApi, contextHolder ] = message.useMessage();
-    const [cart, setCart] = useState([])
-
     const navigate = useNavigate()
     // const cart = getStoredCart();
     const handleRemove=(item)=>{
@@ -18,12 +16,11 @@ const CartDrawer = ({ setOpen }) => {
         RemoveFromCart(item)
     }
     const data = getStoredCart();
+    console.log(data.length)
     
-    useEffect(()=>{
-        setCart(data)
-    },[])
+    
 
-    const total = cart?.reduce((a, b) => {return a + b.total}, 0);
+    const total = data?.reduce((a, b) => {return a + b.total}, 0);
     const handleCheckout=()=>{
         if(total > 1){
             navigate('/checkout')
@@ -52,11 +49,11 @@ const CartDrawer = ({ setOpen }) => {
                 </div>
                 <div className='cart-body'>
                     {
-                        cart.length
+                        data?.length !== 0
                         ?
                         <div className='cart-item'>
                             {
-                                cart?.map((item)=>
+                                data?.map((item)=>
                                     <div className='mb-[20px]  mx-2' key={item.id}>
                                         <div className='cart'>
                                             <div className='product-photo w-[20%] border border-red-500 rounded-full p-[10px]'>
@@ -104,7 +101,7 @@ const CartDrawer = ({ setOpen }) => {
                     {/* <button onClick={()=>navigate('/cart')} className='active'>View cart</button> */}
                     <button disabled={ total === 0} className='checkout-btn' onClick={handleCheckout}>
                         <span>Proceed To Checkout</span>
-                        <span className='price-container'>${total}</span>
+                        <span className='price-container'>$ {total ? total :0 }</span>
                     </button>
                 </div>
             </div>

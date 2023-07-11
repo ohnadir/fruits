@@ -138,12 +138,7 @@ const Checkout = () => {
             userEmail : user.email,
             userName : user.name
         }
-        if(isAuthenticated === true){
-            dispatch(newOrder(order))
-        }else{
-            messageApi.success("Please Login then order")
-        }
-        
+        dispatch(newOrder(order))
     }
     useEffect(()=>{
         if(order?._id){
