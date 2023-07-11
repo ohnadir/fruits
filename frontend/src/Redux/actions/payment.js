@@ -18,7 +18,6 @@ export const  makePayment = (paymentData)=> async(dispatch)=>{
             }
         }
         const { data } = await axios.post(`${baseUrl}/payments/process`, paymentData, config)
-        console.log(data);
         dispatch({
             type: PAYMENT_PROCESS_SUCCESS,
             payload: data.client_secret

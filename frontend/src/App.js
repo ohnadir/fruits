@@ -43,7 +43,7 @@ function App() {
           <Route path='/search' element={<ProductList/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/category/:category' element={<CategoryProduct/>}></Route>
-          <Route path='/invoice' element={<Invoice/>}></Route>
+          <Route path='/invoice/:id' element={<Invoice/>}></Route>
           <Route path='*' element={<NotFound/>}></Route>
         </Routes>
         <Footer/>

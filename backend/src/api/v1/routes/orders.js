@@ -4,5 +4,5 @@ const { isAuthenticatedUser } = require("../middlewares/auth")
 
 router.post('/', order);
 router.get('/:email', emailOrder);
-router.get('/:id', orderDetails);
+router.get('/order-details/:id', orderDetails);
 module.exports = router;

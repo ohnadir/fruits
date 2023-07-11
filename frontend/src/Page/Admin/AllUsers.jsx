@@ -7,12 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 const AllUsers = ({allUsers}) => {
     const dispatch = useDispatch();
     const { loading, users, error } = useSelector(state => state.allUsers);
-    console.log(users)
     useEffect(() => {
         dispatch(allUsers());
         
     }, [dispatch]);
-    // console.log(users);
     const columns = [
         {
           title: 'firstName',

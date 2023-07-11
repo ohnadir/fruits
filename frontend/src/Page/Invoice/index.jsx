@@ -34,10 +34,9 @@ const Invoice = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { order, loading } = useSelector(state => state.orderDetails);
-    console.log(order)
     useEffect(() => {
         dispatch(orderDetails(id));
-    }, []);
+    }, [id ,dispatch]);
     const componentRef = useRef(null);
     return (
         <>

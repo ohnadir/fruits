@@ -28,6 +28,7 @@ const Checkout = () => {
     const elements = useElements();
     const { user } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
+    const { isAuthenticated } = useSelector(state => state.auth);
     const { order } = useSelector(state => state.order);
     const cart = getStoredCart();
     const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const Checkout = () => {
     }
     useEffect(() => {
         dispatch(makePayment(paymentAmount));
-    }, []);
+    }, [totalPrice, dispatch]);
     
 
     const stripeCall= async()=>{
@@ -137,7 +138,11 @@ const Checkout = () => {
             userEmail : user.email,
             userName : user.name
         }
-        dispatch(newOrder(order))
+        if(isAuthenticated === true){
+            dispatch(newOrder(order))
+        }else{
+            messageApi.success("Please Login then order")
+        }
         
     }
     useEffect(()=>{

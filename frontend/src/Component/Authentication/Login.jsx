@@ -5,7 +5,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { login} from '../../Redux/actions/user'
 import { useDispatch, useSelector } from 'react-redux';
 import {  message } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import "./Authentication.scss"
 
 const Login = ( {setSwitch, setModal }) => {
@@ -13,9 +12,7 @@ const Login = ( {setSwitch, setModal }) => {
     const [auth, setAuth] = useState('');
     const [password, setPassword] = useState(false)
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { isAuthenticated, messages, error } = useSelector(state => state.auth);
-    console.log(error)
     
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
@@ -29,7 +26,6 @@ const Login = ( {setSwitch, setModal }) => {
         }
         setTimeout( ()=>{
             if(isAuthenticated === true){
-                navigate('/')
                 setModal(false)
             }
         },1000)

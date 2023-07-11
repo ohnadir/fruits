@@ -53,10 +53,10 @@ export const orderDetails = (id) => async (dispatch) => {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         }
-        const { data } = await axios.get(`${baseUrl}/orders/${id}`, config);
+        const { data } = await axios.get(`${baseUrl}/orders/order-details/${id}`, config);
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
-            payload:data.order
+            payload:data
         })
     }
     catch (error) {

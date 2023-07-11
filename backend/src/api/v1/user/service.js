@@ -18,7 +18,7 @@ exports.registration = async ({ body, email, name, password }) => {
             }
         }
         const user = await User.create(body);
-        console.log(user);
+        response.token = user.getJwtToken();
         return response;
     } catch (error) {
         response.code = 500;
