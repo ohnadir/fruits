@@ -12,7 +12,7 @@ import {
     CLEAR_ERRORS
 } from "../constants/order"
 
-const baseUrl = "http://localhost:5002/api/v1"
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 
 export const newOrder = (order) => async (dispatch) => {
     try {
