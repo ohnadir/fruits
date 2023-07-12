@@ -26,7 +26,7 @@ export const newOrder = (order) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.post(`${baseUrl}/orders`, order, config);
@@ -52,7 +52,7 @@ export const orderList = () => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/orders`, config);
@@ -78,7 +78,7 @@ export const orderDetails = (id) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/orders/order-details/${id}`, config);
@@ -105,7 +105,7 @@ export const emailOrder = (email) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/orders/${email}`, config);

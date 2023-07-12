@@ -62,13 +62,6 @@ const Profile = () => {
                         </ul>
                     </aside>
                     <main className='w-full lg:w-[80%] mt-5 sm:mt-0'>
-                        {/* <div>
-                            { direction === "dashboard" && <Dashboard/> }
-                            { direction === "account" && <AccountDetails/> }
-                            { direction === "password" && <Address/> }
-                            { direction === "order" && <Order/> }
-                            
-                        </div> */}
                         <Outlet/>
                     </main>
                 </div>

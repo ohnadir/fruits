@@ -29,7 +29,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/user'
 
-const baseUrl = "https://fruits-ivory.vercel.app/api/v1"
+const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 // Login
 export const login = (auth) => async (dispatch) => {
     try {
@@ -93,7 +93,7 @@ export const update = (id, userData) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.patch(`${baseUrl}/users/update/${id}`, userData, config)
@@ -121,7 +121,7 @@ export const allUser = () => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/users`, config)
@@ -147,7 +147,7 @@ export const singleUser = (id) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/users/${id}`, config)
@@ -198,7 +198,7 @@ export const changePassword = (id, userData) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.patch(`${baseUrl}/users/change/${id}`, userData, config)
@@ -223,11 +223,11 @@ export const putUserInfo = (id, userData) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('token')}`
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
-        const { data } = await axios.patch(`${baseUrl}/users/info/${id}`, userData, config)
-        
+        const { data } = await axios.put(`${baseUrl}/users/info/${id}`, userData, config)
+        console.log(data);
         dispatch({
             type: PUT_USER_INFO_SUCCESS,
             payload: data

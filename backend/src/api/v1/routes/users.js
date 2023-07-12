@@ -11,6 +11,6 @@ router.get('/me/:token', loadUser);
 router.get('/', authorizeRoles, users);
 router.get('/:id', authorizeRoles, user);
 router.put('/change/:id', isAuthenticatedUser,  changePassword);
-router.put('/info/:id', isAuthenticatedUser,  putUserInfo);
+router.put('/info/:id', isAuthenticatedUser, putUserInfo);
 
 module.exports = router

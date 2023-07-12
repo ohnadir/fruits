@@ -225,8 +225,8 @@ exports.PutUserInfo = async({ id, phone, address })=>{
             return response;
         }
         
-        user.phone = phone ;
-        user.address = address ;
+        user.phone = phone ? phone : user.phone ;
+        user.address = address ? address : user.address;
         await user.save();  
         return response;
     } catch (error) {
