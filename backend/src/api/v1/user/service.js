@@ -185,6 +185,7 @@ exports.password = async({ id, newPassword, password })=>{
         message: 'Change Password successfully',
     };
     try {
+        console.log(newPassword, password)
         const user = await User.findOne({ _id: id});
         if (!user) {
             response.code = 404;

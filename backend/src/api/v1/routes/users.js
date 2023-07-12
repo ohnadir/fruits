@@ -10,7 +10,7 @@ router.post('/login', login);
 router.get('/me/:token', loadUser);
 router.get('/', authorizeRoles, users);
 router.get('/:id', authorizeRoles, user);
-router.put('/change/:id', isAuthenticatedUser,  changePassword);
+router.patch('/change/:id', isAuthenticatedUser,  changePassword);
 router.put('/info/:id', isAuthenticatedUser, putUserInfo);
 
 module.exports = router

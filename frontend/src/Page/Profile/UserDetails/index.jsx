@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CSS from './UserDetails.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
-import { putUserInfo, loadUser } from "../../../Redux/actions/user"
+import { putUserInfo } from "../../../Redux/actions/user"
 import { message } from 'antd';
 
 const UserDetails = () => {
@@ -42,6 +42,12 @@ const UserDetails = () => {
     if(error){
       messageApi.error(error)
     }
+    setTimeout( ()=>{
+      if(messages){
+        setAddress(false)
+        setPhone(false)
+      }
+    },2000)
   }, [messages, error])
   return (
     <>

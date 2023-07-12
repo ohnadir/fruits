@@ -29,6 +29,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/user'
 
+// const baseUrl = "http://localhost:5002/api/v1";
 const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 // Login
 export const login = (auth) => async (dispatch) => {
@@ -193,6 +194,7 @@ export const loadUser = (token) => async (dispatch) => {
 // change password
 export const changePassword = (id, userData) => async (dispatch) => {
     try {
+        console.log(userData)
         dispatch({ type: USER_PASSWORD_CHANGE_REQUEST })
         const config = {
             headers:{
