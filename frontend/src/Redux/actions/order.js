@@ -9,6 +9,9 @@ import {
     EMAIL_ORDER_REQUEST,
     EMAIL_ORDER_SUCCESS,
     EMAIL_ORDER_FAIL,
+    ORDERS_REQUEST,
+    ORDERS_SUCCESS,
+    ORDERS_FAIL,
     CLEAR_ERRORS
 } from "../constants/order"
 
@@ -40,6 +43,31 @@ export const newOrder = (order) => async (dispatch) => {
     }
 }
 
+export const orderList = () => async (dispatch) => {
+    try {
+        dispatch({
+            type:ORDERS_REQUEST
+        })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/orders`, config);
+        dispatch({
+            type: ORDERS_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: ORDERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 
 export const orderDetails = (id) => async (dispatch) => {
     try {

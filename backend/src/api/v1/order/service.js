@@ -18,6 +18,24 @@ exports.Order = async({ body })=>{
     }
 }
 
+exports.orderList = async()=>{
+    const response = {
+        code: 200,
+        status: "success",
+        message:"Order Fetch Successfully"
+    };
+    try {
+        const result = await Order.find({});
+        response.orders= result;
+        return response; 
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
 exports.OrderDetails = async({ id })=>{
     const response = {
         code: 200,

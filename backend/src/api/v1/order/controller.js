@@ -1,5 +1,9 @@
-const { Order, EmailOrder, OrderDetails } = require("./service")
+const { Order, EmailOrder, OrderDetails, orderList } = require("./service")
 
+exports.orders = async (req, res) => {
+    const { code, status, message, orders } = await orderList();
+    res.status(code).json({ code, status, message, orders });
+};
 
 exports.order = async (req, res) => {
     const { code, status, message, order } = await Order({ body:req.body});
