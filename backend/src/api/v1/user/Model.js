@@ -3,11 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, 'Please enter your name']
+const userSchema = new mongoose.Schema({  
+  name: {
+    type: String,
+    required: [true, 'Please enter your name']
   },
   email: {
     type: String,
@@ -21,15 +20,14 @@ const userSchema = new mongoose.Schema(
     minlength: [6, 'Your password must be longer than 6 characters']
   },
     phone: String,
+    address: String,
     updatedBy: Date,
     avatar: String,
     role: {
       type: String,
       default: 'user'
   },
-  },
-  { timestamps: true }
-);
+},{ timestamps: true });
 
 // Encrypting Password before saving user 
 userSchema.pre('save', async function (next) {
