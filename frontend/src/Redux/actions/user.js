@@ -20,6 +20,12 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
+    USER_PASSWORD_CHANGE_REQUEST,
+    USER_PASSWORD_CHANGE_SUCCESS,
+    USER_PASSWORD_CHANGE_FAIL,
+    PUT_USER_INFO_REQUEST,
+    PUT_USER_INFO_SUCCESS,
+    PUT_USER_INFO_FAIL,
     CLEAR_ERRORS
 } from '../constants/user'
 
@@ -80,7 +86,7 @@ export const register = (userData) => async (dispatch) => {
 }
 
 // update user
-export const update = (userData) => async (dispatch) => {
+export const update = (id, userData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PROFILE_REQUEST })
         const config = {
@@ -90,7 +96,7 @@ export const update = (userData) => async (dispatch) => {
                 'authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }
-        const { data } = await axios.patch(`${baseUrl}/users/update`, userData, config)
+        const { data } = await axios.patch(`${baseUrl}/users/update/${id}`, userData, config)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }
@@ -179,6 +185,56 @@ export const loadUser = (token) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOAD_USER_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// change password
+export const changePassword = (id, userData) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_PASSWORD_CHANGE_REQUEST })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        const { data } = await axios.patch(`${baseUrl}/users/change/${id}`, userData, config)
+        
+        dispatch({
+            type: USER_PASSWORD_CHANGE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_PASSWORD_CHANGE_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// change password
+export const putUserInfo = (id, userData) => async (dispatch) => {
+    try {
+        dispatch({ type: PUT_USER_INFO_REQUEST })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        const { data } = await axios.patch(`${baseUrl}/users/info/${id}`, userData, config)
+        
+        dispatch({
+            type: PUT_USER_INFO_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: PUT_USER_INFO_FAIL,
             payload: error.response.data.message
         })
     }

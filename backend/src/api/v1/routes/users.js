@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { register, login, update, loadUser, users, user } = require("../user/controller")
+const { register, login, update, loadUser, users, user, changePassword, putUserInfo } = require("../user/controller")
 const { registerValidate } = require("../user/validator")
 const validationResult = require('../validators');
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
@@ -10,5 +10,7 @@ router.post('/login', login);
 router.get('/me/:token', loadUser);
 router.get('/', authorizeRoles, users);
 router.get('/:id', authorizeRoles, user);
+router.put('/change/:id', isAuthenticatedUser,  changePassword);
+router.put('/info/:id', isAuthenticatedUser,  putUserInfo);
 
 module.exports = router

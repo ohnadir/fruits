@@ -19,6 +19,12 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
+    USER_PASSWORD_CHANGE_REQUEST,
+    USER_PASSWORD_CHANGE_SUCCESS,
+    USER_PASSWORD_CHANGE_FAIL,
+    PUT_USER_INFO_REQUEST,
+    PUT_USER_INFO_SUCCESS,
+    PUT_USER_INFO_FAIL,
     CLEAR_ERRORS
 } from '../constants/user'
 
@@ -87,17 +93,23 @@ export const authReducer = (state = { user: {} }, action) => {
 export const updateUserReducer = (state = {}, action) => {
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
+        case USER_PASSWORD_CHANGE_REQUEST:
+        case PUT_USER_INFO_REQUEST:
             return {
                 ...state,
                 loading: true
             }
         case UPDATE_PROFILE_SUCCESS:
+        case USER_PASSWORD_CHANGE_SUCCESS:
+        case PUT_USER_INFO_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                isUpdated: action.payload
+                messages: action.payload.message
             }
         case UPDATE_PROFILE_FAIL:
+        case USER_PASSWORD_CHANGE_FAIL:
+        case PUT_USER_INFO_FAIL:
             return {
                 ...state,
                 loading: false,

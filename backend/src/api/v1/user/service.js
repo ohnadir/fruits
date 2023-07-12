@@ -1,7 +1,7 @@
 const  User = require("./Model");
 const jwt = require('jsonwebtoken');
 
-exports.registration = async ({ body, email, name, password }) => {
+exports.registration = async ({ body, email }) => {
     const response = {
       code: 200,
       status: 'success',
@@ -97,7 +97,6 @@ exports.updateProfile = async ({ name, email, phone, address, id }) => {
         user.address = address ? address : user.address;
         
         await user.save();        
-        response.user= user
         return response;
     } catch (error) {
         response.code = 500;
@@ -170,6 +169,65 @@ exports.singleUser = async({id})=>{
             return response;
         }
         response.user = user
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
+exports.password = async({ id, newPassword, password })=>{
+    const response = {
+        code: 200,
+        status: 'success',
+        message: 'Change Password successfully',
+    };
+    try {
+        const user = await User.findOne({ _id: id});
+        if (!user) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No User found by this id';
+            return response;
+        }
+        const isPasswordMatched = await user.comparePassword(password);
+        if (!isPasswordMatched) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'Password do not match';
+            return response;
+        }
+        user.password = newPassword;
+        await user.save();  
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
+exports.PutUserInfo = async({ id, phone, address })=>{
+    const response = {
+        code: 200,
+        status: 'success',
+        message: 'Update User successfully',
+    };
+    try {
+        const user = await User.findOne({ _id: id});
+        if (!user) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No User found by this id';
+            return response;
+        }
+        
+        user.phone = phone ;
+        user.address = address ;
+        await user.save();  
         return response;
     } catch (error) {
         response.code = 500;
