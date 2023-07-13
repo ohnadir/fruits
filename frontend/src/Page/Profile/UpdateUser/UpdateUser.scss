@@ -1,0 +1,38 @@
+.account-details{
+    border-radius: 8px;
+    background-color: white;
+    label{
+        color: #4d4d4d;
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+    input{
+        width: 100%;
+        font-size: 13px;
+        border: 1px solid #eee;
+        padding: 8px 12px ;
+        border-radius: 6px;
+        color: black !important;
+        outline: none;
+        background-color: white;
+    }
+    input:focus{
+        border: 1px solid #059669 ;
+    }
+    .update-btn{
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-top: 20px;
+        button{
+            width: fit-content;
+            padding: 8px 15px;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            background-color: rgb(5 150 105);
+        }
+        
+    }
+}

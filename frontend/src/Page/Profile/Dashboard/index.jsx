@@ -1,68 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Dashboard.scss"
-import { Table } from 'antd';
 import CountUp from 'react-countup';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaTrashAlt } from 'react-icons/fa';
+import { BsEye } from 'react-icons/bs';
+import { allUser } from "../../../Redux/actions/user"
+import { orderList } from "../../../Redux/actions/order"
 
 const Dashboard = () => {
-  const columns = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id'
-    },
-    {
-      title: 'ORDER TIME',
-      dataIndex: 'orderTime',
-      key: 'order time',
-    },
-    {
-      title: 'METHOD',
-      dataIndex: 'method',
-      key: 'method',
-    },
-    {
-      title: 'STATUS',
-      key: 'status',
-      dataIndex: 'status'
-    },
-    {
-      title: 'TOTAL',
-      key: 'total',
-      dataIndex: 'total'
-    }
-  ];
-  const data = [
-    {
-      key: '1',
-      id: '11223',
-      orderTime: "May 24, 2023",
-      method: 'Cash',
-      status: 'Pending',
-      total: '70.00'
-    },
-    {
-      key: '2',
-      id: '11224',
-      orderTime: "May 24, 2023",
-      method: 'Cash',
-      status: 'Pending',
-      total: '70.00'
-    },
-    {
-      key: '3',
-      id: '11224',
-      orderTime: "May 24, 2023",
-      method: 'Cash',
-      status: 'Pending',
-      total: '70.00'
-    },
-  ];
+  const { users } = useSelector(state => state.users);
+  const { orders } = useSelector(state => state.orders);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(allUser())
+    dispatch(orderList())
+  },[dispatch])
+  const handleUpdate=()=>{}
+  const handleDelete=()=>{}
   return (
     <div className='dashboard'>
 
       {/* order monitoring */}
       <div>
-        <h3 className='font-bold text-[18px] mb-5'>Update Profile</h3>
+        <h3 className='font-bold text-[18px] mb-5'>Orders Details</h3>
         <div className=' category-container'>
           <div className='category-item'>
             <div className='category-icon cart-icon'>
@@ -131,8 +91,74 @@ const Dashboard = () => {
 
       {/* recent order */}
       <div className='mt-10'>
-        <h1>Recent Orders</h1>
-        <Table style={{borderRadius : "6px"}} className='border rounded-[6px]' pagination={false} columns={columns} dataSource={data}/>
+      <h3 className='font-bold text-[18px] mb-5'>Recent Orders</h3>
+        <div style={{overflowX : "auto"}}>
+          <table >
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Shipping Cost</th>
+              <th>Delivery Status</th>
+              <th>Order Number</th>
+              <th>Payment Method</th>
+              <th>Delivery Method</th>
+              <th>Action</th>
+              <th>View</th>
+            </tr>
+            {
+              orders?.map(order=>
+                <tr key={order._id}>
+                  <td>{order?.userName}</td>
+                  <td>{order?.userEmail}</td>
+                  <td>{order?.products?.map((name)=> {return name.name})}</td>
+                  <td>{order?.products?.map((name)=> {return name.price})}</td>
+                  <td>{order?.products?.map((name)=> {return name.quantity})}</td>
+                  <td>{order?.total}</td>
+                  <td>{order?.shippingCost}</td>
+                  <td className='bg-cyan-600 status' onClick={()=>handleUpdate(order._id)}>{order?.deliveryStatus}</td>
+                  <td>{order?.orderNumber}</td>
+                  <td className='capitalize'>{order?.paymentMethod}</td>
+                  <td className='capitalize'>{order?.deliveryMethod}</td>
+                  <td className='trash' onClick={()=>handleDelete(order._id)}><FaTrashAlt size={22} /></td>
+                  <td><BsEye className='cursor-pointer' size={22} /></td>
+                </tr>
+              )
+            }
+          </table>
+        </div>
+      </div>
+
+      {/* users order */}
+      <div className='mt-10'>
+      <h3 className='font-bold text-[18px] mb-5'>Recent Register User</h3>
+        <div style={{overflowX : "auto"}} className='users-table'>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>phone</th>
+              <th>Address</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+            {
+              users?.map(user=>
+                <tr key={user._id}>
+                  <td>{user?.name}</td>
+                  <td>{user?.email}</td>
+                  <td>{user?.phone ? user?.phone : "No Data Found"}</td>
+                  <td>{user?.address ? user?.address : "No Data Found"}</td>
+                  <td className='capitalize'>{user?.role}</td>
+                  <td className='trash' onClick={()=>handleDelete(user._id)}><FaTrashAlt size={22} /></td>
+                </tr>
+              )
+            }
+          </table>
+        </div>
       </div>
     </div>
   )

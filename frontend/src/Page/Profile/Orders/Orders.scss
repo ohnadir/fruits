@@ -1,19 +1,11 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
+.my-orders{
+  width: 100%;
+  background-color: white;
   td, th {
-    border: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
   }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-}
-.my-orders{
     .trash{
         background-color: rgba(239, 68, 68, 0.7);
         color: white;

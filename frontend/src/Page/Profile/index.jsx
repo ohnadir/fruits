@@ -25,7 +25,7 @@ const Profile = () => {
             {contextHolder}
             <div className='profile-container'>
                 <div className='profile max-w-[1280px] mx-auto px-10 flex gap-5 lg:gap-10 flex-col lg:flex-row justify-between pt-10'>
-                    <aside className='w-full lg:w-[25%]'>
+                    <aside className='w-full lg:w-[220px]'>
                         <ul>
                             <li onClick={()=>navigate("/profile")} ><RiHome2Line size={15}/>Home</li>
                             {

@@ -14,8 +14,8 @@ const Order = () => {
   const handleDelete=(id)=>{
   }
   return (
-    <div data-aos="fade-up" className='my-orders'>
-      <table className='overflow-x-auto'>
+    <div data-aos="fade-up" className='my-orders' style={{overflowX : "auto"}}>
+      <table >
         <tr>
           <th>Name</th>
           <th>Price</th>

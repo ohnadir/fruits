@@ -137,7 +137,7 @@ exports.allUser = async()=>{
         message: 'Users fetch successfully',
     };
     try {
-        const users = await User.find({});
+        const users = await User.find({}).sort({ _id:-1});
         if (!users) {
             response.code = 404;
             response.status = 'failed';

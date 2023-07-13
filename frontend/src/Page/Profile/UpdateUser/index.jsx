@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "../Profile.scss"
+import "./UpdateUser.scss"
 import { useDispatch, useSelector } from 'react-redux'
 import { update } from "../../../Redux/actions/user"
 import { message } from 'antd'
