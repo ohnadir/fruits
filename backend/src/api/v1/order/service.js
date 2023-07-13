@@ -25,7 +25,7 @@ exports.orderList = async()=>{
         message:"Order Fetch Successfully"
     };
     try {
-        const result = await Order.find({});
+        const result = await Order.find({}).sort({ _id:-1});
         response.orders= result;
         return response; 
     } catch (error) {

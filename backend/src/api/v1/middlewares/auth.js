@@ -19,7 +19,7 @@ exports.isAuthenticatedUser = (req, res, next) => {
 
 exports.authorizeRoles = (req, res, next) => {
   const authHeader = req.headers.authorization
-  const token = authHeader.split(' ')[1];
+  const token = authHeader?.split(' ')[1];
   if (!token) {
     return res.status(401).send({message: 'UnAuthorized access'})
   }
