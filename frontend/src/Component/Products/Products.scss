@@ -30,7 +30,7 @@
     background-color: white;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 32px 20px;
+    padding: 32px 0;
     .products-header{
         padding-bottom: 15px;
         h1{
@@ -109,5 +109,10 @@
     }
     .product:hover .hover-btn{
         opacity: 1;
+    }
+}
+@media screen and (max-width: 1279px){
+    .products-container{
+        padding: 32px 25px;
     }
 }

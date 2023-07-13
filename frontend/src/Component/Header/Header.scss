@@ -4,7 +4,7 @@
     .header-container{
         max-width: 1280px;
         margin: 0 auto;
-        padding: 32px 20px;
+        padding: 32px 0;
     }
     .slider-container{
         .slider{
@@ -249,6 +249,13 @@
             .slider-content{
                 top: 15%;
             }
+        }
+    }
+}
+@media screen and (max-width: 1279px){
+    .header{
+        .header-container{
+            padding: 32px 25px;
         }
     }
 }
