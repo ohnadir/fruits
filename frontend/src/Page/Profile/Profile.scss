@@ -1,93 +1,76 @@
 .profile-container{
     background-color: rgb(249, 250, 251);
-    height: calc(100vh - 82px);
+    height: fit-content;
+    .profile{
+        max-width: 1280px;
+        padding: 32px 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px;
+        aside{
+            width: 100%;
+            background-color: white;
+            padding: 18px;
+            border-radius: 8px;
+            height: fit-content;
+            ul {
+                margin: 0;
+                padding: 0;
+                li{
+                    display: flex;
+                    padding: 8px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    align-items: center;
+                    gap: 10px;
+                    background-color: transparent;
+                    transition: all 0.2s ease;
+                }
+                li:hover{
+                    background-color: #f9fafb;
+                    color: rgb(5 150 105);
+                }
+                li:visited{
+                    background-color: red !important;
+                }
+            }
+        }
+    }
+    main{
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100% !important;
+    }
 }
-.profile{
-    aside{
-        background-color: white;
-        padding: 18px;
-        border-radius: 8px;
-        height: fit-content;
-        ul {
-            margin: 0;
-            li{
-                display: flex;
-                padding: 8px;
-                font-size: 15px;
-                font-weight: 600;
-                cursor: pointer;
-                align-items: center;
-                gap: 10px;
-                background-color: transparent;
-                transition: all 0.2s ease;
-            }
-            li:hover{
-                background-color: #f9fafb;
-                color: rgb(5 150 105);
-            }
-            li:visited{
-                background-color: red !important;
+@media screen and (max-width: 1279px){
+    .profile-container{
+        .profile{
+            padding: 32px 25px;
+        }
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1193px){
+    .profile-container{
+        .profile{
+            aside{
+                width: 260px !important;
             }
         }
     }
 }
 
-// account details component
-.account-details, .address-container{
-    border-radius: 8px;
-    background-color: white;
-    label{
-        color: #4d4d4d;
-        font-size: 13px;
-        margin-bottom: 3px;
-    }
-    input{
-        width: 100%;
-        font-size: 13px;
-        border: 1px solid #eee;
-        padding: 8px 12px ;
-        border-radius: 6px;
-        color: black !important;
-        outline: none;
-        background-color: white;
-    }
-    input:focus{
-        border: 1px solid #059669 ;
-    }
-    .update-btn{
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        margin-top: 20px;
-        button{
-            width: fit-content;
-            padding: 8px 15px;
-            color: white;
-            font-weight: 600;
-            border-radius: 6px;
-            background-color: rgb(5 150 105);
-        }
-        
-    }
-}
-@media screen and (max-width: 639px){
-    .account-details, .address-container{
-        .update-btn{
-            button{
-                width: 100%;
+@media screen and (min-width: 1024px){
+    .profile-container{
+        height: calc(100vh - 82px);
+        .profile{
+            flex-direction: row;
+            gap: 40px;
+            aside{
+                width: 240px;
             }
-            
-        }
-    }
-}
-.address-container{
-    .address-content{
-        background-color: white;
-        p{
-            margin: 0;
-            padding: 0;
-            font-size: 13px;
         }
     }
 }

@@ -1,7 +1,7 @@
 .search-product-container{
     max-width: 1280px;
     margin: 0 auto;
-    padding: 32px 20px;
+    padding: 32px 0;
     .products-container{
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -131,5 +131,11 @@
                 margin: 0 auto;
             }
         }
+    }
+}
+
+@media screen and (max-width: 1279px){
+    .search-product-container{
+        padding: 32px 25px;
     }
 }

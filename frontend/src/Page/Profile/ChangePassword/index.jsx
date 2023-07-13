@@ -28,7 +28,7 @@ const ChangePassword = () => {
     return (
         <>
             {contextHolder}
-            <div data-aos="fade-up" className='address-container p-4'>
+            <div data-aos="fade-up" className='change-password-container p-4'>
                 <h1>Change Password</h1>
                 <div className='grid grid-cols-1 gap-3 mt-3'>
                     <div>

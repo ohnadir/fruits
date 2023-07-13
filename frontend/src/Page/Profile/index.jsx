@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./Profile.scss"
 import { MdOutlineDashboardCustomize,  MdOutlineLogout } from 'react-icons/md';
 import { Outlet } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { RiHome2Line } from "react-icons/ri"
 
 const Profile = () => {
     const [messageApi, contextHolder] = message.useMessage();
-    const { user, isAuthenticated } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.auth);
     const navigate = useNavigate()
     const dispatch = useDispatch()
     
@@ -24,8 +24,8 @@ const Profile = () => {
         <>
             {contextHolder}
             <div className='profile-container'>
-                <div className='profile max-w-[1280px] mx-auto px-10 flex gap-5 lg:gap-10 flex-col lg:flex-row justify-between pt-10'>
-                    <aside className='w-full lg:w-[220px]'>
+                <div className='profile'>
+                    <aside>
                         <ul>
                             <li onClick={()=>navigate("/profile")} ><RiHome2Line size={15}/>Home</li>
                             {
@@ -36,7 +36,7 @@ const Profile = () => {
                                 null
                             }
                             {
-                                user?.role === "admin"
+                                user?.role === "user"
                                 ?
                                 <li onClick={()=>navigate("/profile/order")}>
                                     <span>
@@ -67,7 +67,7 @@ const Profile = () => {
                             <li onClick={handleLogOut}><MdOutlineLogout size={15}/>Logout</li>
                         </ul>
                     </aside>
-                    <main className='w-full lg:w-[80%] mt-5 sm:mt-0'>
+                    <main>
                         <Outlet/>
                     </main>
                 </div>

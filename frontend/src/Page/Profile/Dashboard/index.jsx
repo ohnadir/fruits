@@ -90,10 +90,10 @@ const Dashboard = () => {
       </div>
 
       {/* recent order */}
-      <div className='mt-10'>
+      <div className='order-table'>
       <h3 className='font-bold text-[18px] mb-5'>Recent Orders</h3>
         <div style={{overflowX : "auto"}}>
-          <table >
+          <table className='order-table-container'>
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -131,12 +131,12 @@ const Dashboard = () => {
           </table>
         </div>
       </div>
-
+      
       {/* users order */}
-      <div className='mt-10'>
+      <div className='user-table'>
       <h3 className='font-bold text-[18px] mb-5'>Recent Register User</h3>
-        <div style={{overflowX : "auto"}} className='users-table'>
-          <table>
+        <div style={{overflowX : "auto"}}>
+          <table className='user-table-container'>
             <tr>
               <th>Name</th>
               <th>Email</th>

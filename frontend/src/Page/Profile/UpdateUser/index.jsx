@@ -31,7 +31,7 @@ const UpdateUser = () => {
     return (
         <>
             {contextHolder}
-            <div className='account-details p-3  mb-10' data-aos="fade-up" >
+            <div className='update-user-container p-3  mb-10' data-aos="fade-up" >
                 <h3 className='font-bold text-[18px]'>Update Profile</h3>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 '>
                     <div>
