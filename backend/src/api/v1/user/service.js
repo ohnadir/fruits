@@ -238,3 +238,20 @@ exports.PutUserInfo = async({ id, phone, address })=>{
         return response;
     }
 }
+
+exports.Logout = async () => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'logout successfully',
+    };
+  
+    try {
+        return response
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};

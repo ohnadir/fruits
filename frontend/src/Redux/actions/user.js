@@ -252,7 +252,8 @@ export const logout = () => async (dispatch) => {
         const config = {
             headers:{
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         localStorage.removeItem("token");
