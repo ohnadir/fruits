@@ -4,7 +4,7 @@ import './Search.scss'
 import { getSearchProduct } from "../../Redux/actions/product";
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Component/Loader';
-import { addToCart } from '../../utils/LocalStorage';
+import { addItemToCart } from "../../Redux/actions/carts"
 import { AiOutlineEye, AiOutlineShoppingCart } from 'react-icons/ai';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,7 +31,7 @@ const SearchResult = () => {
             total: Number(product?.price) * 1
         }
         if(data){
-            addToCart(data)
+            addItemToCart(data)
             messageApi.success('Product added to cart')
         }
     }

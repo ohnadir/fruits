@@ -97,7 +97,7 @@
             
             .clipboard-container{
                 border-left: 3px dashed #eee;
-                padding-left: 22px;
+                padding-left: 25px;
                 &::before{
                     content: '' ;
                     height: 15px;
@@ -122,6 +122,7 @@
                 }
             }
             .clipboard{
+                width: 100px;
                 background-color: rgb(236 253 245);
                 color: rgb(5 150 105);
                 text-align: center;

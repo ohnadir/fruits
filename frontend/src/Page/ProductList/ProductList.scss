@@ -1,8 +1,86 @@
+.ant-select-selector:hover{
+    outline: #d9d9d9 !important;
+}
+.ant-select-selector:focus{
+    border: #d9d9d9 !important;
+}
 .product-list-container{
     max-width: 1280px;
     margin: 0 auto;
     padding: 32px 25px;
+    
+    .filter-container{
+        position: sticky;
+        top: 82px;
+        z-index: 1000;
+        width: 100%;
+        background-color: white;
+        border-radius: 4px;
+        padding: 10px 0;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .input-container{
+            border: 1px solid grey;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            input{
+                border: none;
+                outline: none;
+                background-color: transparent;
+            }
+            button{
+                padding-left: 10px;
+            }
+        }
+        .option{
+            background-color: grey;
+            color: white;
+            width: 30px;
+            height: 30px;
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            &:hover{
+                background-color: rgb(16 185 129);
+            }
+        }
+    }
+    .category-products{
+        position: sticky;
+        top: 139px;
+        z-index: 1000;
+        background-color: #d9d9d9;
+        height: fit-content;
+        .category{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        p{
+            padding: 6px 10px;
+            margin: 0;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            &:hover{
+                background-color: #10b981;
+                color: white;
+            }
+            &:focus{
+                background-color: rgb(16 185 129);
+                color: white;
+            }
+        }
+    }
     .products-container-list{
+        width: 80%;
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
         gap: 20px;
@@ -11,7 +89,8 @@
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             width: 200px;
             padding: 15px 0 10px 0;
-            
+            border-radius: 6px;
+            margin: 0 auto;
             .product-img{
                 width: 150px;
                 margin: 0 auto;
@@ -79,20 +158,31 @@
 @media screen and (min-width: 1114px){
     .product-list-container{
         .products-container-list{
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
         }
     }
 }
 @media screen and (min-width: 883px) and (max-width: 1113px){
     .product-list-container{
         .products-container-list{
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+@media screen and (max-width: 882px){
+    .product-list-container{
+        .category-products{
+            display: none;
+        }
+        .products-container-list{
+            width: 100%;
         }
     }
 }
 @media screen and (min-width: 465px) and  (max-width: 882px){
     .product-list-container{
         .products-container-list{
+            width: 100%;
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
@@ -107,13 +197,23 @@
         }
     }
 }
-@media screen and (max-width: 464px) {
+
+@media screen and (max-width: 516px) {
     .product-list-container{
-        .products-container-list{
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            .products{
-                margin: 0 auto;
-            }
+        .filter-container{
+            .option{
+                display: none;
+            }    
+        }
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .product-list-container{
+        .filter-container{
+            .input-container{
+                display: none;
+            }    
         }
     }
 }

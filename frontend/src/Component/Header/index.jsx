@@ -82,7 +82,7 @@ const Header = () => {
                                             ?
                                             <p className='p-0 m-0 clipboard'>Copied!</p>
                                             :
-                                            <p onClick={()=>setCopy("SUMMER23")} className='p-0 m-0 clipboard'>SUMMER23</p>
+                                            <p onClick={()=>setCopy("SUMMER23")} className='p-0 m-0 clipboard'>COUPON</p>
                                         }
                                     </CopyToClipboard>
                                 </div>
@@ -91,9 +91,9 @@ const Header = () => {
                                 <div className='flex gap-5 items-center'>
                                     <img src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75" alt="" />
                                     <div className='coupon'>
-                                        <span className='font-bold text-[#ef4444] text-[15px]'>10% </span>
+                                        <span className='font-bold text-[#ef4444] text-[15px]'>$50 </span>
                                         <span className='font-semibold text-gray-600 text-[14px]'> Off</span>
-                                        <p className='font-semibold text-gray-600 text-[14px] p-0 my-1'>SUMMER23</p>
+                                        <p className='font-semibold text-gray-600 text-[14px] p-0 my-1'>SUMMER GIFT</p>
                                         <div className='timer'>
                                             <div className='timer-item'>00</div>
                                             <div className='timer-colon'>:</div>
@@ -112,7 +112,7 @@ const Header = () => {
                                             ?
                                             <p className='p-0 m-0 clipboard'>Copied!</p>
                                             :
-                                            <p onClick={()=>setCopy("SUMMER23GIFT")} className='p-0 m-0 clipboard'>SUMMER23</p>
+                                            <p onClick={()=>setCopy("SUMMER23GIFT")} className='p-0 m-0 clipboard'>COUPON</p>
                                         }
                                     </CopyToClipboard>
                                 </div>

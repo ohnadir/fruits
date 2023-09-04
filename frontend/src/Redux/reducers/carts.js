@@ -2,7 +2,8 @@ import {
     ADD_TO_CART,
     GET_CART, 
     DECREASE_QUANTITY_CART, 
-    REMOVE_ITEM_CART
+    REMOVE_ITEM_CART,
+    EMPTY_CART
 } from '../constants/carts'
 
 export const cartReducer = (state = { cartItems: []}, action) => {
@@ -65,6 +66,12 @@ export const cartReducer = (state = { cartItems: []}, action) => {
                     ...state,
                     cartItems: [...state.cartItems.filter(i => i.id !== isExist.id)]
                 }
+            }
+        
+        case EMPTY_CART: 
+            return {
+                ...state,
+                cartItems: state.cartItems = []
             }
 
         default:

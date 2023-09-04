@@ -7,7 +7,8 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
 import { newOrder } from "../../Redux/actions/order"
 import { makePayment } from "../../Redux/actions/payment"
-import { getStoredCart, addToCart, decreaseQuantity } from "../../utils/LocalStorage"
+import { decreaseCartQuantity, addItemToCart, removeItemFromCart, emptyCart } from "../../Redux/actions/carts"
+
 
 const options = {
     style: {
@@ -20,6 +21,7 @@ const options = {
     }
 }
 const Checkout = () => {
+    const { cartItems } = useSelector(state => state.cart);
     const [messageApi, contextHolder ] = message.useMessage();
     const [auth, setAuth] = useState('');
     const [discount, setDiscount] = useState(0)
@@ -29,7 +31,6 @@ const Checkout = () => {
     const { user } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
     const { order } = useSelector(state => state.order);
-    const cart = getStoredCart();
     const dispatch = useDispatch();
 
 
@@ -58,7 +59,7 @@ const Checkout = () => {
             setDiscount(20)
         }
     }
-    const subTotal = cart?.reduce((a, b) => {return a + b.total}, 0);
+    const subTotal = cartItems?.reduce((a, b) => {return a + b.total}, 0);
     const shippingCost = auth.deliveryMethod === "fedEx" && 60 || auth.deliveryMethod === "ups" && 20 || 0  
     const total = subTotal + shippingCost; 
 
@@ -111,7 +112,7 @@ const Checkout = () => {
             data = await stripeCall()
         }
         const order = {
-            products: cart,
+            products: cartItems,
             shippingInfo : {
                 firstName: auth.firstName,
                 lastName: auth.lastName ,
@@ -142,6 +143,7 @@ const Checkout = () => {
     useEffect(()=>{
         if(order?._id){
             messageApi.success("Order is successful")
+            dispatch(emptyCart())
             setTimeout(() => {
                 localStorage.removeItem("shopping-cart");
                 navigate(`/invoice/${order?._id}`)
@@ -153,7 +155,7 @@ const Checkout = () => {
             {contextHolder}
             <div className='checkout'>
                     <div className=' checkout-container'>
-                        <div className='form-container'>
+                        <div className='form-container mb-10 mt-0 md:mt-10'>
                             <div className='persona-details'>
                                 <h1>01.Personal Details</h1>
                                 <div className='personal-details-container'>
@@ -296,12 +298,12 @@ const Checkout = () => {
                                 </button>
                             </div>
                         </div>
-                        <section className='card-container'>
+                        <section className='card-container  mt-10 md:mt-10'>
                             <h1 className='card-heading'>Order Summary</h1>
                             <div className="cart-item-container">
                                 <div className='cart-item'>
                                 {
-                                    cart?.map((item)=>
+                                    cartItems?.map((item)=>
                                         <div className='mb-[20px]  mx-2' key={item.id}>
                                             <div className='cart'>
                                                 <div className='cart-photo w-[20%]'>
@@ -313,13 +315,20 @@ const Checkout = () => {
                                                     <div className='cart-footer mt-2'>
                                                         <p className='total'>${item?.total}</p>
                                                         <div className='btn-container'>
-                                                            <button onClick={()=>decreaseQuantity(item.id)}  >-</button>
+                                                            <button disabled={ item?.quantity === 1} onClick={()=>dispatch(decreaseCartQuantity(item.id))}  >-</button>
                                                             <button>{item?.quantity}</button>
-                                                            <button onClick={()=>addToCart(item)}>+</button>
+                                                            <button onClick={()=>dispatch(addItemToCart(item))}>+</button>
                                                         </div>
-                                                        <div className='delete-btn'>
-                                                            <BsTrash size={15} style={{color : "red"}}/>
-                                                        </div>
+                                                        {
+                                                            cartItems.length > 1
+                                                            ?
+                                                            <div className='delete-btn' onClick={()=>dispatch(removeItemFromCart(item.id))}>
+                                                                <BsTrash size={15} style={{color : "red"}}/>
+                                                            </div>
+                                                            :
+                                                            null
+                                                        }
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
