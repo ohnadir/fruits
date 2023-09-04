@@ -29,7 +29,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/user'
 import Cookies from "js-cookie"
-// const baseUrl = "http://localhost:5002/api/v1";
+
 const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 // Login
 export const login = (auth) => async (dispatch) => {
