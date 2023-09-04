@@ -1,7 +1,7 @@
 .invoice-container{
     max-width: 1280px;
     margin: 0 auto;
-    padding: 32px 0;
+    padding: 32px 25px;
     .invoice-title{
         background-color: rgb(209 250 229);
         padding: 15px 30px ;
@@ -100,11 +100,5 @@
         button:hover{
             background-color: rgb(4, 120, 87);
         }
-    }
-}
-
-@media screen and (max-width: 1279px){
-    .invoice-container{
-        padding: 32px 25px;
     }
 }

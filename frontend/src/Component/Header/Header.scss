@@ -4,7 +4,7 @@
     .header-container{
         max-width: 1280px;
         margin: 0 auto;
-        padding: 32px 0;
+        padding: 32px 25px;
     }
     .slider-container{
         max-height: 100%;
@@ -267,13 +267,6 @@
                     font-size: 14px !important;
                 }
             }
-        }
-    }
-}
-@media screen and (max-width: 1279px){
-    .header{
-        .header-container{
-            padding: 32px 25px;
         }
     }
 }
