@@ -31,6 +31,7 @@ import {
 import Cookies from "js-cookie"
 
 const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
+
 // Login
 export const login = (auth) => async (dispatch) => {
     try {
@@ -197,7 +198,6 @@ export const loadUser = (token) => async (dispatch) => {
 // change password
 export const changePassword = (id, userData) => async (dispatch) => {
     try {
-        console.log(userData)
         dispatch({ type: USER_PASSWORD_CHANGE_REQUEST })
         const config = {
             headers:{
@@ -232,7 +232,6 @@ export const putUserInfo = (id, userData) => async (dispatch) => {
             }
         }
         const { data } = await axios.put(`${baseUrl}/users/info/${id}`, userData, config)
-        console.log(data);
         dispatch({
             type: PUT_USER_INFO_SUCCESS,
             payload: data
@@ -248,16 +247,7 @@ export const putUserInfo = (id, userData) => async (dispatch) => {
 // Logout user
 export const logout = () => async (dispatch) => {
     try {
-        console.log("fp")
-        const config = {
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
-        }
         localStorage.removeItem("token");
-        await axios.get(`${baseUrl}/users/logout`, config)
         dispatch({
             type: LOGOUT_SUCCESS,
         })

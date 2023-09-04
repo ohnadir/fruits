@@ -1,4 +1,4 @@
-const { registration, login, Logout, loadUser, updateProfile, allUser, singleUser, password, PutUserInfo } = require("./service")
+const { registration, login, loadUser, updateProfile, allUser, singleUser, password, PutUserInfo } = require("./service")
 
 exports.register = async (req, res) => {
   const { status, code, message, token, user } = await registration({
@@ -42,9 +42,5 @@ exports.changePassword = async (req, res ) => {
 
 exports.putUserInfo = async (req, res ) => {
   const { status, code, message } = await PutUserInfo({ ...req.body, id:req.params.id});
-  res.status(code).json({ code, status, message });
-};
-exports.logout = async (req, res) => {
-  const { status, code, message} = await Logout();
   res.status(code).json({ code, status, message });
 };

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // Checks if user is authenticated or not 
 exports.isAuthenticatedUser = (req, res, next) => {
-  const authHeader = req.headers.authorization
+  const authHeader = req.headers.authorization;
   const token = authHeader.split(' ')[1];
   if (!token) {
     return res.status(401).send({message: 'UnAuthorized access'})
@@ -18,7 +18,7 @@ exports.isAuthenticatedUser = (req, res, next) => {
 }
 
 exports.authorizeRoles = (req, res, next) => {
-  const authHeader = req.headers.authorization
+  const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1];
   if (!token) {
     return res.status(401).send({message: 'UnAuthorized access'})
