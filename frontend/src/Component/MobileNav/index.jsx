@@ -13,12 +13,16 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
     const { cartItems } = useSelector(state => state.cart);
     const { isAuthenticated } = useSelector(state => state.auth);
     const navigate = useNavigate();
+
+    // category product navigate function
     const handleCategory=(e)=>{
         if(e){
             navigate(`/category/${e}`)
             setDrawer(false)
         }
     }
+
+    // navigate multi-page function
     const handleNavigate=(e)=>{
         if(e === 'home'){
             navigate('/')
@@ -41,6 +45,8 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
             headerStyle={{"borderBottom": "0px ", "display": "none"}}
             placement="left" closeIcon={false} open={drawer}>
             <div className='mobile-navbar'>
+
+                {/* drawer brand logo section start */}
                 <div className='brand-logo'>
                     <img src={logo} alt="" className="log" />
                     <div className='close-icon' onClick={()=>setDrawer(false)}>
@@ -49,6 +55,9 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
                         </svg>
                     </div>
                 </div>
+                {/* drawer brand logo section end */}
+
+                {/* all category container section start */}
                 <div className="categories">
                     <div className="title">
                         <h1>All Categories</h1>
@@ -63,30 +72,47 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
                         }
                     </div>
                 </div>
+                {/* all category container section end */}
+
+                {/* drawer bottom section start */}
                 <div className="bottom-nav">
+
+                    {/* home icon start */}
                     <div className="bottom-nav-item" onClick={()=>handleNavigate('home')}>
                         <FiHome size={22} />
                     </div>
+                    {/* home icon start */}
+
+                    {/* cart icons for cart drawer open section start */}
                     <div className="bottom-nav-item  relative ">
                         <BsCart onClick={()=>handleNavigate('cart')} size={22} style={{color: "white"}} />
                         <div className='cart-counter-container'>
                             <p className="">{ cartItems.length === 0 ? 0 : cartItems.length}</p>
                         </div>
                     </div>
+                    {/* cart icons for cart drawer open section end */}
+
+                    {/* user part start */}
                     <div className="bottom-nav-item">
                         {
                             isAuthenticated
                             ?
+                            // if user is login show profile picture of user
                             <div className='cursor-pointer' onClick={()=>handleNavigate('profile')}>
                                 <HiOutlineUserCircle size={28} style={{color: "white"}} />
                             </div>
                             :
+                            // if user isn't login show avatar picture
                             <div className="cursor-pointer">
                                 <FiUser size={24} style={{color: "white"}} onClick={()=>handleNavigate('auth')} />
                             </div>
                         }
+                        {/* user part start */}
+
                     </div>
                 </div>
+                {/* drawer bottom section end */}
+
             </div>
         </Drawer>
         

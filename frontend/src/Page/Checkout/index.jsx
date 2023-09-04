@@ -28,7 +28,6 @@ const Checkout = () => {
     const elements = useElements();
     const { user } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
-    const { isAuthenticated } = useSelector(state => state.auth);
     const { order } = useSelector(state => state.order);
     const cart = getStoredCart();
     const dispatch = useDispatch();
@@ -305,7 +304,7 @@ const Checkout = () => {
                                     cart?.map((item)=>
                                         <div className='mb-[20px]  mx-2' key={item.id}>
                                             <div className='cart'>
-                                                <div className='product-photo w-[20%] border border-red-500 rounded-full p-[10px]'>
+                                                <div className='cart-photo w-[20%]'>
                                                     <img className='w-full' src={item?.image} alt="" />
                                                 </div>
                                                 <div className='cart-info w-[80%]'>

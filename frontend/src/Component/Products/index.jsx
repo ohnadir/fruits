@@ -59,6 +59,14 @@ const Products = () => {
         }
       },
       {
+        breakpoint: 715,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true
+        }
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,

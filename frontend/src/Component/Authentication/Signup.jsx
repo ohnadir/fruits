@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../Redux/actions/user'
 import {  message } from 'antd';
-import { useNavigate } from 'react-router-dom'
 import "./Authentication.scss"
 import { GrFacebookOption } from 'react-icons/gr';
 import { FcGoogle } from 'react-icons/fc';

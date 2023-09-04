@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
-import Metadata from '../../Component/Layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux'
 // import { allUsers, clearErrors } from '../../Redux/actions/user';
 
 const AllUsers = ({allUsers}) => {
     const dispatch = useDispatch();
-    const { loading, users, error } = useSelector(state => state.allUsers);
+    const { users} = useSelector(state => state.allUsers);
     useEffect(() => {
-        dispatch(allUsers());
-        
+      dispatch(allUsers());
     }, [dispatch]);
     const columns = [
         {

@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CartDrawer = ({ setOpen }) => {
     const { cartItems } = useSelector(state => state.cart);
-    console.log(cartItems)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const total = cartItems?.reduce((a, b) => {return a + b.total}, 0);
+
+    // checkout navigate function
     const handleCheckout=()=>{
         if(total > 1){
             navigate('/checkout')
@@ -19,20 +20,26 @@ const CartDrawer = ({ setOpen }) => {
         }
     }
 
+    // cart item remove function
     const HandleRemove= (id)=>{
         dispatch(removeItemFromCart(id))
     }
+
+    // cart item decrease function
     const handleDecreaseQuantity= (id)=>{
         dispatch(decreaseCartQuantity(id));
     }
+
+    // cart item increase function
     const handleIncreaseQuantity= (data)=>{
         dispatch(addItemToCart(data));
     }
 
     return (
         <div className='cart-drawer'>
-            <Helmet title="Checkout" />
-            {/* Cart Header */}
+            <Helmet title="Cart" />
+
+            {/* Cart Header start */}
             <div  className='cart-header'>
                 <div className='cart-header-content'>
                     <span>
@@ -42,14 +49,18 @@ const CartDrawer = ({ setOpen }) => {
                     </span>
                     <span className='text-[16px] font-semibold'>Shopping  Cart</span>
                 </div>
-                <MdClose
-                    size={18}
-                    className='cursor-pointer' onClick={()=>setOpen(false)} />
+
+                {/* close icon */}
+                <MdClose size={18} className='cursor-pointer' onClick={()=>setOpen(false)} />
             </div>
+            {/* Cart Header end */}
+
             <div className='cart-body'>
                 {
                     cartItems.length === 0
                     ?
+
+                    // empty cart container start
                     <div className='empty-cart-container'>
                         <div>
                             <div className='empty-cart'>
@@ -65,20 +76,31 @@ const CartDrawer = ({ setOpen }) => {
                             </div>
                         </div>
                     </div>
+                    // empty cart container end
+
                     :
+
+                    // products container start
                     <div className='cart-item'>
                         {
                             cartItems?.map((item)=>
                                 <div className='mb-[20px]  mx-2' key={item.id}>
                                     <div className='cart'>
+
+                                        {/* product image start */}
                                         <div className='product-photo w-[20%] border border-red-500 rounded-full p-[10px]'>
                                             <img className='w-full' src={item?.image} alt="" />
                                         </div>
+                                        {/* product image end */}
+
+                                        {/* product details start */}
                                         <div className='cart-info w-[80%]'>
                                             <h2>{item?.name}</h2>
                                             <p>Item Price ${item?.price}</p>
                                             <div className='cart-footer mt-2'>
                                                 <p className='total'>${item?.total}</p>
+
+                                                {/* cart increase, decrease & remove container start */}
                                                 <div className='btn-container'>
                                                     <button onClick={()=>handleDecreaseQuantity(item.id)}>-</button>
                                                     <button>{item?.quantity}</button>
@@ -87,15 +109,20 @@ const CartDrawer = ({ setOpen }) => {
                                                 <div className='delete-btn' onClick={()=>HandleRemove(item.id)}>
                                                     <BsTrash size={15} style={{color : "red"}}/>
                                                 </div>
+                                                {/* cart increase, decrease & remove container end */}
                                             </div>
                                         </div>
+                                        {/* product details end */}
                                     </div>
                                 </div>
                             )
                         }
                     </div>
+                    // products container start
                 }
             </div>
+
+            {/* checkout button section start */}
             {
                 cartItems.length === 0
                 ?
@@ -109,6 +136,8 @@ const CartDrawer = ({ setOpen }) => {
                     </button>
                 </div>
             }
+            {/* checkout button section end */}
+
         </div>
     );
 };
