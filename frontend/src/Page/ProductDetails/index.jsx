@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails, } from '../../Redux/actions/product';
 import { message, Modal } from 'antd';
 import { useNavigate } from "react-router-dom";
-import { addToCart } from '../../utils/LocalStorage';
 import "./ProductDetails.scss";
-import Loader from "../../Component/Loader"
+import Loader from "../../Component/Loader";
+import { addItemToCart } from '../../Redux/actions/carts'
 
 
 const ProductDetails = ({ detailsModal, setDetailsModal }) => {
@@ -20,14 +20,14 @@ const ProductDetails = ({ detailsModal, setDetailsModal }) => {
     
     const handleCart=()=>{
         const data = {
-            name: product?.name,
             id:product?._id,
+            name: product?.name,
+            image : product?.productPictures,
             price: product?.price,
             quantity : count,
-            image : product?.productPictures,
             total: Number(product?.price) * count
         }
-        addToCart(data)
+        addItemToCart(data)
         messageApi.success('Product added to cart')
     }
     return (

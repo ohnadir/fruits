@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/logo-light.svg'
-import { Drawer, message } from 'antd';
+import { Drawer } from 'antd';
 import { FiUser } from 'react-icons/fi';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
@@ -9,22 +9,17 @@ import {  BsCart } from 'react-icons/bs';
 import {  CgMenuLeft } from 'react-icons/cg';
 import { useNavigate } from "react-router-dom";
 import "./Navbar.scss"
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import Authentication from '../../Component/Authentication';
-import { getStoredCart } from '../../utils/LocalStorage';
 import MobileNavbar from '../MobileNav';
 
 const Navbar = ({modal, setModal}) => {
+    const { cartItems } = useSelector(state => state.cart);
     const { isAuthenticated } = useSelector(state => state.auth);
-    const [count, setCount] = useState(0)
     const [open, setOpen] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [drawer, setDrawer] = useState(false);
     const navigate =useNavigate();
-    const cart = getStoredCart();
-    useEffect(()=>{
-        setCount(cart?.length);
-    },[cart]);
     
     const handleLogo=()=>{
         navigate('/')
@@ -50,7 +45,7 @@ const Navbar = ({modal, setModal}) => {
                             <div className='relative cursor-pointer'>
                                 <BsCart onClick={()=>setOpen(true)} size={22} style={{color: "white"}} />
                                 <div className='cart-counter-container'>
-                                    <p className="">{count ? count : 0}</p>
+                                    <p className="">{cartItems.length === 0 ? 0 : cartItems.length}</p>
                                 </div>
                             </div>
                             {
@@ -77,7 +72,7 @@ const Navbar = ({modal, setModal}) => {
                         modal && <Authentication modal={modal} setModal={setModal} />
                     }
                     {
-                        drawer && <MobileNavbar setOpen={setOpen} isAuthenticated={isAuthenticated} setModal={setModal} count={count} drawer={drawer} setDrawer={setDrawer} />
+                        drawer && <MobileNavbar setOpen={setOpen} setModal={setModal} drawer={drawer} setDrawer={setDrawer} />
                     }
                 </div>
             </div>

@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { BsCart } from 'react-icons/bs'
 import { Drawer } from 'antd';
 import logo from '../../assets/logo-light.svg'
+import { useSelector } from 'react-redux'
 
-const MobileNavbar = ({ isAuthenticated, setModal, count, drawer, setDrawer, setOpen }) => {
+const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
+    const { cartItems } = useSelector(state => state.cart);
+    const { isAuthenticated } = useSelector(state => state.auth);
     const navigate = useNavigate();
     const handleCategory=(e)=>{
         if(e){
@@ -67,7 +70,7 @@ const MobileNavbar = ({ isAuthenticated, setModal, count, drawer, setDrawer, set
                     <div className="bottom-nav-item  relative ">
                         <BsCart onClick={()=>handleNavigate('cart')} size={22} style={{color: "white"}} />
                         <div className='cart-counter-container'>
-                            <p className="">{count ? count : 0}</p>
+                            <p className="">{ cartItems.length === 0 ? 0 : cartItems.length}</p>
                         </div>
                     </div>
                     <div className="bottom-nav-item">

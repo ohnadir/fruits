@@ -28,7 +28,7 @@ import {
     PUT_USER_INFO_FAIL,
     CLEAR_ERRORS
 } from '../constants/user'
-
+import Cookies from "js-cookie"
 // const baseUrl = "http://localhost:5002/api/v1";
 const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
 // Login
@@ -39,12 +39,14 @@ export const login = (auth) => async (dispatch) => {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            withCredentials : true
         }
 
         const { data } = await axios.post(`${baseUrl}/users/login`, auth, config)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
+            Cookies.set("token", data.token, { expires: 7 })
         }
         dispatch({
             type: LOGIN_SUCCESS,
@@ -72,6 +74,7 @@ export const register = (userData) => async (dispatch) => {
         const { data } = await axios.post(`${baseUrl}/users/signup`, userData, config)
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
+            Cookies.set("token", data.token, { expires: 7 })
         }
         dispatch({
             type: REGISTER_USER_SUCCESS,

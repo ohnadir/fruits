@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Products.scss"
 import ProductDetails from '../../Page/ProductDetails';
 import { message } from 'antd';
-import { addToCart } from '../../utils/LocalStorage';
+import { addItemToCart } from '../../Redux/actions/carts'
 
 const Products = () => {
   const [messageApi, contextHolder ] = message.useMessage();
@@ -85,7 +85,7 @@ const Products = () => {
         total: Number(product?.price) * 1
     }
     if(data){
-      addToCart(data)
+      dispatch(addItemToCart(data));
       messageApi.success('Product added to cart')
     }
   }

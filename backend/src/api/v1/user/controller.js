@@ -21,7 +21,7 @@ exports.update = async (req, res) => {
 };
 
 exports.loadUser = async (req, res) => {
-  const { status, code, message, user } = await loadUser({...req.params});
+  const { status, code, message, user } = await loadUser({...req.params, cookie :req.cookies});
   res.status(code).json({ code, status, message, user });
 };
 

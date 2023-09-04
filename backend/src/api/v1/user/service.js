@@ -105,13 +105,14 @@ exports.updateProfile = async ({ name, email, phone, address, id }) => {
         return response;
     }
 };
-exports.loadUser=async({token})=>{
+exports.loadUser=async({ token, cookie })=>{
     const response = {
         code: 200,
         status: 'success',
         message: 'Load user successfully',
     };
     try {
+        console.log(cookie);
         if (!token) {
             response.code = 401;
             response.status = 'failed';

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require("cookie-parser")
 const morgan = require('morgan');
 const dotenv = require("dotenv");
 const app = express();
@@ -9,8 +10,16 @@ const connectDb = require("./src/api/v1/config");
 dotenv.config();
 connectDb();
 
-app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
+app.use("*", cors({
+  origin:true,
+  credentials : true
+}));
+
+
+
+
 app.use(morgan('dev'));
 
 // all route
