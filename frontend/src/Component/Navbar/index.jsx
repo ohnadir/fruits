@@ -16,7 +16,6 @@ import { getCart } from "../../Redux/actions/carts"
 
 const Navbar = ({modal, setModal}) => {
     const { cartItems } = useSelector(state => state.cart);
-    console.log(cartItems);
     const { isAuthenticated } = useSelector(state => state.auth);
     const [open, setOpen] = useState(false);
     const [keyword, setKeyword] = useState('');

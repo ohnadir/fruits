@@ -72,7 +72,7 @@ exports.Product = async({id})=>{
         return response;
     }
 }
-exports.SearchProduct= async ({ q }) => {
+exports.SearchProduct= async ({ keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating }) => {
     const response = {
       code: 200,
       status: 'success',
@@ -80,9 +80,46 @@ exports.SearchProduct= async ({ q }) => {
     };
   
     try {
-        const apiFeatures = new APIFeatures(Product.find(), q).search().filter()
+    
+        let queryObject = {};
+        if(keyword){
+            if (keyword !== 'undefined' || keyword !== undefined || keyword) {
+            let regex = new RegExp(keyword, 'i');
+            queryObject = {
+                ...query,
+                $or: [{ name: regex }],
+            };
+            }
+        }
+        if(category){
+            queryObject = {category : category}; 
+        }
+
+        if (minPrice && maxPrice) {
+            queryObject = {price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice)}}; 
+        }
+
+        if(minRating & maxRating){
+            queryObject = {rating: { $gte: parseInt(minRating), $lte: parseInt(maxRating)}};
+        }
+
+        let apiData = Product.find(queryObject);
+        
+        if(filterItem === "high2low"){
+            apiData.sort("-price")
+        }
+        if(filterItem === "low2high"){
+            apiData.sort("price")
+        }
+
+        if(filterItem === "a2z"){
+            apiData.sort("name")
+        }
+        if(filterItem === "z2a"){
+            apiData.sort("-name")
+        }
   
-        const data = await apiFeatures.query
+        const data = await apiData;
         if (data.length === 0) {
             response.code = 404;
             response.status = 'failed';

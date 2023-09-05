@@ -15,6 +15,6 @@ exports.product = async (req, res ) => {
 };
 
 exports.searchProduct = async (req, res ) => {
-  const { status, code, message, products } = await SearchProduct({ q: req.query});
+  const { status, code, message, products } = await SearchProduct({ ...req.query});
   res.status(code).json({ code, status, message, products });
 };

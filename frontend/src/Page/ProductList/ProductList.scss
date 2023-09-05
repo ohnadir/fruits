@@ -1,9 +1,6 @@
-.ant-select-selector:hover{
-    outline: #d9d9d9 !important;
-}
-.ant-select-selector:focus{
-    border: #d9d9d9 !important;
-}
+
+
+
 .product-list-container{
     max-width: 1280px;
     margin: 0 auto;
@@ -52,30 +49,89 @@
             }
         }
     }
-    .category-products{
+    .aside{
+        width: 15%;
         position: sticky;
         top: 139px;
         z-index: 1000;
-        background-color: #d9d9d9;
         height: fit-content;
-        .category{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        p{
-            padding: 6px 10px;
-            margin: 0;
-            font-size: 15px;
-            cursor: pointer;
-            font-weight: 500;
-            &:hover{
-                background-color: #10b981;
-                color: white;
+        .category-products{
+            background-color: #d9d9d9;
+            width: 100%;
+            .category{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
-            &:focus{
-                background-color: rgb(16 185 129);
-                color: white;
+            p{
+                padding: 6px 10px;
+                margin: 0;
+                font-size: 15px;
+                cursor: pointer;
+                font-weight: 500;
+                &:hover{
+                    background-color: #10b981;
+                    color: white;
+                }
+                &:focus{
+                    background-color: rgb(16 185 129);
+                    color: white;
+                }
+            }
+        }
+        .price-range{
+            background-color: #d9d9d9;
+            width: 100%;
+            padding: 6px 10px;
+            margin-top: 10px;
+            h1{
+                margin: 0 0 10px 0;
+                padding: 0;
+                font-size: 16px;
+                text-align: center;
+            }
+            p{
+                margin: 0;
+                padding: 0;
+            }
+            input[type='range'] {
+                overflow: hidden;
+                width: 100%;
+                appearance: none;
+                background-color: rgba(16, 185, 129, 0.3);
+                border-radius: 20px;
+              }
+              
+              input[type='range']::-webkit-slider-runnable-track {
+                height: 13px;
+                -webkit-appearance: none;
+                color: #13bba4;
+                border-radius: 20px;
+                // margin-top: -1px;
+              }
+              
+              input[type='range']::-webkit-slider-thumb {
+                width: 13px;
+                height: 13px;
+                border-radius: 50%;
+                appearance: none;
+                cursor: pointer;
+                background: white;
+                box-shadow: -80px 0 0 80px #10b981;
+                
+              }
+            
+        }
+        .rating{
+            background-color: #d9d9d9;
+            width: 100%;
+            padding: 6px 10px;
+            margin-top: 10px;
+            h1{
+                margin: 0 0 10px 0;
+                padding: 0;
+                font-size: 16px;
+                text-align: center;
             }
         }
     }

@@ -64,15 +64,41 @@ export const getProductDetails = (id) => async (dispatch) => {
         })
     }
 }
-export const getSearchProduct = (keyword = '', category) => async (dispatch) => {
+export const getSearchProduct = (keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating) => async (dispatch) => {
+    console.log(keyword);
     try {
         dispatch({
             type:SEARCH_PRODUCT_REQUEST
         })
-        let link = `${baseUrl}/products/search?q=${keyword}`;
-        if(category){
-            link = `${baseUrl}/products/search?q=${keyword}&category=${category}`            
+        let link = `${baseUrl}/products/search`;
+
+        // search product api
+        if(keyword){
+            link = `${baseUrl}/products/search?keyword=${keyword}`            
         }
+
+        // category product get api
+        if(category){
+            link = `${baseUrl}/products/search?category=${category}`            
+        }
+
+        
+        // Z to A product list get api
+        if(filterItem){
+            link = `${baseUrl}/products/search?filterItem=${filterItem}`            
+        }
+
+        // price filter product get api
+        if(minPrice && maxPrice){
+            link = `${baseUrl}/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`            
+        }
+
+        // rating filter product get api
+        if(minRating && maxRating){
+            link = `${baseUrl}/products/search?minRating=${minRating}&maxRating=${maxRating}`            
+        }
+
+
         const config = {
             headers:{
                 'Accept': 'application/json',

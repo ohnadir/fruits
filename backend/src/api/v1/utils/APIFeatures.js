@@ -1,29 +1,38 @@
 class APIFeatures {
-    constructor(query, queryString) {
+    constructor(query, queryStr) {
         this.query = query;
-        this.queryString = queryString;
+        this.queryStr = queryStr;
     }
+
     search() {
-        const q = this.queryString.q;
-        
-        let query = {};
-        if (q !== 'undefined' || q !== undefined || q) {
-            let regex = new RegExp(q, 'i');
-            query = { ...query, $or: [{ name: regex }, { category: regex }] };
-        }
-        this.query = this.query.find(query);
+        const keyword = this.queryStr.keyword ? {
+            name: {
+                $regex: this.queryStr.keyword,
+                $options: 'i'
+            }
+        } : {}
+
+        this.query = this.query.find({ ...keyword });
         return this;
-    } 
+    }
+
     filter() {
 
-        const queryCopy = { ...this.queryString };
+        const queryCopy = { ...this.queryStr };
+
         // Removing fields from the query
-        const removeFields = ['q']
+        const removeFields = ['keyword']
         removeFields.forEach(el => delete queryCopy[el]);
+
+        // Advance filter for price, ratings etc
         let queryStr = JSON.stringify(queryCopy)
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
+
 
         this.query = this.query.find(JSON.parse(queryStr));
         return this;
     }
+
 }
+
 module.exports = APIFeatures
