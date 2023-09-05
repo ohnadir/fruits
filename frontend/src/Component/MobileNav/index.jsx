@@ -87,7 +87,7 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
                     <div className="bottom-nav-item  relative ">
                         <BsCart onClick={()=>handleNavigate('cart')} size={22} style={{color: "white"}} />
                         <div className='cart-counter-container'>
-                            <p className="">{ cartItems.length === 0 ? 0 : cartItems.length}</p>
+                            <p className="">{ cartItems?.length === 0 ? 0 : cartItems?.length}</p>
                         </div>
                     </div>
                     {/* cart icons for cart drawer open section end */}

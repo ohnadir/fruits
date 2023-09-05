@@ -26,12 +26,13 @@ const ProductList = () => {
     const [keyword, setKeyword] = useState("");
     const [search, setSearch] = useState("");
     const [filterItem, setFilterItem] = useState("low2high")
+    console.log(filterItem)
     // low2high, high2low,
     const dispatch = useDispatch();
 
     
-    const handleFilterItem=(e)=>{
-        setFilterItem(e.target.value)
+    const handleFilterItem=(value)=>{
+        setFilterItem(value)
     }
     const handleSearch=()=>{
         setKeyword(search);
@@ -90,17 +91,14 @@ const ProductList = () => {
     const minPrice = 0
     const minRating = 1
     useEffect(() => {
-        dispatch(getSearchProduct(keyword, minPrice, maxPrice, category, maxRating, minRating, filterItem))
-    }, [dispatch, keyword, minPrice, maxPrice, category, maxRating, minRating, filterItem]);
+        dispatch(getSearchProduct(keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating))
+    }, [dispatch, keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating]);
     return (
         <>  
             {contextHolder}
             <div className='product-list-container'>
                 {
-                    loading
-                    ?
-                    <Loader/>
-                    :
+                    
                     <>
                         {/* product filter section start */}
                         <section className='filter-container' style={{borderBottom : showBorder === true ? "2px solid #eee" : null}}>
@@ -124,7 +122,7 @@ const ProductList = () => {
                                     style={{
                                         width: 150,
                                     }}
-                                    //   onChange={handleFilterItem}
+                                      onChange={handleFilterItem}
                                     options={[
                                         {
                                         value: 'low2high',
@@ -205,45 +203,53 @@ const ProductList = () => {
                             {/* aside bar end */}
 
                             {/* product list start */}
-                            <div className='products-container-list'>
-                                {
-                                    products?.map(product => 
-                                        <div key={product._id} className='products' >
-                                            <img className='product-img' src={product?.productPictures} alt="" />
 
-                                            {/* hover button */}
-                                            <div className='hover-btn-container'>
-                                                <div className='grid grid-cols-1 gap-3'>
-                                                    <button className='hover-btn' onClick={()=>handleCart(product)}>
-                                                    <span className='button-text' >add to cart</span>
-                                                    <AiOutlineShoppingCart className='button-icon' />
-                                                    </button>
-                                                    <button className='hover-btn' onClick={()=> setDetailsModal(product?._id)}>
-                                                    <span className='button-text' >quick view</span>
-                                                    <AiOutlineEye className='button-icon' />
-                                                    </button>
+                            {
+
+                                loading
+                                ?
+                                <Loader/>
+                                :
+                                <div className='products-container-list'>
+                                    {
+                                        products?.map(product => 
+                                            <div key={product._id} className='products' >
+                                                <img className='product-img' src={product?.productPictures} alt="" />
+
+                                                {/* hover button */}
+                                                <div className='hover-btn-container'>
+                                                    <div className='grid grid-cols-1 gap-3'>
+                                                        <button className='hover-btn' onClick={()=>handleCart(product)}>
+                                                        <span className='button-text' >add to cart</span>
+                                                        <AiOutlineShoppingCart className='button-icon' />
+                                                        </button>
+                                                        <button className='hover-btn' onClick={()=> setDetailsModal(product?._id)}>
+                                                        <span className='button-text' >quick view</span>
+                                                        <AiOutlineEye className='button-icon' />
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                {/* product body */}
+                                                <div>
+                                                    <p className='m-0 text-center text-[14px]'>
+                                                    <Rating
+                                                        initialRating={3.5}
+                                                        emptySymbol={<FontAwesomeIcon icon={faStar} />}
+                                                        fullSymbol={<FontAwesomeIcon style={{color: 'goldenrod'}} icon={faStar} />}
+                                                        readonly
+                                                    ></Rating>
+                                                    </p>
+                                                    <p className='m-0 text-center'>{product.name}</p>
+                                                    <p className='m-0 text-center text-[#10b981] font-extrabold'>${product?.price}</p>
                                                 </div>
                                             </div>
-
-                                            {/* product body */}
-                                            <div>
-                                                <p className='m-0 text-center text-[14px]'>
-                                                <Rating
-                                                    initialRating={3.5}
-                                                    emptySymbol={<FontAwesomeIcon icon={faStar} />}
-                                                    fullSymbol={<FontAwesomeIcon style={{color: 'goldenrod'}} icon={faStar} />}
-                                                    readonly
-                                                ></Rating>
-                                                </p>
-                                                <p className='m-0 text-center'>{product.name}</p>
-                                                <p className='m-0 text-center text-[#10b981] font-extrabold'>${product?.price}</p>
-                                            </div>
-                                        </div>
-                                )}
-                                {
-                                    detailsModal && <ProductDetails detailsModal={detailsModal} setDetailsModal={setDetailsModal}/>
-                                }
-                            </div>
+                                    )}
+                                    {
+                                        detailsModal && <ProductDetails detailsModal={detailsModal} setDetailsModal={setDetailsModal}/>
+                                    }
+                                </div>
+                            }
                         {/* product list end */}
                         </div>
                     </>

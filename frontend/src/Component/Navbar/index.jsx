@@ -67,7 +67,7 @@ const Navbar = ({modal, setModal}) => {
                             <div className='relative cursor-pointer'>
                                 <BsCart onClick={()=>setOpen(true)} size={22} style={{color: "white"}} />
                                 <div className='cart-counter-container'>
-                                    <p className="">{cartItems.length === 0 ? 0 : cartItems.length}</p>
+                                    <p className="">{cartItems?.length === 0 ? 0 : cartItems?.length}</p>
                                 </div>
                             </div>
                             {/* cart container end */}

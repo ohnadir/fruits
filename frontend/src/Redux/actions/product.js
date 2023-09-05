@@ -13,7 +13,8 @@ import {
     CLEAR_ERRORS
 } from '../constants/product';
 
-const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
+// const baseUrl = "https://fruits-ivory.vercel.app/api/v1";
+const baseUrl = "http://localhost:5002/api/v1";
 
 export const getProducts = () => async (dispatch) => {
     try {
@@ -93,10 +94,10 @@ export const getSearchProduct = (keyword, filterItem, category, minPrice, maxPri
             link = `${baseUrl}/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`            
         }
 
-        // rating filter product get api
-        if(minRating && maxRating){
-            link = `${baseUrl}/products/search?minRating=${minRating}&maxRating=${maxRating}`            
-        }
+        // // rating filter product get api
+        // if(minRating && maxRating){
+        //     link = `${baseUrl}/products/search?minRating=${minRating}&maxRating=${maxRating}`            
+        // } 
 
 
         const config = {
