@@ -41,7 +41,7 @@ const ProductList = () => {
             total: Number(product?.price) * 1
         }
         if(data){
-            addItemToCart(data)
+            dispatch(addItemToCart(data))
             messageApi.success('Product added to cart')
         }
     }
