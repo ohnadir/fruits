@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ProductList.scss'
-import { getSearchProduct } from "../../Redux/actions/product";
+import { getSearchProduct, getFilterProduct, getCategoryProduct, getPriceRangeProduct, getRatingProduct } from "../../Redux/actions/product";
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Component/Loader';
 import { addItemToCart } from '../../Redux/actions/carts';
@@ -26,7 +26,6 @@ const ProductList = () => {
     const [keyword, setKeyword] = useState("");
     const [search, setSearch] = useState("");
     const [filterItem, setFilterItem] = useState("low2high")
-    console.log(filterItem)
     // low2high, high2low,
     const dispatch = useDispatch();
 
@@ -88,11 +87,23 @@ const ProductList = () => {
         setMaxRating(newRating)
     }
 
-    const minPrice = 0
+    const minPrice = 1
     const minRating = 1
     useEffect(() => {
-        dispatch(getSearchProduct(keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating))
-    }, [dispatch, keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating]);
+        
+        if(keyword){
+            dispatch(getSearchProduct(keyword))
+        }
+        else if(category){
+            dispatch(getCategoryProduct(category))
+        }
+        else if(maxRating){
+            dispatch(getPriceRangeProduct(minRating, maxRating))
+        }
+        else{
+            dispatch(getFilterProduct(filterItem))
+        }
+    }, [dispatch, keyword, filterItem, category, maxRating, minRating]);
     return (
         <>  
             {contextHolder}
@@ -164,14 +175,14 @@ const ProductList = () => {
                                 {/* category list end */}
 
                                 {/* price range start*/}
-                                <div className="price-range">
+                                {/* <div className="price-range">
                                     <h1>Price Range</h1>
                                     <p>Price : <span className='font-semibold'>{maxPrice ? maxPrice : Math.max(...newPriceArray)}</span></p>
                                     <input 
                                         name='price' 
                                         type="range" 
                                         step="1"
-                                        value={maxPrice ? maxPrice : Math.max(...newPriceArray)}
+                                        value={maxPrice}
                                         onChange={handleChange}
                                         min={Math.min(...newPriceArray)} 
                                         max={Math.max(...newPriceArray)}
@@ -180,7 +191,7 @@ const ProductList = () => {
 
 
 
-                                </div>
+                                </div> */}
                                 {/* price range start*/}
 
                                 {/* filter by rating start*/}

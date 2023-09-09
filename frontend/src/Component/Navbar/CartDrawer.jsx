@@ -57,7 +57,7 @@ const CartDrawer = ({ setOpen }) => {
 
             <div className='cart-body'>
                 {
-                    cartItems.length === 0
+                    cartItems?.length === 0
                     ?
 
                     // empty cart container start

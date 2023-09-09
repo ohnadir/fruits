@@ -72,7 +72,7 @@ exports.Product = async({id})=>{
         return response;
     }
 }
-exports.SearchProduct= async ({ keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating }) => {
+exports.SearchProduct= async ({q, filterItem, category, minPrice, maxPrice, maxRating, minRating }) => {
     const response = {
       code: 200,
       status: 'success',
@@ -80,24 +80,24 @@ exports.SearchProduct= async ({ keyword, filterItem, category, minPrice, maxPric
     };
   
     try {
-    
         let queryObject = {};
-        if(keyword){
-            if (keyword !== 'undefined' || keyword !== undefined || keyword) {
-            let regex = new RegExp(keyword, 'i');
-            queryObject = {
-                ...query,
-                $or: [{ name: regex }],
-            };
+        if(q){
+            if (q !== 'undefined' || q !== undefined || q) {
+                let regex = new RegExp(q, 'i');
+                queryObject = {
+                    ...queryObject,
+                    $or: [{ name: regex }],
+                };
             }
         }
+        
         if(category){
             queryObject = {category : category}; 
         }
 
-        if (minPrice && maxPrice) {
+        /* if (minPrice && maxPrice) {
             queryObject = {price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice)}}; 
-        }
+        } */
 
         if(minRating & maxRating){
             queryObject = {rating: { $gte: parseInt(minRating), $lte: parseInt(maxRating)}};

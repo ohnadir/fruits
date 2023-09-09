@@ -65,48 +65,18 @@ export const getProductDetails = (id) => async (dispatch) => {
         })
     }
 }
-export const getSearchProduct = (keyword, filterItem, category, minPrice, maxPrice, maxRating, minRating) => async (dispatch) => {
-    console.log(keyword);
+export const getSearchProduct = (keyword) => async (dispatch) => {
     try {
         dispatch({
             type:SEARCH_PRODUCT_REQUEST
         })
-        let link = `${baseUrl}/products/search`;
-
-        // search product api
-        if(keyword){
-            link = `${baseUrl}/products/search?keyword=${keyword}`            
-        }
-
-        // category product get api
-        if(category){
-            link = `${baseUrl}/products/search?category=${category}`            
-        }
-
-        
-        // Z to A product list get api
-        if(filterItem){
-            link = `${baseUrl}/products/search?filterItem=${filterItem}`            
-        }
-
-        // price filter product get api
-        if(minPrice && maxPrice){
-            link = `${baseUrl}/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`            
-        }
-
-        // // rating filter product get api
-        // if(minRating && maxRating){
-        //     link = `${baseUrl}/products/search?minRating=${minRating}&maxRating=${maxRating}`            
-        // } 
-
-
         const config = {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(link, config);
+        const { data } = await axios.get(`${baseUrl}/products/search?keyword=${keyword}`, config);
         dispatch({
             type: SEARCH_PRODUCT_SUCCESS,
             payload:data
@@ -119,7 +89,109 @@ export const getSearchProduct = (keyword, filterItem, category, minPrice, maxPri
         })
     }
 }
+export const getFilterProduct = (filterItem) => async (dispatch) => {
+    try {
+        
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        })
+        
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/search?filterItem=${filterItem}`, config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+export const getCategoryProduct = (category) => async (dispatch) => {
+    try {
+        
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        })
 
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/search?category=${category}`, config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+export const getPriceRangeProduct = ( maxPrice) => async (dispatch) => {
+    try {
+        
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/search?minPrice=0&maxPrice=${maxPrice}`, config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+export const getRatingProduct = (maxRating, minRating) => async (dispatch) => {
+    try {
+        
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        });
+
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/search?minRating=${minRating}&maxRating=${maxRating}` , config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 
 //  Clear Errors
 export const clearErrors = () => async (dispatch) => {
