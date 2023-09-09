@@ -9,29 +9,23 @@ import {  BsCart } from 'react-icons/bs';
 import {  CgMenuLeft } from 'react-icons/cg';
 import { useNavigate } from "react-router-dom";
 import "./Navbar.scss"
-import {  useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import Authentication from '../../Component/Authentication';
 import MobileNavbar from '../MobileNav';
-import { getCart } from "../../Redux/actions/carts"
 
 const Navbar = ({modal, setModal}) => {
     const { cartItems } = useSelector(state => state.cart);
-    console.log(cartItems)
     const { isAuthenticated } = useSelector(state => state.auth);
     const [open, setOpen] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [drawer, setDrawer] = useState(false);
     const navigate =useNavigate();
-    const dispatch = useDispatch()
     
     // navigate home function
     const handleLogo=()=>{
         navigate('/')
         window.location.reload();
     }
-    useEffect(()=>{
-        dispatch(getCart());
-    }, [dispatch])
     return (
         // Navbar Container start
             <div className='bg-[#10b981] top-0 sticky z-10'>

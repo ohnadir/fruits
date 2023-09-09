@@ -2,8 +2,7 @@ import {
     ADD_TO_CART,
     DECREASE_QUANTITY_CART, 
     REMOVE_ITEM_CART,
-    EMPTY_CART,
-    GET_CART
+    EMPTY_CART
 } from '../constants/carts'
 
 export const addItemToCart = (data) => async (dispatch, getState) => {
@@ -40,14 +39,6 @@ export const decreaseCartQuantity = (id) => async (dispatch, getState) => {
     })
 
     localStorage.setItem('shopping-cart', JSON.stringify(getState().cart.cartItems))
-}
-
-export const getCart = () => async (dispatch, getState) => {
-    dispatch({
-        type: GET_CART,
-        payload: getState().cart.cartItems = JSON.parse(localStorage.getItem('shopping-cart'))
-    })
-
 }
 
 export const emptyCart = () => async (dispatch) => {

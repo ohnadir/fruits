@@ -1,6 +1,5 @@
 import { 
     ADD_TO_CART,
-    GET_CART, 
     DECREASE_QUANTITY_CART, 
     REMOVE_ITEM_CART,
     EMPTY_CART
@@ -8,11 +7,6 @@ import {
 
 export const cartReducer = (state = { cartItems: []}, action) => {
     switch (action.type) {
-        case GET_CART:
-            return{
-                ...state,
-                cartItems: action.payload
-            }
         case ADD_TO_CART:
             const item = action.payload;
             const isItemExist = state.cartItems?.find(i => i.id === item.id)
@@ -34,7 +28,7 @@ export const cartReducer = (state = { cartItems: []}, action) => {
             } else {
                 return {
                     ...state,
-                    cartItems: [...state.cartItems, item]
+                    cartItems: [...state?.cartItems, item]
                 }
             }
 

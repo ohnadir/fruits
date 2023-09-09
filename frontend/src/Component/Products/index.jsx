@@ -85,12 +85,12 @@ const Products = () => {
   };
   const handleCart=(product)=>{
     const data = {
-        name: product?.name,
-        id:product?._id,
-        price: product?.price,
-        quantity : 1,
-        image : product?.productPictures,
-        total: Number(product?.price) * 1
+      name: product?.name,
+      id:product?._id,
+      price: product?.price,
+      quantity : 1,
+      image : product?.productPictures,
+      total: Number(product?.price) * 1
     }
     if(data){
       dispatch(addItemToCart(data));
