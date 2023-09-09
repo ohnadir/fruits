@@ -72,7 +72,7 @@ exports.Product = async({id})=>{
         return response;
     }
 }
-exports.SearchProduct= async ({q, filterItem, category, minPrice, maxPrice, maxRating, minRating }) => {
+exports.SearchProduct= async ({ keyword}) => {
     const response = {
       code: 200,
       status: 'success',
@@ -81,45 +81,142 @@ exports.SearchProduct= async ({q, filterItem, category, minPrice, maxPrice, maxR
   
     try {
         let queryObject = {};
-        if(q){
-            if (q !== 'undefined' || q !== undefined || q) {
-                let regex = new RegExp(q, 'i');
+        if(keyword){
+            if (keyword !== 'undefined' || keyword !== undefined || keyword) {
+                let regex = new RegExp(keyword, 'i');
                 queryObject = {
                     ...queryObject,
                     $or: [{ name: regex }],
                 };
             }
         }
-        
-        if(category){
-            queryObject = {category : category}; 
-        }
-
-        /* if (minPrice && maxPrice) {
-            queryObject = {price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice)}}; 
-        } */
-
-        if(minRating & maxRating){
-            queryObject = {rating: { $gte: parseInt(minRating), $lte: parseInt(maxRating)}};
-        }
 
         let apiData = Product.find(queryObject);
+        const data = await apiData;
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+            return response
+        }
+        response.products = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};
+
+exports.CategoryProduct= async ({category}) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+        const data = await Product.find({ category : category});
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+            return response
+        }
+        response.products = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};
+
+exports.FilterProduct= async ({filter}) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+        let queryObject = {};
         
-        if(filterItem === "high2low"){
+        let apiData = Product.find(queryObject);
+        if(filter === "high2low"){
             apiData.sort("-price")
         }
-        if(filterItem === "low2high"){
+        if(filter === "low2high"){
             apiData.sort("price")
         }
-
-        if(filterItem === "a2z"){
+        
+        if(filter === "a2z"){
             apiData.sort("name")
         }
-        if(filterItem === "z2a"){
+        if(filter === "z2a"){
             apiData.sort("-name")
         }
-  
+        
+
         const data = await apiData;
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+            return response
+        }
+        response.products = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};
+
+exports.RatingProduct= async ({ maxRating, minRating }) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+        
+        const data = await Product.find({
+            rating: { $gte: parseInt(minRating), $lte: parseInt(maxRating)}
+        });
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+            return response
+        }
+        response.products = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};
+
+exports.PriceProduct= async ({ minPrice, maxPrice }) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+  
+        const data = await Product.find({
+            price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice)}}
+        );
         if (data.length === 0) {
             response.code = 404;
             response.status = 'failed';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ProductList.scss'
-import { getSearchProduct, getFilterProduct, getCategoryProduct, getPriceRangeProduct, getRatingProduct } from "../../Redux/actions/product";
+import { getFilterProduct,  } from "../../Redux/actions/product";
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Component/Loader';
 import { addItemToCart } from '../../Redux/actions/carts';
@@ -12,21 +12,16 @@ import ProductDetails from '../ProductDetails';
 import { message, Select } from 'antd';
 import { BsFillGridFill, BsSearch } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import categories from "../../Category.json";
-import StarRatings from 'react-star-ratings';
 
 const ProductList = () => {
     const [ detailsModal, setDetailsModal ] = useState('')
-    const [category, setCategory] = useState('')
     const [productGrid, setProductGrid] = useState("grid")
     const { loading, products } = useSelector(state => state.searchProduct);
     const [messageApi, contextHolder ] = message.useMessage();
     const [showBorder, setShowBorder] = useState(false);
-    const [maxRating, setMaxRating] = useState(5);
     const [keyword, setKeyword] = useState("");
     const [search, setSearch] = useState("");
     const [filterItem, setFilterItem] = useState("low2high")
-    // low2high, high2low,
     const dispatch = useDispatch();
 
     
@@ -67,52 +62,17 @@ const ProductList = () => {
         }
     }, []);
 
-    const price = [];
-    const filter = products?.filter( (item)=> price.push(+item.price));
-    const newPriceArray = price.filter((el, index) => price.indexOf(el) === index);
-
-    let edge;
-    function maxwell(){
-        for(let checker of newPriceArray){
-          if(checker > 2)edge = checker;
-        }
-        return edge;
-    }
-    const [maxPrice, setMaxPrice] = useState(maxwell())
-    const handleChange = (e) =>{
-        setMaxPrice(e.target.value)
-    }
-
-    const changeRating=(newRating)=>{
-        setMaxRating(newRating)
-    }
-
-    const minPrice = 1
-    const minRating = 1
     useEffect(() => {
-        
-        if(keyword){
-            dispatch(getSearchProduct(keyword))
-        }
-        else if(category){
-            dispatch(getCategoryProduct(category))
-        }
-        else if(maxRating){
-            dispatch(getPriceRangeProduct(minRating, maxRating))
-        }
-        else{
-            dispatch(getFilterProduct(filterItem))
-        }
-    }, [dispatch, keyword, filterItem, category, maxRating, minRating]);
+        dispatch(getFilterProduct(filterItem))
+    }, [dispatch, filterItem]);
     return (
         <>  
             {contextHolder}
-            <div className='product-list-container'>
-                {
                     
-                    <>
-                        {/* product filter section start */}
-                        <section className='filter-container' style={{borderBottom : showBorder === true ? "2px solid #eee" : null}}>
+                <>
+                    {/* product filter section start */}
+                    <section className='filter' style={{borderBottom : showBorder === true ? "2px solid #eee" : null}}>
+                        <div className='filter-container'>
                             <div className='flex items-center gap-4'>
                                 <div className="input-container">
                                     <input onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='Search Product' />
@@ -133,7 +93,7 @@ const ProductList = () => {
                                     style={{
                                         width: 150,
                                     }}
-                                      onChange={handleFilterItem}
+                                    onChange={handleFilterItem}
                                     options={[
                                         {
                                         value: 'low2high',
@@ -154,118 +114,59 @@ const ProductList = () => {
                                     ]}
                                     />
                             </div>
-                        </section>
-                        {/* product filter section end */}
-
-                        <div className='flex justify-between'>
-
-                            {/* aside bar start */}
-                            <aside className='aside'>
-                                {/* category list start */}
-                                <div className="category-products w-[15%]">
-                                    <p style={{backgroundColor: category === "all" ? "#10b981" : null, color: category === "all" ? "white" : null}} className='capitalize' onClick={()=>setCategory("all")}>All</p>
-                                    {
-                                        categories.map((item)=>
-                                            <div className='category' key={item.id}>
-                                                <p style={{backgroundColor: category === item.name ? "#10b981" : null, color: category === item.name ? "white" : null}} onClick={()=>setCategory(item.name)} className='capitalize'>{item.name}</p>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                                {/* category list end */}
-
-                                {/* price range start*/}
-                                {/* <div className="price-range">
-                                    <h1>Price Range</h1>
-                                    <p>Price : <span className='font-semibold'>{maxPrice ? maxPrice : Math.max(...newPriceArray)}</span></p>
-                                    <input 
-                                        name='price' 
-                                        type="range" 
-                                        step="1"
-                                        value={maxPrice}
-                                        onChange={handleChange}
-                                        min={Math.min(...newPriceArray)} 
-                                        max={Math.max(...newPriceArray)}
-                                    />
-
-
-
-
-                                </div> */}
-                                {/* price range start*/}
-
-                                {/* filter by rating start*/}
-                                <div className='rating'>
-                                    <h1>Product Rating</h1>
-                                    <StarRatings
-                                        starDimension="20px"
-                                        starSpacing="5px"
-                                        rating={maxRating}
-                                        starRatedColor="#FACA51"
-                                        changeRating={changeRating}
-                                        numberOfStars={5}
-                                        name='rating'
-                                        starEmptyColor="#e9e9e9"
-                                        starHoverColor="#FACA51"
-                                    />
-                                </div>
-                                {/* filter by rating end*/}
-                            </aside>
-                            {/* aside bar end */}
-
-                            {/* product list start */}
-
-                            {
-
-                                loading
-                                ?
-                                <Loader/>
-                                :
-                                <div className='products-container-list'>
-                                    {
-                                        products?.map(product => 
-                                            <div key={product._id} className='products' >
-                                                <img className='product-img' src={product?.productPictures} alt="" />
-
-                                                {/* hover button */}
-                                                <div className='hover-btn-container'>
-                                                    <div className='grid grid-cols-1 gap-3'>
-                                                        <button className='hover-btn' onClick={()=>handleCart(product)}>
-                                                        <span className='button-text' >add to cart</span>
-                                                        <AiOutlineShoppingCart className='button-icon' />
-                                                        </button>
-                                                        <button className='hover-btn' onClick={()=> setDetailsModal(product?._id)}>
-                                                        <span className='button-text' >quick view</span>
-                                                        <AiOutlineEye className='button-icon' />
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                {/* product body */}
-                                                <div>
-                                                    <p className='m-0 text-center text-[14px]'>
-                                                    <Rating
-                                                        initialRating={3.5}
-                                                        emptySymbol={<FontAwesomeIcon icon={faStar} />}
-                                                        fullSymbol={<FontAwesomeIcon style={{color: 'goldenrod'}} icon={faStar} />}
-                                                        readonly
-                                                    ></Rating>
-                                                    </p>
-                                                    <p className='m-0 text-center'>{product.name}</p>
-                                                    <p className='m-0 text-center text-[#10b981] font-extrabold'>${product?.price}</p>
-                                                </div>
-                                            </div>
-                                    )}
-                                    {
-                                        detailsModal && <ProductDetails detailsModal={detailsModal} setDetailsModal={setDetailsModal}/>
-                                    }
-                                </div>
-                            }
-                        {/* product list end */}
                         </div>
-                    </>
-                }
-            </div>
+                    </section>
+                    {/* product filter section end */}
+
+
+                    {/* product list start */}
+                    <div className='product-list-container'>
+                        {
+                            loading
+                            ?
+                            <Loader/>
+                            :
+                            <div className='products-container-list'>
+                                {
+                                    products?.map(product => 
+                                        <div key={product._id} className='products' >
+                                            <img className='product-img' src={product?.productPictures} alt="" />
+                                            {/* hover button */}
+                                            <div className='hover-btn-container'>
+                                                <div className='grid grid-cols-1 gap-3'>
+                                                    <button className='hover-btn' onClick={()=>handleCart(product)}>
+                                                    <span className='button-text' >add to cart</span>
+                                                    <AiOutlineShoppingCart className='button-icon' />
+                                                    </button>
+                                                    <button className='hover-btn' onClick={()=> setDetailsModal(product?._id)}>
+                                                    <span className='button-text' >quick view</span>
+                                                    <AiOutlineEye className='button-icon' />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            {/* product body */}
+                                            <div>
+                                                <p className='m-0 text-center text-[14px]'>
+                                                <Rating
+                                                    initialRating={3.5}
+                                                    emptySymbol={<FontAwesomeIcon icon={faStar} />}
+                                                    fullSymbol={<FontAwesomeIcon style={{color: 'goldenrod'}} icon={faStar} />}
+                                                    readonly
+                                                ></Rating>
+                                                </p>
+                                                <p className='m-0 text-center'>{product.name}</p>
+                                                <p className='m-0 text-center text-[#10b981] font-extrabold'>${product?.price}</p>
+                                            </div>
+                                        </div>
+                                )}
+                                {
+                                    detailsModal && <ProductDetails detailsModal={detailsModal} setDetailsModal={setDetailsModal}/>
+                                }
+                            </div>
+                        }
+                    </div>
+                    {/* product list end */}
+                </>
         </>
     );
 };

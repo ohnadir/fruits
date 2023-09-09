@@ -57,7 +57,7 @@ const CartDrawer = ({ setOpen }) => {
 
             <div className='cart-body'>
                 {
-                    !cartItems
+                    cartItems?.length === 0
                     ?
 
                     // empty cart container start
@@ -124,7 +124,7 @@ const CartDrawer = ({ setOpen }) => {
 
             {/* checkout button section start */}
             {
-                !cartItems
+                cartItems?.length === 0
                 ?
                 null
                 :
