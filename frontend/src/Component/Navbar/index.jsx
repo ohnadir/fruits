@@ -16,6 +16,7 @@ import { getCart } from "../../Redux/actions/carts"
 
 const Navbar = ({modal, setModal}) => {
     const { cartItems } = useSelector(state => state.cart);
+    console.log(cartItems)
     const { isAuthenticated } = useSelector(state => state.auth);
     const [open, setOpen] = useState(false);
     const [keyword, setKeyword] = useState('');
@@ -67,7 +68,7 @@ const Navbar = ({modal, setModal}) => {
                             <div className='relative cursor-pointer'>
                                 <BsCart onClick={()=>setOpen(true)} size={22} style={{color: "white"}} />
                                 <div className='cart-counter-container'>
-                                    <p className="">{cartItems?.length === 0 ? 0 : cartItems?.length}</p>
+                                    <p className="">{ cartItems ? cartItems?.length : 0 }</p>
                                 </div>
                             </div>
                             {/* cart container end */}

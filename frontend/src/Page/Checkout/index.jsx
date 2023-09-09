@@ -320,7 +320,7 @@ const Checkout = () => {
                                                             <button onClick={()=>dispatch(addItemToCart(item))}>+</button>
                                                         </div>
                                                         {
-                                                            cartItems.length > 1
+                                                            cartItems?.length > 1
                                                             ?
                                                             <div className='delete-btn' onClick={()=>dispatch(removeItemFromCart(item.id))}>
                                                                 <BsTrash size={15} style={{color : "red"}}/>
