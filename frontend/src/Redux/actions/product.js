@@ -89,6 +89,32 @@ export const getSearchProduct = (keyword) => async (dispatch) => {
         })
     }
 }
+
+export const getCategoryProduct = (category) => async (dispatch) => {
+    try {
+        dispatch({
+            type:SEARCH_PRODUCT_REQUEST
+        })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/products/category?category=${category}`, config);
+        dispatch({
+            type: SEARCH_PRODUCT_SUCCESS,
+            payload:data
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: SEARCH_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 export const getFilterProduct = (filter) => async (dispatch) => {
     try {
         

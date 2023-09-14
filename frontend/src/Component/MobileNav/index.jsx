@@ -48,7 +48,7 @@ const MobileNavbar = ({ setModal, drawer, setDrawer, setOpen }) => {
 
                 {/* drawer brand logo section start */}
                 <div className='brand-logo'>
-                    <img src={logo} alt="" className="log" />
+                    <img src={logo} alt="" className="cursor-pointer" onClick={()=>handleNavigate('home')} />
                     <div className='close-icon' onClick={()=>setDrawer(false)}>
                         <svg stroke="none" fill="#ef4444" strokeWidth="0" viewBox="0 0 512 512" height="1.3em" width="1.3em" xmlns="http://www.w3.org/2000/svg">
                             <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>

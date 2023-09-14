@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getSearchProduct } from '../../Redux/actions/product';
+import { getCategoryProduct } from '../../Redux/actions/product';
 import './CategoryProduct.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { message } from 'antd';
-import { addToCart } from '../../utils/LocalStorage';
+import { addItemToCart } from '../../Redux/actions/carts';
 import ProductDetails from '../ProductDetails';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +19,7 @@ const CategoryProduct = () => {
     const [messageApi, contextHolder ] = message.useMessage();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getSearchProduct(category))
+        dispatch(getCategoryProduct(category))
     }, [category, dispatch]);
     const handleCart=(product)=>{
         const data = {
@@ -31,7 +31,7 @@ const CategoryProduct = () => {
             total: Number(product?.price) * 1
         }
         if(data){
-            addToCart(data)
+            dispatch(addItemToCart(data))
             messageApi.success('Product added to cart')
         }
     }
